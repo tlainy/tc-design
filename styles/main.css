@@ -1,3 +1,52 @@
+/* Import Archivo font (you can add this if you have the font files) */
+/* @font-face {
+    font-family: 'Archivo';
+    src: url('../fonts/Archivo-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+} */
+
+/* CSS Custom Properties for Typography */
+:root {
+    /* Font Families */
+    --font-primary: 'Archivo', 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-secondary: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    
+    /* Font Weights */
+    --weight-light: 300;
+    --weight-regular: 400;
+    --weight-medium: 500;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+    --weight-extrabold: 800;
+    --weight-black: 900;
+    
+    /* Font Sizes */
+    --text-xs: 12px;
+    --text-sm: 14px;
+    --text-base: 16px;
+    --text-lg: 18px;
+    --text-xl: 20px;
+    --text-2xl: 24px;
+    --text-3xl: 32px;
+    --text-4xl: 40px;
+    --text-5xl: 52px;
+    
+    /* Line Heights */
+    --leading-tight: 1.25;
+    --leading-snug: 1.375;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    --leading-loose: 2;
+    
+    /* Letter Spacing */
+    --tracking-tight: -0.025em;
+    --tracking-normal: 0;
+    --tracking-wide: 0.025em;
+    --tracking-wider: 0.05em;
+    --tracking-widest: 0.1em;
+}
+
 /* Reset and base styles */
 * {
     margin: 0;
@@ -6,15 +55,107 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
+    font-family: var(--font-secondary);
+    line-height: var(--leading-normal);
     color: #333;
+    font-size: var(--text-base);
+    font-weight: var(--weight-regular);
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+/* Typography Classes based on your type ramp */
+.text-heading-1 {
+    font-family: var(--font-primary);
+    font-weight: var(--weight-black);
+    font-size: var(--text-5xl);
+    line-height: 64px;
+    letter-spacing: var(--tracking-wide);
+}
+
+.text-heading-2 {
+    font-family: var(--font-primary);
+    font-weight: var(--weight-black);
+    font-size: var(--text-4xl);
+    line-height: 52px;
+    letter-spacing: var(--tracking-wide);
+}
+
+.text-heading-3 {
+    font-family: var(--font-primary);
+    font-weight: var(--weight-extrabold);
+    font-size: var(--text-3xl);
+    line-height: 44px;
+    letter-spacing: var(--tracking-wide);
+}
+
+.text-heading-4 {
+    font-family: var(--font-primary);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-2xl);
+    line-height: 32px;
+    letter-spacing: var(--tracking-wide);
+}
+
+.text-heading-5 {
+    font-family: var(--font-primary);
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-xl);
+    line-height: 28px;
+    letter-spacing: var(--tracking-wide);
+}
+
+.text-button {
+    font-family: var(--font-primary);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-base);
+    line-height: 24px;
+    letter-spacing: var(--tracking-wider);
+}
+
+.text-body-stat {
+    font-family: var(--font-primary);
+    font-weight: var(--weight-black);
+    font-size: var(--text-base);
+    line-height: 22px;
+    letter-spacing: var(--tracking-normal);
+    color: #666;
+}
+
+.text-body-lg {
+    font-family: var(--font-secondary);
+    font-weight: var(--weight-medium);
+    font-size: var(--text-2xl);
+    line-height: 34px;
+    letter-spacing: var(--tracking-wider);
+}
+
+.text-body-base {
+    font-family: var(--font-secondary);
+    font-weight: var(--weight-medium);
+    font-size: var(--text-base);
+    line-height: 24px;
+    letter-spacing: var(--tracking-wider);
+}
+
+.text-body-sm {
+    font-family: var(--font-secondary);
+    font-weight: var(--weight-medium);
+    font-size: var(--text-sm);
+    line-height: 20px;
+    letter-spacing: var(--tracking-wider);
+}
+
+.text-body-xs {
+    font-family: var(--font-secondary);
+    font-weight: var(--weight-medium);
+    font-size: var(--text-xs);
+    line-height: 16px;
+    letter-spacing: var(--tracking-wider);
 }
 
 /* Header and Navigation */
@@ -35,9 +176,11 @@ body {
 }
 
 .logo {
+    font-family: var(--font-primary);
+    font-weight: var(--weight-black);
     font-size: 1.8rem;
-    font-weight: bold;
     color: #2c3e50;
+    letter-spacing: var(--tracking-wide);
 }
 
 .nav-menu {
@@ -49,8 +192,10 @@ body {
 .nav-link {
     text-decoration: none;
     color: #333;
-    font-weight: 500;
+    font-weight: var(--weight-medium);
+    font-size: var(--text-base);
     transition: color 0.3s ease;
+    letter-spacing: var(--tracking-wide);
 }
 
 .nav-link:hover {
@@ -70,14 +215,20 @@ body {
 }
 
 .hero-content h2 {
+    font-family: var(--font-primary);
+    font-weight: var(--weight-black);
     font-size: 3rem;
     margin-bottom: 1rem;
+    letter-spacing: var(--tracking-wide);
 }
 
 .hero-content p {
+    font-family: var(--font-secondary);
+    font-weight: var(--weight-medium);
     font-size: 1.2rem;
     margin-bottom: 2rem;
     opacity: 0.9;
+    letter-spacing: var(--tracking-wider);
 }
 
 .cta-button {
@@ -85,10 +236,13 @@ body {
     color: white;
     border: none;
     padding: 15px 30px;
+    font-family: var(--font-primary);
+    font-weight: var(--weight-bold);
     font-size: 1.1rem;
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s ease;
+    letter-spacing: var(--tracking-wider);
 }
 
 .cta-button:hover {
@@ -103,9 +257,12 @@ body {
 
 .projects h2 {
     text-align: center;
+    font-family: var(--font-primary);
+    font-weight: var(--weight-black);
     font-size: 2.5rem;
     margin-bottom: 3rem;
     color: #2c3e50;
+    letter-spacing: var(--tracking-wide);
 }
 
 .project-grid {
@@ -137,18 +294,28 @@ body {
 
 .placeholder {
     color: #7f8c8d;
+    font-family: var(--font-secondary);
+    font-weight: var(--weight-medium);
     font-size: 1.2rem;
-    font-weight: bold;
+    letter-spacing: var(--tracking-wide);
 }
 
 .project-card h3 {
     padding: 1rem 1rem 0.5rem;
     color: #2c3e50;
+    font-family: var(--font-primary);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-xl);
+    letter-spacing: var(--tracking-wide);
 }
 
 .project-card p {
     padding: 0 1rem 1rem;
     color: #7f8c8d;
+    font-family: var(--font-secondary);
+    font-weight: var(--weight-medium);
+    font-size: var(--text-base);
+    letter-spacing: var(--tracking-wide);
 }
 
 /* About Section */
@@ -159,17 +326,23 @@ body {
 
 .about h2 {
     text-align: center;
+    font-family: var(--font-primary);
+    font-weight: var(--weight-black);
     font-size: 2.5rem;
     margin-bottom: 2rem;
     color: #2c3e50;
+    letter-spacing: var(--tracking-wide);
 }
 
 .about p {
     text-align: center;
+    font-family: var(--font-secondary);
+    font-weight: var(--weight-medium);
     font-size: 1.1rem;
     max-width: 800px;
     margin: 0 auto;
     color: #555;
+    letter-spacing: var(--tracking-wider);
 }
 
 /* Contact Section */
@@ -181,15 +354,21 @@ body {
 
 .contact h2 {
     text-align: center;
+    font-family: var(--font-primary);
+    font-weight: var(--weight-black);
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    letter-spacing: var(--tracking-wide);
 }
 
 .contact p {
     text-align: center;
+    font-family: var(--font-secondary);
+    font-weight: var(--weight-medium);
     font-size: 1.1rem;
     margin-bottom: 2rem;
     opacity: 0.9;
+    letter-spacing: var(--tracking-wide);
 }
 
 .contact-info {
@@ -198,6 +377,9 @@ body {
 
 .contact-info p {
     margin-bottom: 0.5rem;
+    font-family: var(--font-secondary);
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--tracking-wide);
 }
 
 /* Footer */
@@ -206,6 +388,12 @@ body {
     color: white;
     text-align: center;
     padding: 2rem 0;
+}
+
+.footer p {
+    font-family: var(--font-secondary);
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--tracking-wide);
 }
 
 /* Responsive Design */
@@ -220,5 +408,15 @@ body {
     
     .project-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .text-heading-1 {
+        font-size: 2.5rem;
+        line-height: 3rem;
+    }
+    
+    .text-heading-2 {
+        font-size: 2rem;
+        line-height: 2.5rem;
     }
 }
