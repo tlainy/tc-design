@@ -49,3 +49,6 @@ coverage/
 # Temporary folders
 tmp/
 temp/
+
+# Font files (uncomment if you want to exclude them from git)
+# fonts/

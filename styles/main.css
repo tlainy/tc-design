@@ -1,422 +1,96 @@
-/* Import Archivo font (you can add this if you have the font files) */
-/* @font-face {
-    font-family: 'Archivo';
-    src: url('../fonts/Archivo-Black.woff2') format('woff2');
+/* Archivo Font Face Declarations */
+@font-face {
+    font-family: "Archivo";
+    src: url("../fonts/Archivo-Thin.ttf") format("truetype");
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Archivo";
+    src: url("../fonts/Archivo-ExtraLight.ttf") format("truetype");
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Archivo";
+    src: url("../fonts/Archivo-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Archivo";
+    src: url("../fonts/Archivo-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Archivo";
+    src: url("../fonts/Archivo-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Archivo";
+    src: url("../fonts/Archivo-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Archivo";
+    src: url("../fonts/Archivo-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Archivo";
+    src: url("../fonts/Archivo-ExtraBold.ttf") format("truetype");
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Archivo";
+    src: url("../fonts/Archivo-Black.ttf") format("truetype");
     font-weight: 900;
     font-style: normal;
-} */
-
-/* CSS Custom Properties for Typography */
-:root {
-    /* Font Families */
-    --font-primary: 'Archivo', 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-secondary: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    
-    /* Font Weights */
-    --weight-light: 300;
-    --weight-regular: 400;
-    --weight-medium: 500;
-    --weight-semibold: 600;
-    --weight-bold: 700;
-    --weight-extrabold: 800;
-    --weight-black: 900;
-    
-    /* Font Sizes */
-    --text-xs: 12px;
-    --text-sm: 14px;
-    --text-base: 16px;
-    --text-lg: 18px;
-    --text-xl: 20px;
-    --text-2xl: 24px;
-    --text-3xl: 32px;
-    --text-4xl: 40px;
-    --text-5xl: 52px;
-    
-    /* Line Heights */
-    --leading-tight: 1.25;
-    --leading-snug: 1.375;
-    --leading-normal: 1.5;
-    --leading-relaxed: 1.625;
-    --leading-loose: 2;
-    
-    /* Letter Spacing */
-    --tracking-tight: -0.025em;
-    --tracking-normal: 0;
-    --tracking-wide: 0.025em;
-    --tracking-wider: 0.05em;
-    --tracking-widest: 0.1em;
+    font-display: swap;
 }
 
-/* Reset and base styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@font-face {
+    font-family: "Archivo";
+    src: url("../fonts/Archivo-Italic.ttf") format("truetype");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
 }
 
-body {
-    font-family: var(--font-secondary);
-    line-height: var(--leading-normal);
-    color: #333;
-    font-size: var(--text-base);
-    font-weight: var(--weight-regular);
+@font-face {
+    font-family: "Archivo";
+    src: url("../fonts/Archivo-MediumItalic.ttf") format("truetype");
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Typography Classes based on your type ramp */
-.text-heading-1 {
-    font-family: var(--font-primary);
-    font-weight: var(--weight-black);
-    font-size: var(--text-5xl);
-    line-height: 64px;
-    letter-spacing: var(--tracking-wide);
-}
-
-.text-heading-2 {
-    font-family: var(--font-primary);
-    font-weight: var(--weight-black);
-    font-size: var(--text-4xl);
-    line-height: 52px;
-    letter-spacing: var(--tracking-wide);
-}
-
-.text-heading-3 {
-    font-family: var(--font-primary);
-    font-weight: var(--weight-extrabold);
-    font-size: var(--text-3xl);
-    line-height: 44px;
-    letter-spacing: var(--tracking-wide);
-}
-
-.text-heading-4 {
-    font-family: var(--font-primary);
-    font-weight: var(--weight-bold);
-    font-size: var(--text-2xl);
-    line-height: 32px;
-    letter-spacing: var(--tracking-wide);
-}
-
-.text-heading-5 {
-    font-family: var(--font-primary);
-    font-weight: var(--weight-semibold);
-    font-size: var(--text-xl);
-    line-height: 28px;
-    letter-spacing: var(--tracking-wide);
-}
-
-.text-button {
-    font-family: var(--font-primary);
-    font-weight: var(--weight-bold);
-    font-size: var(--text-base);
-    line-height: 24px;
-    letter-spacing: var(--tracking-wider);
-}
-
-.text-body-stat {
-    font-family: var(--font-primary);
-    font-weight: var(--weight-black);
-    font-size: var(--text-base);
-    line-height: 22px;
-    letter-spacing: var(--tracking-normal);
-    color: #666;
-}
-
-.text-body-lg {
-    font-family: var(--font-secondary);
-    font-weight: var(--weight-medium);
-    font-size: var(--text-2xl);
-    line-height: 34px;
-    letter-spacing: var(--tracking-wider);
-}
-
-.text-body-base {
-    font-family: var(--font-secondary);
-    font-weight: var(--weight-medium);
-    font-size: var(--text-base);
-    line-height: 24px;
-    letter-spacing: var(--tracking-wider);
-}
-
-.text-body-sm {
-    font-family: var(--font-secondary);
-    font-weight: var(--weight-medium);
-    font-size: var(--text-sm);
-    line-height: 20px;
-    letter-spacing: var(--tracking-wider);
-}
-
-.text-body-xs {
-    font-family: var(--font-secondary);
-    font-weight: var(--weight-medium);
-    font-size: var(--text-xs);
-    line-height: 16px;
-    letter-spacing: var(--tracking-wider);
-}
-
-/* Header and Navigation */
-.header {
-    background: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-}
-
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-}
-
-.logo {
-    font-family: var(--font-primary);
-    font-weight: var(--weight-black);
-    font-size: 1.8rem;
-    color: #2c3e50;
-    letter-spacing: var(--tracking-wide);
-}
-
-.nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-}
-
-.nav-link {
-    text-decoration: none;
-    color: #333;
-    font-weight: var(--weight-medium);
-    font-size: var(--text-base);
-    transition: color 0.3s ease;
-    letter-spacing: var(--tracking-wide);
-}
-
-.nav-link:hover {
-    color: #3498db;
-}
-
-/* Hero Section */
-.hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    text-align: center;
-    padding: 120px 20px 80px;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.hero-content h2 {
-    font-family: var(--font-primary);
-    font-weight: var(--weight-black);
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    letter-spacing: var(--tracking-wide);
-}
-
-.hero-content p {
-    font-family: var(--font-secondary);
-    font-weight: var(--weight-medium);
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-    letter-spacing: var(--tracking-wider);
-}
-
-.cta-button {
-    background: #e74c3c;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-family: var(--font-primary);
-    font-weight: var(--weight-bold);
-    font-size: 1.1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    letter-spacing: var(--tracking-wider);
-}
-
-.cta-button:hover {
-    background: #c0392b;
-}
-
-/* Projects Section */
-.projects {
-    padding: 80px 0;
-    background: #f8f9fa;
-}
-
-.projects h2 {
-    text-align: center;
-    font-family: var(--font-primary);
-    font-weight: var(--weight-black);
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: #2c3e50;
-    letter-spacing: var(--tracking-wide);
-}
-
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.project-card {
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
-}
-
-.project-image {
-    height: 200px;
-    background: #ecf0f1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.placeholder {
-    color: #7f8c8d;
-    font-family: var(--font-secondary);
-    font-weight: var(--weight-medium);
-    font-size: 1.2rem;
-    letter-spacing: var(--tracking-wide);
-}
-
-.project-card h3 {
-    padding: 1rem 1rem 0.5rem;
-    color: #2c3e50;
-    font-family: var(--font-primary);
-    font-weight: var(--weight-bold);
-    font-size: var(--text-xl);
-    letter-spacing: var(--tracking-wide);
-}
-
-.project-card p {
-    padding: 0 1rem 1rem;
-    color: #7f8c8d;
-    font-family: var(--font-secondary);
-    font-weight: var(--weight-medium);
-    font-size: var(--text-base);
-    letter-spacing: var(--tracking-wide);
-}
-
-/* About Section */
-.about {
-    padding: 80px 0;
-    background: white;
-}
-
-.about h2 {
-    text-align: center;
-    font-family: var(--font-primary);
-    font-weight: var(--weight-black);
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: #2c3e50;
-    letter-spacing: var(--tracking-wide);
-}
-
-.about p {
-    text-align: center;
-    font-family: var(--font-secondary);
-    font-weight: var(--weight-medium);
-    font-size: 1.1rem;
-    max-width: 800px;
-    margin: 0 auto;
-    color: #555;
-    letter-spacing: var(--tracking-wider);
-}
-
-/* Contact Section */
-.contact {
-    padding: 80px 0;
-    background: #2c3e50;
-    color: white;
-}
-
-.contact h2 {
-    text-align: center;
-    font-family: var(--font-primary);
-    font-weight: var(--weight-black);
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    letter-spacing: var(--tracking-wide);
-}
-
-.contact p {
-    text-align: center;
-    font-family: var(--font-secondary);
-    font-weight: var(--weight-medium);
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-    letter-spacing: var(--tracking-wide);
-}
-
-.contact-info {
-    text-align: center;
-}
-
-.contact-info p {
-    margin-bottom: 0.5rem;
-    font-family: var(--font-secondary);
-    font-weight: var(--weight-medium);
-    letter-spacing: var(--tracking-wide);
-}
-
-/* Footer */
-.footer {
-    background: #34495e;
-    color: white;
-    text-align: center;
-    padding: 2rem 0;
-}
-
-.footer p {
-    font-family: var(--font-secondary);
-    font-weight: var(--weight-medium);
-    letter-spacing: var(--tracking-wide);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .nav-menu {
-        display: none;
-    }
-    
-    .hero-content h2 {
-        font-size: 2rem;
-    }
-    
-    .project-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .text-heading-1 {
-        font-size: 2.5rem;
-        line-height: 3rem;
-    }
-    
-    .text-heading-2 {
-        font-size: 2rem;
-        line-height: 2.5rem;
-    }
+@font-face {
+    font-family: "Archivo";
+    src: url("../fonts/Archivo-BoldItalic.ttf") format("truetype");
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
 }
