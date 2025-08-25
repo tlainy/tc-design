@@ -1,0 +1,22 @@
+{
+  "name": "tc-design",
+  "version": "1.0.0",
+  "description": "TC Design - Creative design solutions and projects",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000",
+    "build": "echo 'Build process would go here'",
+    "test": "echo 'Tests would go here'"
+  },
+  "keywords": [
+    "design",
+    "web-design",
+    "portfolio",
+    "creative"
+  ],
+  "author": "TC Design",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {}
+}
