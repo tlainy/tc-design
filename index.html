@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TC Design</title>
+    <title>Tracy Lai -  Design Portfolio</title>
     <link rel="stylesheet" href="styles/main.css">
-    <meta name="description" content="TC Design - Creative design solutions and projects">
+    <meta name="description" content="Tracy Lai Design Portfolio">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -14,34 +14,62 @@
     <header class="header">
         <nav class="nav">
             <div class="nav-container">
-                <h1 class="logo">TC Design</h1>
+                <h3 class="logo"><a href="#home" class="logo-link" aria-label="TC Design Home"><img src="assets/TC_logo_illustration.svg" alt="" class="logo-mark" aria-hidden="true"><span class="logo-text">T C L</span></a></h3>
+                <button class="nav-toggle" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                </button>
                 <ul class="nav-menu">
-                    <li><a href="#home" class="nav-link">Home</a></li>
-                    <li><a href="#projects" class="nav-link">Projects</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <!--<li><a href="#home" class="nav-link">Home</a></li>-->
+                    <li><a href="#work" class="nav-link">Work</a></li>
+                    <li><a href="ai-design.html" class="nav-link">AI + Design</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
                 </ul>
             </div>
         </nav>
     </header>
+    
+    <div id="mobileMenu" class="mobile-menu">
+        <button class="menu-close" aria-label="Close menu"></button>
+        <ul class="mobile-menu-list" role="menu">
+            <li role="none"><a role="menuitem" href="#work" class="mobile-menu-link">Work</a></li>
+            <li role="none"><a role="menuitem" href="ai-design.html" class="mobile-menu-link">AI + Design</a></li>
+            <li role="none"><a role="menuitem" href="about.html" class="mobile-menu-link">About</a></li>
+        </ul>
+    </div>
 
     <main>
         <section id="home" class="hero">
-            <div class="hero-content">
-                <h2 class="text-heading-1">Welcome to TC Design</h2>
-                <p class="text-body-lg">Creative design solutions for modern digital experiences</p>
-                <button class="cta-button text-button">Get Started</button>
+            <div class="hero-grid container">
+                <div class="hero-content">
+                    <h2 class="text-heading-1">Hello! I'm Tracy.</h2>
+                    <p class="text-body-lg">I’m a product designer and an explorer at heart—curious, experimental, and always asking “what if?” I design digital experiences that feel smart, clean, and familiar, balancing big-picture product strategy with the smallest design details. My process is research-driven and iterative, elevated by thoughtful use of AI at every step—from discovery to design to refinement—shaped by over a decade of creating products that put people first. Based in Denver, CO.</p>
+                    <div class="social-links" role="navigation" aria-label="Social links">
+                        <a class="social-btn social-btn--outlined" href="https://www.linkedin.com/in/tlainy" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <img src="assets/Linkedin_circular.svg" alt="" aria-hidden="true" />
+                        </a>
+                        <a class="social-btn social-btn--outlined" href="mailto:tlainy@gmail.com" aria-label="Email">
+                            <img src="assets/Email_circular.svg" alt="" aria-hidden="true" />
+                        </a>
+                    </div>
+                    <!--<button class="cta-button text-button">Resume</button>-->
+                </div>
+                <div class="hero-media" aria-hidden="true">
+                    <div class="media-placeholder"></div>
+                </div>
             </div>
         </section>
 
-        <section id="projects" class="projects">
+        <section id="work" class="work">
             <div class="container">
-                <h2 class="text-heading-2">Featured Projects</h2>
+                <h2 class="text-heading-2">Work</h2>
                 <div class="project-grid">
                     <div class="project-card">
                         <div class="project-image">
                             <div class="placeholder">Project 1</div>
                         </div>
+                        <span class="project-badge">Launched</span>
                         <h3 class="text-heading-4">Project Title</h3>
                         <p class="text-body-base">Project description goes here</p>
                     </div>
@@ -49,6 +77,7 @@
                         <div class="project-image">
                             <div class="placeholder">Project 2</div>
                         </div>
+                        <span class="project-badge">Launched</span>
                         <h3 class="text-heading-4">Project Title</h3>
                         <p class="text-body-base">Project description goes here</p>
                     </div>
@@ -56,6 +85,31 @@
                         <div class="project-image">
                             <div class="placeholder">Project 3</div>
                         </div>
+                        <span class="project-badge">Launched</span>
+                        <h3 class="text-heading-4">Project Title</h3>
+                        <p class="text-body-base">Project description goes here</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="placeholder">Project 4</div>
+                        </div>
+                        <span class="project-badge">Launched</span>
+                        <h3 class="text-heading-4">Project Title</h3>
+                        <p class="text-body-base">Project description goes here</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="placeholder">Project 5</div>
+                        </div>
+                        <span class="project-badge">Launched</span>
+                        <h3 class="text-heading-4">Project Title</h3>
+                        <p class="text-body-base">Project description goes here</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="placeholder">Project 6</div>
+                        </div>
+                        <span class="project-badge">Launched</span>
                         <h3 class="text-heading-4">Project Title</h3>
                         <p class="text-body-base">Project description goes here</p>
                     </div>
@@ -65,26 +119,25 @@
 
         <section id="about" class="about">
             <div class="container">
-                <h2 class="text-heading-2">About TC Design</h2>
-                <p class="text-body-lg">We specialize in creating beautiful, functional, and user-centered design solutions. Our approach combines creativity with technical expertise to deliver exceptional digital experiences.</p>
+                <h2 class="text-heading-2">Curious about my process?</h2>
+                <p class="text-body-lg">AI is now baked into my foundational process as a creative sidekick. It's not a shortcut — it's a way to work smarter and stay curious.</p>
+                <p><a href="ai-design.html" class="nav-link">Learn more</a></p>
             </div>
         </section>
 
-        <section id="contact" class="contact">
-            <div class="container">
-                <h2 class="text-heading-2">Get In Touch</h2>
-                <p class="text-body-lg">Ready to start your next design project? Let's talk!</p>
-                <div class="contact-info">
-                    <p class="text-body-base">Email: hello@tcdesign.com</p>
-                    <p class="text-body-base">Phone: (555) 123-4567</p>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer class="footer">
         <div class="container">
-            <p class="text-body-sm">&copy; 2024 TC Design. All rights reserved.</p>
+            <div class="social-links" role="navigation" aria-label="Social links">
+                <a class="social-btn" href="https://www.linkedin.com/in/tlainy" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <img src="assets/Linkedin_circular.svg" alt="" aria-hidden="true" />
+                </a>
+                <a class="social-btn" href="mailto:tlainy@gmail.com" aria-label="Email">
+                    <img src="assets/Email_circular.svg" alt="" aria-hidden="true" />
+                </a>
+            </div>
+            <p class="text-body-sm">&copy; 2025 TC Design. All rights reserved.</p>
         </div>
     </footer>
 

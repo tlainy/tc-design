@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About · TC Design</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <meta name="description" content="About Tracy at TC Design">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <h3 class="logo"><a href="index.html#home" class="logo-link" aria-label="TC Design Home"><img src="assets/TC_logo_illustration.svg" alt="" class="logo-mark" aria-hidden="true"><span class="logo-text">T C L</span></a></h3>
+                <button class="nav-toggle" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html#work" class="nav-link">Work</a></li>
+                    <li><a href="ai-design.html" class="nav-link">AI + Design</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <div id="mobileMenu" class="mobile-menu">
+        <button class="menu-close" aria-label="Close menu"></button>
+        <ul class="mobile-menu-list" role="menu">
+            <li role="none"><a role="menuitem" href="index.html#work" class="mobile-menu-link">Work</a></li>
+            <li role="none"><a role="menuitem" href="ai-design.html" class="mobile-menu-link">AI + Design</a></li>
+            <li role="none"><a role="menuitem" href="about.html" class="mobile-menu-link">About</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <section class="hero">
+            <div class="hero-grid container">
+                <div class="hero-content">
+                    <h1 class="text-heading-1">About</h1>
+                    <p class="text-body-lg">Whoa! This is About.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links" role="navigation" aria-label="Social links">
+                <a class="social-btn" href="https://www.linkedin.com/in/tlainy" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <img src="assets/linkedin.png" alt="" aria-hidden="true" />
+                </a>
+                <a class="social-btn" href="mailto:tlainy@gmail.com" aria-label="Email">
+                    <img src="assets/email.png" alt="" aria-hidden="true" />
+                </a>
+            </div>
+            <p class="text-body-sm">&copy; 2025 TC Design. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
+
