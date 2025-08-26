@@ -194,16 +194,27 @@ p { font-size: 16px; color: var(--text-body); margin-top: 0; margin-bottom: var(
 .projects { padding: var(--space-48) 0; }
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-24);
 }
-.project-card {
+
+@media (max-width: 1024px) {
+    .project-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+    .project-grid { grid-template-columns: 1fr; }
+}
+.project-card, .project-card:link, .project-card:visited {
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: var(--radius-md);
     padding: var(--space-20);
     background: var(--color-white);
     box-shadow: var(--shadow-sm);
     transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 .project-card:hover {
     transform: translateY(-2px);
@@ -216,14 +227,14 @@ p { font-size: 16px; color: var(--text-body); margin-top: 0; margin-bottom: var(
 .project-badge { display: inline-block; background: var(--color-off-black); color: var(--color-white); padding: 6px 10px; border-radius: 6px; font-size: 14px; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 8px; }
 .project-card .text-body-base { color: var(--text-body); }
 
-/* About */
+/* About Process */
 .about { padding: var(--space-48) 0; background: linear-gradient(0deg, rgba(230, 230, 230, 0.15), rgba(230, 230, 230, 0.15)); }
 .about p { color: var(--text-body); }
 
-/* Contact */
+/* Contact 
 .contact { padding: var(--space-48) 0; }
 .contact-info { display: grid; gap: var(--space-8); }
-.contact .text-body-base { color: var(--text-body); }
+.contact .text-body-base { color: var(--text-body); }*/
 
 /* Footer */
 .footer { background: var(--color-off-black); color: var(--color-white); padding: var(--space-20) 0; }
@@ -628,9 +639,17 @@ body {
 
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-24);
     margin-top: 2rem;
+}
+
+@media (max-width: 1024px) {
+    .project-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+    .project-grid { grid-template-columns: 1fr; }
 }
 
 .project-card {
@@ -681,9 +700,13 @@ body {
 
 /* About Section */
 .about {
-    padding: 80px 0;
+    padding: 48px 20px 48px;
+    min-height: 65vh;
     background: white;
 }
+.about .container { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: inherit; text-align: center; gap: var(--space-0); }
+.about h2 { max-width: 870px; margin-left: auto; margin-right: auto; margin-top: 0; margin-bottom: 0; }
+.about .text-body-lg { max-width: 870px; margin-left: auto; margin-right: auto; margin-top: 0; margin-bottom: 0; }
 
 .about h2 {
     text-align: center;
@@ -793,3 +816,7 @@ body {
     .text-heading-2 { font-size: 2rem; line-height: 2.5rem; }
     .hero-content h2 { font-size: 2rem; }
 }
+
+/* Final layout overrides: match Work/About width to Hero */
+.container { max-width: none; margin-left: 80px; margin-right: 80px; padding-left: 0; padding-right: 0; }
+.work .container, .about .container, .hero-grid.container { max-width: 1920px; }
