@@ -10,7 +10,75 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <script defer src="scripts/main.js"></script>
-    <style> .case-hero { padding: 120px 20px 80px; } .case-hero .container { max-width: 870px; margin: 0 auto; } .case-hero h1 { margin: 0 0 12px; } .case-hero p { margin: 0; } </style>
+    <style>
+        /* Case hero: white background, grid like index hero */
+        .case-hero { padding: 120px 20px 80px; min-height: 100vh; background: var(--color-white); display: grid; place-items: center; }
+        .case-hero .container { max-width: 1920px; margin: 0 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-20); align-items: center; }
+        .case-hero .hero-content { grid-column: span 7; padding: 0; max-width: 870px; text-align: left; }
+        .case-hero .hero-media { grid-column: span 5 / -1; display: flex; justify-content: center; }
+        .hero-placeholder { width: 100%; height: 420px; background: var(--color-fire-100); border-radius: 16px; }
+        .launch-badge { display: inline-block; background: var(--color-off-black); color: var(--color-white); padding: 6px 10px; border-radius: 6px; font-size: 14px; font-weight: 700; letter-spacing: 0.02em; margin-bottom: var(--space-24); }
+        
+        /* Overview section: fire-50 background */
+        .case-overview { background: var(--color-fire-50); padding: var(--space-64) 0; }
+        .case-overview .container { max-width: 1920px; margin: 0 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-64); align-items: start; }
+        /* Align right column top close to first Overview paragraph on desktop */
+        .case-content { grid-column: span 6; }
+        .case-details { grid-column: span 5 / -1; margin-top: 48px; }
+        .case-content h3 { margin: 0 0 var(--space-8); }
+        .case-content .content-section { margin-bottom: var(--space-32); }
+        .case-details h4 { margin: 0 0 var(--space-2); }
+        .case-details p { margin: 0 0 var(--space-24); }
+        .case-details ul { list-style: none; padding: 0; margin: 0 0 var(--space-20); }
+        .case-details li { margin-bottom: var(--space-8); padding-left: var(--space-16); position: relative; }
+        .case-details li:before { content: "•"; position: absolute; left: 0; color: var(--text-body); }
+
+        /* Tablet/mobile: image above header, details below */
+        @media (max-width: 1024px) {
+            .case-hero .container { grid-template-columns: 1fr; align-items: start; }
+            .case-hero .hero-media { grid-column: 1 / -1; order: 1; }
+            .case-hero .hero-content { grid-column: 1 / -1; order: 2; max-width: 100%; padding: 0; }
+            .case-overview .container { grid-template-columns: 1fr; gap: var(--space-48); }
+            .case-content { order: 1; }
+            .case-details { order: 2; margin-top: 0; }
+        }
+        @media (max-width: 640px) {
+            .case-hero .container, .case-overview .container { margin: 0 var(--space-40); }
+        }
+
+        /* Metrics section (below Overview) */
+        .case-metrics { padding: var(--space-64) 0; background: var(--color-white); }
+        .case-metrics .container { max-width: 1920px; margin: 0 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-64); align-items: start; }
+        .case-metrics h3 { margin: 0 0 var(--space-20); }
+        .metrics-left { grid-column: span 6; }
+        .metrics-right { grid-column: span 5 / -1; }
+        .metrics-left p { margin: 0 0 var(--space-20); }
+        .metrics-list { display: grid; gap: var(--space-24); }
+        .metrics-item h2 { color: var(--text-accent); margin: 0 0 var(--space-0); }
+        .metrics-item p { margin: 0; }
+        .metrics-left ul { list-style: none; padding-left: 0; margin: 0 0 var(--space-20); }
+        .metrics-left li { display: flex; align-items: flex-start; gap: var(--space-12); margin: 0 0 var(--space-8); }
+        .metrics-left li::before { content: "•"; color: var(--text-body); }
+        .metrics-right { margin-top: 54px; }
+        @media (max-width: 1024px) {
+            .case-metrics .container { grid-template-columns: 1fr; gap: var(--space-40); }
+            .metrics-left, .metrics-right { grid-column: 1 / -1; }
+        }
+
+        /* Discovery media: collage + full-width images */
+        .discovery-media { padding: var(--space-64) 0; background: var(--color-white); }
+        .discovery-media .container { max-width: 1920px; margin: 0 80px; }
+        .collage-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-20); }
+        .collage-item { height: 420px; background: var(--color-grey); border-radius: 16px; }
+        @media (max-width: 1024px) { .collage-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 640px) { .collage-grid { grid-template-columns: 1fr; } }
+
+        .discovery-images { padding: var(--space-48) 0 var(--space-64); background: var(--color-white); }
+        .discovery-images .container { max-width: 1920px; margin: 0 80px; }
+        .discovery-image { margin: 0 0 var(--space-48); }
+        .discovery-caption { text-align: center; color: var(--color-grey); margin: 0 0 4px; }
+        .discovery-placeholder { width: 100%; height: 420px; background: var(--color-grey); border-radius: 16px; }
+    </style>
     </head>
 <body>
     <header class="header">
@@ -43,10 +111,170 @@
     <main>
         <section class="case-hero">
             <div class="container">
-                <h1 class="text-heading-1">Evolve Inbox</h1>
-                <p class="text-body-lg">Case study page placeholder. Content coming soon.</p>
+                <div class="hero-content">
+                    <span class="launch-badge">Launched</span>
+                    <h2 class="text-heading-2">Reimagining Owner – Guest Communication with Inbox</h2>
+                </div>
+                <div class="hero-media">
+                    <div class="hero-placeholder"></div>
+                </div>
             </div>
         </section>
+
+        <section class="case-overview">
+            <div class="container">
+                <div class="case-content">
+                    <div class="content-section">
+                        <h3 class="text-heading-3">Overview</h3>
+                        <p class="text-body-base">Evolve is a vacation rental management company focused on delivering 5‑star guest experiences and management services for vacation rental owners. Most of Evolve’s core owner platform users fell within the 45–64 age range and were distributed across the US.</p>
+                        <p class="text-body-base">The majority of guests booked Evolve properties through partner platforms like Airbnb, Vrbo, and Booking.com. In total, there were 30k+ owners and ~4.4k service partners on active listings.</p>
+                    </div>
+                    <div class="content-section">
+                        <h3 class="text-heading-3">Problem</h3>
+                        <p class="text-body-base">At Evolve, fragmented communication between guests, owners, and frontline teams led to confusion, duplicated work, and delayed responses. Nearly half of bookings required manual intervention, with many guest requests still needing owner approval. This created inefficiencies for teams, eroded guest trust, and left owners frustrated by a lack of visibility. Owners also had unrealistic expectations of being fully hands-off, when in reality their engagement was critical to rental success.</p>
+                    </div>
+                    <div class="content-section">
+                        <h3 class="text-heading-3">Solution</h3>
+                        <p class="text-body-base">I led the design of Inbox, a centralized hub consolidating all communication between guests, owners, and Evolve frontline teams. We prioritized speed by releasing an MVP for Airbnb bookings, informed by research into owner behaviors, guest messaging patterns, and industry standards. Key design decisions included enabling messaging 4–7 days before check-in (when most guest questions occurred) and embedding education to reframe owner engagement as essential to performance. Success was defined by improved response times, reduced off-platform communication, and increased owner adoption.</p>
+                    </div>
+                    <div class="content-section">
+                        <h3 class="text-heading-3">Impact</h3>
+                        <p class="text-body-base">The beta rollout showed strong early results: 83% of owners reported Inbox made guest communication easier, 73% found it valuable, and response times dropped by 98%. Adoption peaked at 59% of owners in the pilot using Inbox, though engagement later fell to 35%, highlighting opportunities for better education and motivation. While NPS impact wasn’t measurable in beta, the pilot demonstrated Inbox’s ability to streamline workflows, improve guest experiences, and set the foundation for scalable communication improvements across Evolve.</p>
+                    </div>
+                </div>
+                <div class="case-details">
+                    <div class="detail-section">
+                        <h4 class="text-body-large">Role</h4>
+                        <p class="text-body-base">Lead designer</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="text-body-large">Team</h4>
+                        <p class="text-body-base">1 PM, 1 Researcher, 1 Engineer – small, but nimble!</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="text-body-large">Timeline</h4>
+                        <p class="text-body-base">Feb 2025 – Apr 2025 (~1.5 mo)<br>Discovery and designs completed in ~3.5 weeks</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="text-body-large">Platforms & integrations</h4>
+                        <p class="text-body-base">Responsive web (beta), native app (post beta), Airbnb Messenger API</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="text-body-large">Process</h4>
+                        <ul>
+                            <li class="text-body-base">New feature responsive design & IA</li>
+                            <li class="text-body-base">Created new design system components</li>
+                            <li class="text-body-base">Product strategy & roadmapping</li>
+                            <li class="text-body-base">Vision concepts</li>
+                            <li class="text-body-base">Flow analysis, empathy storming, journey mapping, competitive audit</li>
+                            <li class="text-body-base">Brand guidelines</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Metrics / Problem detail section -->
+        <section class="case-metrics">
+            <div class="container">
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">The problem, in detail</h3>
+                    <p class="text-body-base"><span style="font-weight: 700;">Problem 1:</span> Communication between guests, owners, and frontline teams happened in silos, leaving each party without visibility into the others’ interactions. This created gaps that prevented Evolve from delivering a seamless experience. <span style="color: var(--color-fire-500);">How might we give guests direct access to owners when needed—without delays or bottlenecks?</span></p>
+                    <p class="text-body-base"><span style="font-weight: 700;">Problem 2:</span> Owners had varying expectations of how hands-on Evolve would be in managing guests and bookings. In reality, owners could never be fully removed—certain requests and issues always required their approval. <span style="color: var(--color-fire-500);">How might we reframe success so that owners see engagement as essential, not optional, to their rental’s performance?</span></p>
+                    <p class="text-body-base">I needed to solve for three distinct users—Owners, Guests, and Evolve teams—each with unique needs:</p>
+                    <ul>
+                        <li class="text-body-base">Owners: Needed visibility into all guest interactions, without relying on off-platform tools</li>
+                        <li class="text-body-base">Guests: Expected quick, familiar, friction-free communication, like what they’re used to with messaging apps and other vacation rental platforms</li>
+                        <li class="text-body-base">Evolve: Needed transparency into owner–guest communication to reduce duplicate work and service costs</li>
+                    </ul>
+                    <p class="text-body-base">I knew I couldn’t just build a communication tool without educating the user how to engage with guests, which would ultimately lead to higher rental performance.</p>
+                </div>
+                <div class="metrics-right">
+                    <div class="metrics-list">
+                        <div class="metrics-item">
+                            <h2 class="text-heading-2">48%</h2>
+                            <p class="text-body-base">bookings requiring manual intervention</p>
+                        </div>
+                        <div class="metrics-item">
+                            <h2 class="text-heading-2">20k+</h2>
+                            <p class="text-body-base">emails exchanged across 23k+ bookings – a large amount of off-platform communication</p>
+                        </div>
+                        <div class="metrics-item">
+                            <h2 class="text-heading-2">30%</h2>
+                            <p class="text-body-base">outbound messages for Airbnb bookings instructed the guest to reach out to the owner, forcing guests to do the resolution work</p>
+                        </div>
+                        <div class="metrics-item">
+                            <h2 class="text-heading-2">7h–24h</h2>
+                            <p class="text-body-base">response time for frontline teams to get the resolution to send back to the guest</p>
+                        </div>
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">owner feedback</span></p>
+                            <p class="text-body-base">“I don't have visibility into guest communications on the different platforms and am not informed when there is a mid-stay message or pre-stay question. It has created a lot of issues for me.”</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Discovery-->
+        <section class="case-metrics">
+            <div class="container">
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">Discovery</h3>
+                    <p class="text-body-base">We set out to understand owners’ current behaviors and expectations for engagement, and to identify the most critical needs we could address to drive adoption.</p>
+                    <p class="text-body-base">I led a research-first approach combining:</p>
+                    <ul>
+                        <li class="text-body-base">Owner feedback: Mined NPS feedback and in-app feedback to surface recurring pain points, looking specifically at feedback mentioning “communication”.</li>
+                        <li class="text-body-base">Launched user surveys: I developed an initial set of questions and goals and reviewed with my PM and Researcher. I wanted to better understand their current behaviors by booking phase.</li>
+                        <li class="text-body-base">AI + Design: Used ChatGPT to analyze thousands of lines of owner feedback, cluster themes, and identify root causes behind service breakdowns, user dissatisfaction, and pain points.</li>
+                        <li class="text-body-base">Current flow analysis: Mapped out current flow and process, and interviewed internal stakeholders to understand frontline team pain points.</li>
+                        <li class="text-body-base">Data insights: Identified >20K off-platform emails exchanged across 23K reservations, showing the scale of fragmented communication. We also analyzed the timing of the inbound messages in each booking phase to inform changes in the product strategy.</li>
+                        <li class="text-body-base">Competitive audit: Studied Airbnb, Guesty, and other property management tools to understand industry standards.</li>
+                    </ul>
+                </div>
+                <div class="metrics-right">
+                    <div class="metrics-list">
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Timeline</span></p>
+                            <p class="text-body-base">~2 weeks</p>
+                        </div>
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Participants</span></p>
+                            <p class="text-body-base">6 owners interviewed <br> ~1k owners surveyed with a 12.4% response rate</p>
+                        </div>
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Tools</span></p>
+                            <p class="text-body-base">Sprig, interviews via Zoom</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Discovery collage media -->
+        <section class="discovery-media">
+            <div class="container">
+                <div class="collage-grid">
+                    <div class="collage-item"></div>
+                    <div class="collage-item"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Two full-width images with captions -->
+        <section class="discovery-images">
+            <div class="container">
+                <div class="discovery-image">
+                    <p class="text-body-base-bold discovery-caption">Current communication journey flow map</p>
+                    <div class="discovery-placeholder"></div>
+                </div>
+                <div class="discovery-image">
+                    <p class="text-body-base-bold discovery-caption">Empathy storming to create a tool the user would want to use, based on concerns uncovered in research</p>
+                    <div class="discovery-placeholder"></div>
+                </div>
+            </div>
+        </section>
+        
     </main>
 
     <footer class="footer">
