@@ -57,8 +57,8 @@
         .metrics-item h2 { color: var(--text-accent); margin: 0 0 var(--space-0); }
         .metrics-item p { margin: 0; }
         .metrics-left ul { list-style: none; padding-left: 0; margin: 0 0 var(--space-20); }
-        .metrics-left li { display: flex; align-items: flex-start; gap: var(--space-12); margin: 0 0 var(--space-8); }
-        .metrics-left li::before { content: "•"; color: var(--text-body); }
+        .metrics-left li { display: block; position: relative; padding-left: var(--space-20); margin: 0 0 var(--space-8); }
+        .metrics-left li::before { content: "•"; position: absolute; left: 0; top: 0.2em; color: var(--text-body); }
         .metrics-right { margin-top: 54px; }
         @media (max-width: 1024px) {
             .case-metrics .container { grid-template-columns: 1fr; gap: var(--space-40); }
@@ -78,6 +78,14 @@
         .discovery-image { margin: 0 0 var(--space-48); }
         .discovery-caption { text-align: center; color: var(--color-grey); margin: 0 0 4px; }
         .discovery-placeholder { width: 100%; height: 420px; background: var(--color-grey); border-radius: 16px; }
+
+        /* Full-height quote section (matches hero height) */
+        .case-quote { min-height: 100vh; background: var(--color-white); display: grid; place-items: center; padding: var(--space-64) 0; }
+        .case-quote .container { max-width: 1920px; margin: 0 80px; }
+        .case-quote .quote-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+        .case-quote .quote-kicker { margin: 0 0 var(--space-16); color: var(--color-grey); }
+        .case-quote .quote-text { color: var(--color-fire-500); }
+        @media (max-width: 640px) { .case-quote .container { margin: 0 var(--space-40); } }
     </style>
     </head>
 <body>
@@ -183,9 +191,9 @@
                     <p class="text-body-base"><span style="font-weight: 700;">Problem 2:</span> Owners had varying expectations of how hands-on Evolve would be in managing guests and bookings. In reality, owners could never be fully removed—certain requests and issues always required their approval. <span style="color: var(--color-fire-500);">How might we reframe success so that owners see engagement as essential, not optional, to their rental’s performance?</span></p>
                     <p class="text-body-base">I needed to solve for three distinct users—Owners, Guests, and Evolve teams—each with unique needs:</p>
                     <ul>
-                        <li class="text-body-base">Owners: Needed visibility into all guest interactions, without relying on off-platform tools</li>
-                        <li class="text-body-base">Guests: Expected quick, familiar, friction-free communication, like what they’re used to with messaging apps and other vacation rental platforms</li>
-                        <li class="text-body-base">Evolve: Needed transparency into owner–guest communication to reduce duplicate work and service costs</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Owners:</span> Needed visibility into all guest interactions, without relying on off-platform tools</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Guests:</span> Expected quick, familiar, friction-free communication, like what they’re used to with messaging apps and other vacation rental platforms</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Evolve:</span> Needed transparency into owner–guest communication to reduce duplicate work and service costs</li>
                     </ul>
                     <p class="text-body-base">I knew I couldn’t just build a communication tool without educating the user how to engage with guests, which would ultimately lead to higher rental performance.</p>
                 </div>
@@ -224,12 +232,12 @@
                     <p class="text-body-base">We set out to understand owners’ current behaviors and expectations for engagement, and to identify the most critical needs we could address to drive adoption.</p>
                     <p class="text-body-base">I led a research-first approach combining:</p>
                     <ul>
-                        <li class="text-body-base">Owner feedback: Mined NPS feedback and in-app feedback to surface recurring pain points, looking specifically at feedback mentioning “communication”.</li>
-                        <li class="text-body-base">Launched user surveys: I developed an initial set of questions and goals and reviewed with my PM and Researcher. I wanted to better understand their current behaviors by booking phase.</li>
-                        <li class="text-body-base">AI + Design: Used ChatGPT to analyze thousands of lines of owner feedback, cluster themes, and identify root causes behind service breakdowns, user dissatisfaction, and pain points.</li>
-                        <li class="text-body-base">Current flow analysis: Mapped out current flow and process, and interviewed internal stakeholders to understand frontline team pain points.</li>
-                        <li class="text-body-base">Data insights: Identified >20K off-platform emails exchanged across 23K reservations, showing the scale of fragmented communication. We also analyzed the timing of the inbound messages in each booking phase to inform changes in the product strategy.</li>
-                        <li class="text-body-base">Competitive audit: Studied Airbnb, Guesty, and other property management tools to understand industry standards.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Owner feedback:</span> Mined NPS feedback and in-app feedback to surface recurring pain points, looking specifically at feedback mentioning “communication”.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Launched user surveys:</span> I developed an initial set of questions and goals and reviewed with my PM and Researcher. I wanted to better understand their current behaviors by booking phase.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">AI + Design:</span> Used ChatGPT to analyze thousands of lines of owner feedback, cluster themes, and identify root causes behind service breakdowns, user dissatisfaction, and pain points.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Current flow analysis:</span> Mapped out current flow and process, and interviewed internal stakeholders to understand frontline team pain points.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Data insights:</span> Identified >20K off-platform emails exchanged across 23K reservations, showing the scale of fragmented communication. We also analyzed the timing of the inbound messages in each booking phase to inform changes in the product strategy.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Competitive audit:</span> Studied Airbnb, Guesty, and other property management tools to understand industry standards.</li>
                     </ul>
                 </div>
                 <div class="metrics-right">
@@ -275,6 +283,65 @@
             </div>
         </section>
         
+        <!-- Full-height quote section -->
+        <section class="case-quote" aria-label="Key finding">
+            <div class="container">
+                <div class="quote-inner">
+                    <p class="text-body-base-bold quote-kicker">key finding that drove our direction for mvp</p>
+                    <p class="text-heading-3 quote-text">The biggest concern was efficiency—owners wanted to ensure that the right person handled guest inquiries. They worried guests would feel unsure whether to contact them or Evolve when issues arose. Regardless of communication tool, owners wanted to establish a personal connection with guests, as that may have resuled in a positive guest review post stay.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution  -->
+        <section class="case-metrics">
+            <div class="container">
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">Solution</h3>
+                    <p class="text-body-base">We prioritized a fast release to validate learnings, focusing the MVP on Inbox access for Airbnb bookings.</p>
+                    <p class="text-body-base"><span style="color: var(--color-fire-500);">How might we give guests direct access to owners without delays or bottlenecks?</span> Built a seamless, transparent communication platform that let owners manage interactions and gave guests a smooth experience.</p>
+                    <p class="text-body-base"><span style="color: var(--color-fire-500);">How might we reframe success so owners see messaging as essential to rental performance?</span> Integrated education into UI and marketing, positioning Inbox as a core management tool to boost efficiency and engagement.</p>
+                    <p class="text-body-base">Discovery showed most guest requests came 4–7 days pre-check-in, a critical window for connection. Rather than granting access only after check-in, we proposed opening messaging earlier to drive adoption and reduce issues.</p>
+                    <p class="text-body-base">We defined our success metrics:</p>
+                    <ul>
+                        <li class="text-body-base"><span class="text-body-base-bold">Owners:</span> Less reliance on off-platform tools, streamlined workflows, personalized guest experiences.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Guests:</span> Faster responses, fewer repeated questions, consistent communication.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Frontline teams:</span> Lower service costs, fewer escalations, greater transparency.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Business:</span> Higher NPS, improved response time, stronger review trends.</li>
+                    </ul>
+                    <p class="text-body-base">We tracked adoption, friction, and sentiment using Sprig and Alchemer dashboards.</p>
+                </div>
+                <div class="metrics-right">
+                    <div class="metrics-list">
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">What we knew</span></p>
+                            <ul>
+                                <li class="text-body-base">On-platform = safer than off-platform.</li>
+                                <li class="text-body-base">Users wanted quick, simple tools and were eager to engage.</li>
+                            </ul>
+                        </div>
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Risks</span></p>
+                            <ul>
+                                <li class="text-body-base">Owners saw extra workload.</li>
+                                <li class="text-body-base">Only Airbnb messaging supported → potential confusion.</li>
+                                <li class="text-body-base">Timing and peak usage created adoption risks.</li>
+                            </ul>
+                        </div>
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Rollout plan</span></p>
+                            <ul>
+                                <li class="text-body-base">Airbnb focus.</li>
+                                <li class="text-body-base">2 months to Beta.</li>
+                                <li class="text-body-base">330 owners in pilot.</li>
+                                <li class="text-body-base">180+ Airbnb check-ins first week → 400+ by month’s end.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="footer">
