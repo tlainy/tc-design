@@ -11,10 +11,118 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <script defer src="scripts/main.js"></script>
     <style>
-        .case-hero { padding: 120px 20px 80px; }
-        .case-hero .container { max-width: 870px; margin: 0 auto; }
-        .case-hero h1 { margin: 0 0 12px; }
-        .case-hero p { margin: 0; }
+        /* Case hero: white background, grid like index hero */
+        .case-hero { padding: 120px 20px 80px; min-height: 100vh; background: var(--color-white); display: grid; place-items: center; }
+        .case-hero .container { max-width: 1920px; margin: 0 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-20); align-items: center; }
+        .case-hero .hero-content { grid-column: span 7; padding: 0; max-width: 870px; text-align: left; }
+        .case-hero .hero-media { grid-column: span 5 / -1; display: flex; justify-content: center; }
+        .hero-placeholder { width: 100%; height: 420px; background: var(--color-fire-100); border-radius: 16px; }
+        .launch-badge { display: inline-block; background: var(--color-off-black); color: var(--color-white); padding: 6px 10px; border-radius: 6px; font-size: 14px; font-weight: 700; letter-spacing: 0.02em; margin-bottom: var(--space-24); }
+        
+        /* Overview section: fire-50 background */
+        .case-overview { background: var(--color-fire-50); padding: var(--space-64) 0; }
+        .case-overview .container { max-width: 1920px; margin: 0 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-64); align-items: start; }
+        /* Align right column top close to first Overview paragraph on desktop */
+        .case-content { grid-column: span 6; }
+        .case-details { grid-column: span 5 / -1; margin-top: 48px; }
+        .case-content h3 { margin: 0 0 var(--space-8); }
+        .case-content .content-section { margin-bottom: var(--space-32); }
+        .case-details h4 { margin: 0 0 var(--space-2); }
+        .case-details p { margin: 0 0 var(--space-24); }
+        .case-details ul { list-style: none; padding: 0; margin: 0 0 var(--space-20); }
+        .case-details li { margin-bottom: var(--space-8); padding-left: var(--space-16); position: relative; }
+        .case-details li:before { content: "•"; position: absolute; left: 0; color: var(--text-body); }
+
+        /* Tablet/mobile: image above header, details below */
+        @media (max-width: 1024px) {
+            .case-hero .container { grid-template-columns: 1fr; align-items: start; }
+            .case-hero .container { margin: 0 var(--space-40); }
+            .case-hero .hero-media { grid-column: 1 / -1; order: 1; }
+            .case-hero .hero-content { grid-column: 1 / -1; order: 2; max-width: 100%; padding: 0; }
+            .case-overview .container { grid-template-columns: 1fr; gap: var(--space-48); margin: 0 var(--space-40); }
+            .case-content { order: 1; }
+            .case-details { order: 2; margin-top: 0; }
+        }
+        @media (max-width: 640px) {
+            .case-hero .container, .case-overview .container { margin: 0 var(--space-40); }
+        }
+
+        /* Discovery */
+        .case-metrics { padding: var(--space-64) 0; background: var(--color-white); }
+        .case-metrics .container { max-width: 1920px; margin: 0 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-64); align-items: start; }
+        .case-metrics h3 { margin: 0 0 var(--space-20); }
+        .metrics-left { grid-column: span 6; }
+        .metrics-right { grid-column: span 5 / -1; }
+        .metrics-left p { margin: 0 0 var(--space-0); }
+        .metrics-list { display: grid; gap: var(--space-24); }
+        .metrics-item h2 { color: var(--text-accent); margin: 0 0 var(--space-0); }
+        .metrics-item p { margin: 0; }
+        .metrics-left ul { list-style: none; padding-left: 0; margin: 0 0 var(--space-20); }
+        .metrics-left li { display: block; position: relative; padding-left: var(--space-20); margin: 0 0 var(--space-8); }
+        .metrics-left li::before { content: "•"; position: absolute; left: 0; top: 0.2em; color: var(--text-body); }
+        .metrics-right { margin-top: 54px; }
+        @media (max-width: 1024px) {
+            .case-metrics .container { grid-template-columns: 1fr; gap: var(--space-40); margin: 0 var(--space-40); }
+            .metrics-left, .metrics-right { grid-column: 1 / -1; }
+        }
+
+        /* Discovery media: collage + full-width images */
+        .discovery-media { padding: var(--space-64) 0; background: var(--color-white); }
+        .discovery-media .container { max-width: 1920px; margin: 0 80px; }
+        .collage-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-20); }
+        .collage-item { height: 420px; background: var(--color-grey); border-radius: 16px; }
+        @media (max-width: 1024px) { .collage-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 640px) { .collage-grid { grid-template-columns: 1fr; } }
+
+        .discovery-images, .solution-images{ padding: var(--space-48) 0 var(--space-64); background: var(--color-white); }
+        .discovery-images, .solution-image .container { max-width: 1920px; margin: 0 80px; }
+        .discovery-image, .solution-image{ margin: 0 0 var(--space-48); }
+        .discovery-caption, .solution-caption{ text-align: center; color: var(--color-grey); margin: 0 0 4px; }
+        .discovery-placeholder, .solution-placeholder{ width: 100%; height: 420px; background: var(--color-grey); border-radius: 16px; }
+
+        /* Full-height quote section (matches hero height) */
+        .case-quote { min-height: 100vh; background: var(--color-white); display: grid; place-items: center; padding: var(--space-64) 0; }
+        .case-quote .container { max-width: 1920px; margin: 0 80px; }
+        .case-quote .quote-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+        .case-quote .quote-kicker { margin: 0 0 var(--space-16); color: var(--color-grey); }
+        .case-quote .quote-text { color: var(--color-fire-500); }
+        @media (max-width: 640px) { .case-quote .container { margin: 0 var(--space-40); } }
+
+        /* Solution right-column list style mirrors case-details */
+        .solution-section .metrics-right ul { list-style: none; padding: 0; margin: 0 0 var(--space-8); }
+        .solution-section .metrics-right li { margin-bottom: var(--space-8); padding-left: var(--space-16); position: relative; }
+        .solution-section .metrics-right li:before { content: "•"; position: absolute; left: 0; color: var(--text-body); }
+
+        /* Design section */
+        .design-section { padding: var(--space-64) 0; background: var(--color-white); }
+        .design-section .container { max-width: 1920px; margin: 0 80px; }
+        .design-section h3 { margin: 0 0 var(--space-32); }
+        .design-placeholder { width: 100%; height: 520px; background: var(--color-fire-50); border-radius: 16px; }
+        .design-stack { display: grid; gap: var(--space-24); }
+        .design-cta { display: flex; justify-content: center; margin-top: var(--space-24); }
+        .design-cta .cta-button { background: var(--color-fire-500); color: var(--color-white); border: none; padding: var(--space-12) var(--space-20); border-radius: var(--radius-sm); text-decoration: none; box-shadow: var(--shadow-sm); display: inline-block; }
+        .design-cta .cta-button:hover { background: var(--text-accent); text-decoration: none; }
+        .design-cta .cta-button:active { background: var(--text-accent); }
+        @media (max-width: 640px) { .design-cta .cta-button { display: block; width: 100%; text-align: center; } }
+        @media (max-width: 1024px) { .design-section .container { margin: 0 var(--space-40); } }
+
+        /* Impact stats row */
+        .impact-stats { padding: var(--space-0) 0; background: var(--color-white); }
+        .impact-stats .container { max-width: 1920px; margin: 0 80px; }
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-54); }
+        .stats-item h2 { color: var(--text-accent); margin: 0 0 var(--space-0); }
+        .stats-item p { margin: 0; }
+        @media (max-width: 1024px) {
+            .impact-stats .container { margin: 0 var(--space-40); }
+            .stats-row { grid-template-columns: repeat(2, 1fr); gap: var(--space-40); }
+        }
+        @media (max-width: 640px) {
+            .stats-row { grid-template-columns: repeat(2, 1fr); gap: var(--space-24); }
+        }
+
+        /* Impact spacing tweaks */
+        .impact-intro { padding-bottom: var(--space-40); }
+        .impact-next { padding-top: var(--space-40); }
 
         /* Project navigation (bottom of page) */
         .project-nav { padding: calc(var(--space-64) * 2) 0; background: var(--color-fire-50); }
@@ -26,6 +134,7 @@
         .prev-project-link { text-align: left; }
         .next-project-link { text-align: right; }
         .nav-next { text-align: right; }
+        .prev-project-link:hover, .next-project-link:hover { text-decoration: underline; text-underline-offset: 25%; text-decoration-thickness: 17%; }
         @media (max-width: 1024px) {
             .project-nav .container { grid-template-columns: 1fr; gap: var(--space-40); margin: 0 var(--space-40); }
             .project-nav .nav-right { justify-content: flex-start; }
@@ -65,11 +174,247 @@
     <main>
         <section class="case-hero">
             <div class="container">
-                <h1 class="text-heading-1">Evolve Owner Account</h1>
-                <p class="text-body-lg">Case study page placeholder. Content coming soon.</p>
+                <div class="hero-content">
+                    <span class="launch-badge">Launched</span>
+                    <h2 class="text-heading-2">Evolve Owner Account and some really long title</h2>
+                </div>
+                <div class="hero-media">
+                    <div class="hero-placeholder"></div>
+                </div>
             </div>
         </section>
-        <!-- Bottom project navigation -->
+
+        <section class="case-overview">
+            <div class="container">
+                <div class="case-content">
+                    <div class="content-section">
+                        <h3 class="text-heading-3">Overview</h3>
+                        <p class="text-body-base">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere, purus et laoreet volutpat, ipsum nisi ultrices nibh, in iaculis ligula lorem at nunc.</p>
+                        <p class="text-body-base">Nullam id dapibus lectus. Curabitur luctus justo erat, in porttitor nunc posuere in. Integer in arcu a enim fermentum viverra.</p>
+                    </div>
+                    <div class="content-section">
+                        <h3 class="text-heading-3">Problem</h3>
+                        <p class="text-body-base">Suspendisse potenti. Nunc feugiat, nibh nec iaculis tristique, massa lorem efficitur sem, a sodales tortor nisi in tortor.</p>
+                    </div>
+                    <div class="content-section">
+                        <h3 class="text-heading-3">Solution</h3>
+                        <p class="text-body-base">Praesent nec lorem at mi interdum rhoncus. Etiam condimentum nisl at sapien tristique, id mollis lectus venenatis.</p>
+                    </div>
+                    <div class="content-section">
+                        <h3 class="text-heading-3">Impact</h3>
+                        <p class="text-body-base">Aliquam ut risus ligula. Quisque vitae ipsum sit amet ex interdum aliquet. Nam commodo, tortor sed condimentum dapibus, neque arcu facilisis felis, vitae luctus nunc felis vitae tellus.</p>
+                    </div>
+                </div>
+                <div class="case-details">
+                    <div class="detail-section">
+                        <h4 class="text-body-large">Role</h4>
+                        <p class="text-body-base">Lead designer</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="text-body-large">Team</h4>
+                        <p class="text-body-base">Lorem ipsum dolor sit amet, consectetur.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="text-body-large">Timeline</h4>
+                        <p class="text-body-base">Jan 2025 – Mar 2025</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="text-body-large">Platforms & integrations</h4>
+                        <p class="text-body-base">Responsive web</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="text-body-large">Process</h4>
+                        <ul>
+                            <li class="text-body-base">Research & discovery</li>
+                            <li class="text-body-base">Wireframes & IA</li>
+                            <li class="text-body-base">Design system components</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="case-metrics impact-intro">
+            <div class="container">
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">The problem, in detail</h3>
+                    <p class="text-body-base">Cras pulvinar, sem in sollicitudin euismod, justo nunc gravida dolor, vitae dignissim diam nisl ac nulla.</p>
+                    <p class="text-body-base">In hac habitasse platea dictumst. Integer tincidunt, mauris at efficitur pulvinar, mi nibh fringilla nisl, nec aliquet augue risus at nunc.</p>
+                    <ul>
+                        <li class="text-body-base"><span class="text-body-base-bold">User A:</span> Lorem ipsum dolor sit amet.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">User B:</span> Integer non luctus eros.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Business:</span> Morbi a efficitur lorem.</li>
+                    </ul>
+                </div>
+                <div class="metrics-right">
+                    <div class="metrics-list">
+                        <div class="metrics-item">
+                            <h2 class="text-heading-2">48%</h2>
+                            <p class="text-body-base">lorem metric description</p>
+                        </div>
+                        <div class="metrics-item">
+                            <h2 class="text-heading-2">20k+</h2>
+                            <p class="text-body-base">lorem metric description</p>
+                        </div>
+                        <div class="metrics-item">
+                            <h2 class="text-heading-2">30%</h2>
+                            <p class="text-body-base">lorem metric description</p>
+                        </div>
+                        <div class="metrics-item">
+                            <h2 class="text-heading-2">7h–24h</h2>
+                            <p class="text-body-base">lorem metric description</p>
+                        </div>
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">user feedback</span></p>
+                            <p class="text-body-base">“Lorem ipsum dolor sit amet, consectetur adipiscing elit.”</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="discovery-media">
+            <div class="container">
+                <div class="collage-grid">
+                    <div class="collage-item"></div>
+                    <div class="collage-item"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="discovery-images">
+            <div class="container">
+                <div class="discovery-image">
+                    <p class="text-body-base-bold discovery-caption">Sample caption</p>
+                    <div class="discovery-placeholder"></div>
+                </div>
+                <div class="discovery-image">
+                    <p class="text-body-base-bold discovery-caption">Sample caption</p>
+                    <div class="discovery-placeholder"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="case-quote" aria-label="Key finding">
+            <div class="container">
+                <div class="quote-inner">
+                    <p class="text-body-base-bold quote-kicker">key finding</p>
+                    <p class="text-heading-3 quote-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales, justo in blandit imperdiet, est arcu facilisis nibh.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="case-metrics solution-section">
+            <div class="container">
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">Solution</h3>
+                    <p class="text-body-base">Donec placerat, metus sed sollicitudin tempus, libero arcu posuere mi, vitae elementum nibh dui et lorem.</p>
+                    <p class="text-body-base">Curabitur sed enim ut magna placerat luctus sit amet vitae arcu.</p>
+                    <p class="text-body-base">Success metrics:</p>
+                    <ul>
+                        <li class="text-body-base">Owners: lorem benefit</li>
+                        <li class="text-body-base">Users: lorem benefit</li>
+                        <li class="text-body-base">Teams: lorem benefit</li>
+                        <li class="text-body-base">Business: lorem benefit</li>
+                    </ul>
+                </div>
+                <div class="metrics-right">
+                    <div class="metrics-list">
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">What we knew</span></p>
+                            <ul>
+                                <li class="text-body-base">Lorem ipsum dolor sit amet</li>
+                                <li class="text-body-base">Consectetur adipiscing elit</li>
+                            </ul>
+                        </div>
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Risks</span></p>
+                            <ul>
+                                <li class="text-body-base">Risk one</li>
+                                <li class="text-body-base">Risk two</li>
+                                <li class="text-body-base">Risk three</li>
+                            </ul>
+                        </div>
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Rollout plan</span></p>
+                            <ul>
+                                <li class="text-body-base">Phase one</li>
+                                <li class="text-body-base">Phase two</li>
+                                <li class="text-body-base">Phase three</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="solution-images">
+            <div class="container">
+                <div class="solution-image">
+                    <p class="text-body-base-bold solution-caption">Sample caption</p>
+                    <div class="solution-placeholder"></div>
+                </div>
+                <div class="solution-image">
+                    <p class="text-body-base-bold solution-caption">Sample caption</p>
+                    <div class="solution-placeholder"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="design-section">
+            <div class="container">
+                <h3 class="text-heading-3">Design</h3>
+                <div class="design-stack">
+                    <div class="design-placeholder"></div>
+                    <div class="design-placeholder"></div>
+                </div>
+                <div class="design-cta">
+                    <a class="cta-button text-button" href="#" target="_blank" rel="noopener noreferrer">View my designs in Figma</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="case-metrics">
+            <div class="container">
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">What impact did we have?</h3>
+                    <p class="text-body-base">Mauris porta, urna sit amet pharetra dictum, odio arcu posuere ante, eu tempor nunc magna non mi.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="impact-stats">
+            <div class="container">
+                <div class="stats-row">
+                    <div class="stats-item">
+                        <h2 class="text-heading-2">+24%</h2>
+                        <p class="text-body-base">metric description</p>
+                    </div>
+                    <div class="stats-item">
+                        <h2 class="text-heading-2">59%</h2>
+                        <p class="text-body-base">metric description</p>
+                    </div>
+                    <div class="stats-item">
+                        <h2 class="text-heading-2">83%</h2>
+                        <p class="text-body-base">metric description</p>
+                    </div>
+                    <div class="stats-item">
+                        <h2 class="text-heading-2">73%</h2>
+                        <p class="text-body-base">metric description</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="case-metrics">
+            <div class="container">
+                <div class="metrics-left">
+                    <p class="text-body-base-bold">What was next?</p>
+                    <p class="text-body-base">Etiam at sapien a risus dictum sollicitudin. Sed sit amet bibendum nisi.</p>
+                </div>
+            </div>
+        </section>
+
         <nav class="project-nav" aria-label="Project navigation">
             <div class="container">
                 <div class="nav-left">

@@ -134,6 +134,7 @@
         .prev-project-link { text-align: left; }
         .next-project-link { text-align: right; }
         .nav-next { text-align: right; }
+        .prev-project-link:hover, .next-project-link:hover { text-decoration: underline; text-underline-offset: 25%; text-decoration-thickness: 17%; }
         @media (max-width: 1024px) {
             .project-nav .container { grid-template-columns: 1fr; gap: var(--space-40); margin: 0 var(--space-40); }
             .project-nav .nav-right { justify-content: flex-start; }
@@ -188,20 +189,20 @@
                 <div class="case-content">
                     <div class="content-section">
                         <h3 class="text-heading-3">Overview</h3>
-                        <p class="text-body-base">Evolve is a vacation rental management company focused on delivering 5‑star guest experiences and management services for vacation rental owners. Most of Evolve’s core owner platform users fell within the 45–64 age range and were distributed across the US.</p>
-                        <p class="text-body-base">The majority of guests booked Evolve properties through partner platforms like Airbnb, Vrbo, and Booking.com. In total, there were 30k+ owners and ~4.4k service partners on active listings.</p>
+                        <p class="text-body-base">Evolve is a vacation rental management company focused on delivering 5‑star guest experiences and management services for vacation rental owners. Most of Evolve’s core owner platform users fall within the 45–64 age range and were distributed across the US.</p>
+                        <p class="text-body-base">Most of Evolve’s core owner platform users fall within the 45–64 age range and are distributed across the US. Evolve guests book on a variety of partner platforms which include Airbnb, Vrbo, Booking.com, Homes & Villas Marriott Bonvoy, Expedia, Google, and Hopper. In total, there are ~30k+ owners and ~4.4k service partners on active listings.</p>
                     </div>
                     <div class="content-section">
                         <h3 class="text-heading-3">Problem</h3>
-                        <p class="text-body-base">At Evolve, fragmented communication between guests, owners, and frontline teams led to confusion, duplicated work, and delayed responses. Nearly half of bookings required manual intervention, with many guest requests still needing owner approval. This created inefficiencies for teams, eroded guest trust, and left owners frustrated by a lack of visibility. Owners also had unrealistic expectations of being fully hands-off, when in reality their engagement was critical to rental success.</p>
+                        <p class="text-body-base">For property bookings, there was fragmented communication between guests, owners, and frontline teams at Evolve. This led to confusion, duplicated work, and delayed responses. It also created inefficiencies for teams, eroded guest trust, and left owners frustrated by a lack of visibility. We needed to change how we approached communication and to redefine what support looked like for the guest and owner for all booking phases, such as when a guest booked to when a guest checks out.</p>
                     </div>
                     <div class="content-section">
                         <h3 class="text-heading-3">Solution</h3>
-                        <p class="text-body-base">I led the design of Inbox, a centralized hub consolidating all communication between guests, owners, and Evolve frontline teams. We prioritized speed by releasing an MVP for Airbnb bookings, informed by research into owner behaviors, guest messaging patterns, and industry standards. Key design decisions included enabling messaging 4–7 days before check-in (when most guest questions occurred) and embedding education to reframe owner engagement as essential to performance. Success was defined by improved response times, reduced off-platform communication, and increased owner adoption.</p>
+                        <p class="text-body-base">I led the design of Inbox, a centralized hub consolidating all communication between guests, owners, and frontline teams. We prioritized speed by releasing an MVP for our partner Airbnb bookings, informed by research into owner behaviors, guest messaging patterns, and industry standards. Key design decisions included enabling messaging 4–7 days before check-in (when most guest questions occurred) and embedding education to reframe owner engagement as essential to performance. Success was defined by improved response times, reduced off-platform communication, and increased owner adoption.</p>
                     </div>
                     <div class="content-section">
                         <h3 class="text-heading-3">Impact</h3>
-                        <p class="text-body-base">The beta rollout showed strong early results: 83% of owners reported Inbox made guest communication easier, 73% found it valuable, and response times dropped by 98%. Adoption peaked at 59% of owners in the pilot using Inbox, though engagement later fell to 35%, highlighting opportunities for better education and motivation. While NPS impact wasn’t measurable in beta, the pilot demonstrated Inbox’s ability to streamline workflows, improve guest experiences, and set the foundation for scalable communication improvements across Evolve.</p>
+                        <p class="text-body-base">The beta rollout showed strong early results: 83% of owners reported Inbox made guest communication easier, 73% found it valuable, and response times dropped by 98%.The beta demonstrated our ability to streamline workflows, improve guest experiences, and set the foundation for scalable communication improvements across Evolve.</p>
                     </div>
                 </div>
                 <div class="case-details">
@@ -211,7 +212,7 @@
                     </div>
                     <div class="detail-section">
                         <h4 class="text-body-large">Team</h4>
-                        <p class="text-body-base">1 PM, 1 Researcher, 1 Engineer – small, but nimble!</p>
+                        <p class="text-body-base">1 PM, 1 Researcher, 1 Engineer – super small, but nimble!</p>
                     </div>
                     <div class="detail-section">
                         <h4 class="text-body-large">Timeline</h4>
@@ -224,11 +225,12 @@
                     <div class="detail-section">
                         <h4 class="text-body-large">Process</h4>
                         <ul>
-                            <li class="text-body-base">New feature responsive design & IA</li>
-                            <li class="text-body-base">Created new design system components</li>
                             <li class="text-body-base">Product strategy & roadmapping</li>
                             <li class="text-body-base">Vision concepts</li>
+                            <li class="text-body-base">Large data analysis with AI</li>
                             <li class="text-body-base">Flow analysis, empathy storming, journey mapping, competitive audit</li>
+                            <li class="text-body-base">Responsive design & IA</li>
+                            <li class="text-body-base">Created new design system components</li>
                             <li class="text-body-base">Brand guidelines</li>
                         </ul>
                     </div>
@@ -241,8 +243,8 @@
             <div class="container">
                 <div class="metrics-left">
                     <h3 class="text-heading-3">The problem, in detail</h3>
-                    <p class="text-body-base"><span style="font-weight: 700;">Problem 1:</span> Communication between guests, owners, and frontline teams happened in silos, leaving each party without visibility into the others’ interactions. This created gaps that prevented Evolve from delivering a seamless experience. <span style="color: var(--color-fire-500);">How might we give guests direct access to owners when needed—without delays or bottlenecks?</span></p>
-                    <p class="text-body-base"><span style="font-weight: 700;">Problem 2:</span> Owners had varying expectations of how hands-on Evolve would be in managing guests and bookings. In reality, owners could never be fully removed—certain requests and issues always required their approval. <span style="color: var(--color-fire-500);">How might we reframe success so that owners see engagement as essential, not optional, to their rental’s performance?</span></p>
+                    <p class="text-body-base"><span style="font-weight: 700;">Problem 1:</span> Communication for a property booking between guests, owners, and frontline teams happened in silos, leaving each party without visibility into the others’ interactions. Nearly half of bookings required manual intervention, with many guest requests still needing owner approval. This created gaps that prevented Evolve from delivering a seamless experience.  <span style="color: var(--color-fire-500);">How  we give guests direct access to owners when needed—without delays or bottlenecks?</span></p>
+                    <p class="text-body-base"><span style="font-weight: 700;">Problem 2:</span> Owners had varying expectations of how hands-on Evolve would be in managing guests and bookings. In reality, owners could never be fully removed—certain requests and issues always required their approval, and their engagement was critical to rental success.<span style="color: var(--color-fire-500);">How could we reframe success so that owners see engagement as essential, not optional, to their rental’s performance?</span></p>
                     <p class="text-body-base">I needed to solve for three distinct users—Owners, Guests, and Evolve teams—each with unique needs:</p>
                     <ul>
                         <li class="text-body-base"><span class="text-body-base-bold">Owners:</span> Needed visibility into all guest interactions, without relying on off-platform tools</li>
