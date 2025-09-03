@@ -36,9 +36,10 @@
         /* Tablet/mobile: image above header, details below */
         @media (max-width: 1024px) {
             .case-hero .container { grid-template-columns: 1fr; align-items: start; }
+            .case-hero .container { margin: 0 var(--space-40); }
             .case-hero .hero-media { grid-column: 1 / -1; order: 1; }
             .case-hero .hero-content { grid-column: 1 / -1; order: 2; max-width: 100%; padding: 0; }
-            .case-overview .container { grid-template-columns: 1fr; gap: var(--space-48); }
+            .case-overview .container { grid-template-columns: 1fr; gap: var(--space-48); margin: 0 var(--space-40); }
             .case-content { order: 1; }
             .case-details { order: 2; margin-top: 0; }
         }
@@ -46,13 +47,13 @@
             .case-hero .container, .case-overview .container { margin: 0 var(--space-40); }
         }
 
-        /* Metrics section (below Overview) */
+        /* Discovery */
         .case-metrics { padding: var(--space-64) 0; background: var(--color-white); }
         .case-metrics .container { max-width: 1920px; margin: 0 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-64); align-items: start; }
         .case-metrics h3 { margin: 0 0 var(--space-20); }
         .metrics-left { grid-column: span 6; }
         .metrics-right { grid-column: span 5 / -1; }
-        .metrics-left p { margin: 0 0 var(--space-20); }
+        .metrics-left p { margin: 0 0 var(--space-0); }
         .metrics-list { display: grid; gap: var(--space-24); }
         .metrics-item h2 { color: var(--text-accent); margin: 0 0 var(--space-0); }
         .metrics-item p { margin: 0; }
@@ -61,7 +62,7 @@
         .metrics-left li::before { content: "•"; position: absolute; left: 0; top: 0.2em; color: var(--text-body); }
         .metrics-right { margin-top: 54px; }
         @media (max-width: 1024px) {
-            .case-metrics .container { grid-template-columns: 1fr; gap: var(--space-40); }
+            .case-metrics .container { grid-template-columns: 1fr; gap: var(--space-40); margin: 0 var(--space-40); }
             .metrics-left, .metrics-right { grid-column: 1 / -1; }
         }
 
@@ -73,11 +74,11 @@
         @media (max-width: 1024px) { .collage-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 640px) { .collage-grid { grid-template-columns: 1fr; } }
 
-        .discovery-images { padding: var(--space-48) 0 var(--space-64); background: var(--color-white); }
-        .discovery-images .container { max-width: 1920px; margin: 0 80px; }
-        .discovery-image { margin: 0 0 var(--space-48); }
-        .discovery-caption { text-align: center; color: var(--color-grey); margin: 0 0 4px; }
-        .discovery-placeholder { width: 100%; height: 420px; background: var(--color-grey); border-radius: 16px; }
+        .discovery-images, .solution-images{ padding: var(--space-48) 0 var(--space-64); background: var(--color-white); }
+        .discovery-images, .solution-image .container { max-width: 1920px; margin: 0 80px; }
+        .discovery-image, .solution-image{ margin: 0 0 var(--space-48); }
+        .discovery-caption, .solution-caption{ text-align: center; color: var(--color-grey); margin: 0 0 4px; }
+        .discovery-placeholder, .solution-placeholder{ width: 100%; height: 420px; background: var(--color-grey); border-radius: 16px; }
 
         /* Full-height quote section (matches hero height) */
         .case-quote { min-height: 100vh; background: var(--color-white); display: grid; place-items: center; padding: var(--space-64) 0; }
@@ -86,6 +87,59 @@
         .case-quote .quote-kicker { margin: 0 0 var(--space-16); color: var(--color-grey); }
         .case-quote .quote-text { color: var(--color-fire-500); }
         @media (max-width: 640px) { .case-quote .container { margin: 0 var(--space-40); } }
+
+        /* Solution right-column list style mirrors case-details */
+        .solution-section .metrics-right ul { list-style: none; padding: 0; margin: 0 0 var(--space-8); }
+        .solution-section .metrics-right li { margin-bottom: var(--space-8); padding-left: var(--space-16); position: relative; }
+        .solution-section .metrics-right li:before { content: "•"; position: absolute; left: 0; color: var(--text-body); }
+
+        /* Design section */
+        .design-section { padding: var(--space-64) 0; background: var(--color-white); }
+        .design-section .container { max-width: 1920px; margin: 0 80px; }
+        .design-section h3 { margin: 0 0 var(--space-32); }
+        .design-placeholder { width: 100%; height: 520px; background: var(--color-fire-50); border-radius: 16px; }
+        .design-stack { display: grid; gap: var(--space-24); }
+        .design-cta { display: flex; justify-content: center; margin-top: var(--space-24); }
+        .design-cta .cta-button { background: var(--color-fire-500); color: var(--color-white); border: none; padding: var(--space-12) var(--space-20); border-radius: var(--radius-sm); text-decoration: none; box-shadow: var(--shadow-sm); display: inline-block; }
+        .design-cta .cta-button:hover { background: var(--text-accent); text-decoration: none; }
+        .design-cta .cta-button:active { background: var(--text-accent); }
+        @media (max-width: 640px) { .design-cta .cta-button { display: block; width: 100%; text-align: center; } }
+        @media (max-width: 1024px) { .design-section .container { margin: 0 var(--space-40); } }
+
+        /* Impact stats row */
+        .impact-stats { padding: var(--space-0) 0; background: var(--color-white); }
+        .impact-stats .container { max-width: 1920px; margin: 0 80px; }
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-54); }
+        .stats-item h2 { color: var(--text-accent); margin: 0 0 var(--space-0); }
+        .stats-item p { margin: 0; }
+        @media (max-width: 1024px) {
+            .impact-stats .container { margin: 0 var(--space-40); }
+            .stats-row { grid-template-columns: repeat(2, 1fr); gap: var(--space-40); }
+        }
+        @media (max-width: 640px) {
+            .stats-row { grid-template-columns: repeat(2, 1fr); gap: var(--space-24); }
+        }
+
+        /* Impact spacing tweaks */
+        .impact-intro { padding-bottom: var(--space-40); }
+        .impact-next { padding-top: var(--space-40); }
+
+        /* Project navigation (bottom of page) */
+        .project-nav { padding: calc(var(--space-64) * 2) 0; background: var(--color-fire-50); }
+        .project-nav .container { max-width: 1920px; margin: 0 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-64); align-items: end; }
+        .project-nav .nav-left { grid-column: span 6; }
+        .project-nav .nav-right { grid-column: span 5 / -1; display: flex; justify-content: flex-end; align-items: flex-end; gap: var(--space-4); }
+        .prev-project-label, .next-project-label { color: var(--text-body); display: block; margin-bottom: var(--space-8); }
+        .prev-project-link, .next-project-link { max-width: 400px; display: block; text-decoration: none; text-decoration-color: #232323; text-decoration-thickness: 2px; }
+        .prev-project-link { text-align: left; }
+        .next-project-link { text-align: right; }
+        .nav-next { text-align: right; }
+        @media (max-width: 1024px) {
+            .project-nav .container { grid-template-columns: 1fr; gap: var(--space-40); margin: 0 var(--space-40); }
+            .project-nav .nav-right { justify-content: flex-start; }
+            .nav-next { text-align: left; }
+            .next-project-link { text-align: left; }
+        }
     </style>
     </head>
 <body>
@@ -183,7 +237,7 @@
         </section>
 
         <!-- Metrics / Problem detail section -->
-        <section class="case-metrics">
+        <section class="case-metrics impact-intro">
             <div class="container">
                 <div class="metrics-left">
                     <h3 class="text-heading-3">The problem, in detail</h3>
@@ -225,7 +279,7 @@
         </section>
 
         <!-- Discovery-->
-        <section class="case-metrics">
+        <section class="case-metrics impact-next">
             <div class="container">
                 <div class="metrics-left">
                     <h3 class="text-heading-3">Discovery</h3>
@@ -294,15 +348,15 @@
         </section>
 
         <!-- Solution  -->
-        <section class="case-metrics">
+        <section class="case-metrics solution-section">
             <div class="container">
                 <div class="metrics-left">
                     <h3 class="text-heading-3">Solution</h3>
-                    <p class="text-body-base">We prioritized a fast release to validate learnings, focusing the MVP on Inbox access for Airbnb bookings.</p>
-                    <p class="text-body-base"><span style="color: var(--color-fire-500);">How might we give guests direct access to owners without delays or bottlenecks?</span> Built a seamless, transparent communication platform that let owners manage interactions and gave guests a smooth experience.</p>
+                    <p class="text-body-base">We prioritized a fast release to validate learnings, focusing the MVP on Inbox access for Airbnb bookings. My key design questions were:</p>
+                    <p class="text-body-base"><span style="color: var(--color-fire-500);">How might we give guests direct access to owners without delays or bottlenecks?</span> I needed to build a seamless, transparent communication platform that let owners manage interactions and give guests a smooth experience.</p>
                     <p class="text-body-base"><span style="color: var(--color-fire-500);">How might we reframe success so owners see messaging as essential to rental performance?</span> Integrated education into UI and marketing, positioning Inbox as a core management tool to boost efficiency and engagement.</p>
-                    <p class="text-body-base">Discovery showed most guest requests came 4–7 days pre-check-in, a critical window for connection. Rather than granting access only after check-in, we proposed opening messaging earlier to drive adoption and reduce issues.</p>
-                    <p class="text-body-base">We defined our success metrics:</p>
+                    <p class="text-body-base">Discovery showed most guest requests came 4–7 days pre-check-in, a critical window for connection. Rather than granting access only after check-in, I proposed opening messaging earlier to drive adoption and reduce issues.</p>
+                    <p class="text-body-base">I defined our success metrics with my PM:</p>
                     <ul>
                         <li class="text-body-base"><span class="text-body-base-bold">Owners:</span> Less reliance on off-platform tools, streamlined workflows, personalized guest experiences.</li>
                         <li class="text-body-base"><span class="text-body-base-bold">Guests:</span> Faster responses, fewer repeated questions, consistent communication.</li>
@@ -341,6 +395,95 @@
                 </div>
             </div>
         </section>
+
+        <!-- Two full-width images with captions -->
+        <section class="solution-images">
+            <div class="container">
+                <div class="solution-image">
+                    <p class="text-body-base-bold solution-caption">Ideal communication journey flow map</p>
+                    <div class="solution-placeholder"></div>
+                </div>
+                <div class="solution-image">
+                    <p class="text-body-base-bold solution-caption">User journey map (ideal state)</p>
+                    <div class="solution-placeholder"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Design section -->
+        <section class="design-section">
+            <div class="container">
+                <h3 class="text-heading-3">Design</h3>
+                <div class="design-stack">
+                    <div class="design-placeholder"></div>
+                    <div class="design-placeholder"></div>
+                </div>
+                <div class="design-cta">
+                    <a class="cta-button text-button" href="#" target="_blank" rel="noopener noreferrer">View my designs in Figma</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact (left column width like other sections) -->
+        <section class="case-metrics">
+            <div class="container">
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">What impact did we have?</h3>
+                    <p class="text-body-base">The beta rollout of Inbox demonstrated significant improvements for owners and guests alike.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats row (full width) -->
+        <section class="impact-stats">
+            <div class="container">
+                <div class="stats-row">
+                    <div class="stats-item">
+                        <h2 class="text-heading-2">&lt;30m</h2>
+                        <p class="text-body-base">84% responded within this time</p>
+                    </div>
+                    <div class="stats-item">
+                        <h2 class="text-heading-2">59%</h2>
+                        <p class="text-body-base">of beta owners used Inbox</p>
+                    </div>
+                    <div class="stats-item">
+                        <h2 class="text-heading-2">83%</h2>
+                        <p class="text-body-base">found Inbox easy for communication</p>
+                    </div>
+                    <div class="stats-item">
+                        <h2 class="text-heading-2">73%</h2>
+                        <p class="text-body-base">said Inbox provided strong value</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Follow-up constrained to left column width -->
+        <section class="case-metrics">
+            <div class="container">
+                <div class="metrics-left">
+                    <p class="text-body-base-bold">What was next?</p>
+                    <p class="text-body-base">LAlalalalalal.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom project navigation -->
+        <nav class="project-nav" aria-label="Project navigation">
+            <div class="container">
+                <div class="nav-left">
+                    <!-- No previous project on the first case -->
+                </div>
+                <div class="nav-right">
+                    <div class="nav-next">
+                        <span class="text-body-sm next-project-label">Next →</span>
+                        <a class="next-project-link" href="evolve-owner-account.html" aria-label="Next project: Transforming the Owner Journey with a Seamless Experience">
+                            <span class="text-heading-5">Transforming the Owner Journey with a Seamless Experience</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
 
     </main>
 

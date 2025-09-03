@@ -10,7 +10,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <script defer src="scripts/main.js"></script>
-    <style> .case-hero { padding: 120px 20px 80px; } .case-hero .container { max-width: 870px; margin: 0 auto; } .case-hero h1 { margin: 0 0 12px; } .case-hero p { margin: 0; } </style>
+    <style>
+        .case-hero { padding: 120px 20px 80px; }
+        .case-hero .container { max-width: 870px; margin: 0 auto; }
+        .case-hero h1 { margin: 0 0 12px; }
+        .case-hero p { margin: 0; }
+
+        /* Project navigation (bottom of page) */
+        .project-nav { padding: calc(var(--space-64) * 2) 0; background: var(--color-fire-50); }
+        .project-nav .container { max-width: 1920px; margin: 0 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-64); align-items: end; }
+        .project-nav .nav-left { grid-column: span 6; }
+        .project-nav .nav-right { grid-column: span 5 / -1; display: flex; justify-content: flex-end; align-items: flex-end; gap: var(--space-4); }
+        .prev-project-label, .next-project-label { color: var(--text-body); display: block; margin-bottom: var(--space-8); }
+        .prev-project-link, .next-project-link { max-width: 400px; display: block; text-decoration: none; text-decoration-color: #232323; text-decoration-thickness: 2px; }
+        .prev-project-link { text-align: left; }
+        .next-project-link { text-align: right; }
+        .nav-next { text-align: right; }
+        @media (max-width: 1024px) {
+            .project-nav .container { grid-template-columns: 1fr; gap: var(--space-40); margin: 0 var(--space-40); }
+            .project-nav .nav-right { justify-content: flex-start; }
+            .nav-next { text-align: left; }
+            .next-project-link { text-align: left; }
+        }
+    </style>
     </head>
 <body>
     <header class="header">
@@ -47,6 +69,27 @@
                 <p class="text-body-lg">Case study page placeholder. Content coming soon.</p>
             </div>
         </section>
+        <!-- Bottom project navigation -->
+        <nav class="project-nav" aria-label="Project navigation">
+            <div class="container">
+                <div class="nav-left">
+                    <div class="nav-prev">
+                        <span class="text-body-sm prev-project-label">← Previous</span>
+                        <a class="prev-project-link" href="evolve-owner-account.html" aria-label="Previous project: Transforming the Owner Journey with a Seamless Experience">
+                            <span class="text-heading-5">Transforming the Owner Journey with a Seamless Experience</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="nav-right">
+                    <div class="nav-next">
+                        <span class="text-body-sm next-project-label">Next →</span>
+                        <a class="next-project-link" href="transamerica-workplace-experience.html" aria-label="Next project: Re-imagining a New Responsive Web Experience for Financial Professionals">
+                            <span class="text-heading-5">Re-imagining a New Responsive Web Experience for Financial Professionals</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </main>
 
     <footer class="footer">
