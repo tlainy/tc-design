@@ -41,12 +41,13 @@
     <main>
         <style>
             /* About: right-side 3x3 grid next to text */
-            .about-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-20); }
-            .about-photo { width: 100%; aspect-ratio: 1 / 1; background: var(--color-fire-100); border-radius: 16px; }
+            .about-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-20); width: 100%; max-width: 560px; }
+            .about-photo { width: 100%; aspect-ratio: 1 / 1; height: 160px; background: var(--color-grey); border-radius: 16px; }
+            .hero .hero-media { align-items: flex-start; }
             /* Tablet: grid stacks below text (handled by existing hero responsive); make squares smaller */
-            @media (max-width: 1024px) { .about-grid { gap: var(--space-16); } .about-photo { border-radius: 14px; } }
+            @media (max-width: 1024px) { .about-grid { gap: var(--space-16); max-width: 520px; } .about-photo { height: 140px; border-radius: 14px; } }
             /* Mobile: keep 3x3 but smaller squares */
-            @media (max-width: 640px) { .about-grid { gap: var(--space-12); } .about-photo { border-radius: 12px; } }
+            @media (max-width: 640px) { .about-grid { gap: var(--space-12); max-width: 440px; } .about-photo { height: 110px; border-radius: 12px; } }
         </style>
         <section class="hero">
             <div class="hero-grid container">
