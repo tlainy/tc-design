@@ -39,11 +39,35 @@
     </div>
 
     <main>
+        <style>
+            /* About: right-side 3x3 grid next to text */
+            .about-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-20); }
+            .about-photo { width: 100%; aspect-ratio: 1 / 1; background: var(--color-fire-100); border-radius: 16px; }
+            /* Tablet: grid stacks below text (handled by existing hero responsive); make squares smaller */
+            @media (max-width: 1024px) { .about-grid { gap: var(--space-16); } .about-photo { border-radius: 14px; } }
+            /* Mobile: keep 3x3 but smaller squares */
+            @media (max-width: 640px) { .about-grid { gap: var(--space-12); } .about-photo { border-radius: 12px; } }
+        </style>
         <section class="hero">
             <div class="hero-grid container">
                 <div class="hero-content">
-                    <h1 class="text-heading-1">About</h1>
-                    <p class="text-body-lg">Whoa! This is About.</p>
+                    <h1 class="text-heading-1">Hey! Hi!</h1>
+                    <p class="text-body-lg">Ok, ok—there’s already a little About section on the homepage, but here’s a bit more 🤓</p>
+                    <p class="text-body-lg">I’m a designer who loves creating things that bring both me and my community joy. I enjoy technical problem-solving as much as creative exploration, so lately I’ve been dabbling in AI-powered code editors. I’m also the type who reads every plaque in a museum (yes, every single one).</p>
+                    <p class="text-body-lg">Based in Colorado, I split my time between screens and trails—you’ll usually find me climbing, hiking, or biking.</p>
+                </div>
+                <div class="hero-media" aria-hidden="true">
+                    <div class="about-grid">
+                        <div class="about-photo"></div>
+                        <div class="about-photo"></div>
+                        <div class="about-photo"></div>
+                        <div class="about-photo"></div>
+                        <div class="about-photo"></div>
+                        <div class="about-photo"></div>
+                        <div class="about-photo"></div>
+                        <div class="about-photo"></div>
+                        <div class="about-photo"></div>
+                    </div>
                 </div>
             </div>
         </section>
