@@ -62,38 +62,48 @@ document.addEventListener('DOMContentLoaded', function() {
         if (toggleButton) toggleButton.setAttribute('aria-expanded', 'true');
     }
 
-    // Simple image zoom viewframe for solution-images
-    const zoomOverlay = document.getElementById('zoomOverlay');
-    const zoomImage = document.getElementById('zoomImage');
-    if (zoomOverlay && zoomImage) {
+    // Inline zoom controls for images (no modal)
+    (function initInlineZoom() {
         const zoomables = document.querySelectorAll('img[data-zoomable]');
-        let scale = 1;
-        function openZoom(src, alt) {
-            zoomImage.src = src;
-            zoomImage.alt = alt || '';
-            scale = 1;
-            zoomImage.style.transform = 'scale(1)';
-            zoomOverlay.classList.add('is-open');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeZoom() {
-            zoomOverlay.classList.remove('is-open');
-            document.body.style.overflow = '';
-        }
         zoomables.forEach(img => {
-            img.style.cursor = 'zoom-in';
-            img.addEventListener('click', () => openZoom(img.src, img.alt));
+            // Wrap image in a scrollable container
+            const wrapper = document.createElement('div');
+            wrapper.className = 'zoom-inline';
+            const parent = img.parentNode;
+            parent.replaceChild(wrapper, img);
+            wrapper.appendChild(img);
+
+            // Controls (top-left like Google Maps)
+            const ctrls = document.createElement('div');
+            ctrls.className = 'zoom-controls-inline';
+            const btnIn = document.createElement('button');
+            btnIn.className = 'zoom-btn';
+            btnIn.setAttribute('aria-label', 'Zoom in');
+            btnIn.textContent = '+';
+            const btnOut = document.createElement('button');
+            btnOut.className = 'zoom-btn';
+            btnOut.setAttribute('aria-label', 'Zoom out');
+            btnOut.textContent = '−';
+            const btnFit = document.createElement('button');
+            btnFit.className = 'zoom-btn';
+            btnFit.setAttribute('aria-label', 'Fit to frame');
+            btnFit.textContent = 'Fit';
+            ctrls.appendChild(btnIn); ctrls.appendChild(btnOut); ctrls.appendChild(btnFit);
+            wrapper.appendChild(ctrls);
+
+            // Behavior
+            let scale = 1;
+            img.style.transformOrigin = '0 0';
+            img.style.transform = 'scale(1)';
+            img.style.maxWidth = 'none';
+            img.style.width = '100%';
+
+            function apply() { img.style.transform = `scale(${scale})`; }
+            btnIn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); scale = Math.min(4, scale + 0.25); apply(); });
+            btnOut.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); scale = Math.max(0.5, scale - 0.25); apply(); });
+            btnFit.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); scale = 1; apply(); wrapper.scrollTop = 0; wrapper.scrollLeft = 0; });
         });
-        zoomOverlay.addEventListener('click', (e) => {
-            if (e.target === zoomOverlay || e.target.dataset.zoom === 'close') {
-                closeZoom();
-            }
-        });
-        zoomOverlay.querySelector('[data-zoom="in"]').addEventListener('click', (e) => { e.stopPropagation(); scale = Math.min(4, scale + 0.25); zoomImage.style.transform = `scale(${scale})`; });
-        zoomOverlay.querySelector('[data-zoom="out"]').addEventListener('click', (e) => { e.stopPropagation(); scale = Math.max(0.5, scale - 0.25); zoomImage.style.transform = `scale(${scale})`; });
-        zoomOverlay.querySelector('[data-zoom="fit"]').addEventListener('click', (e) => { e.stopPropagation(); scale = 1; zoomImage.style.transform = 'scale(1)'; });
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeZoom(); });
-    }
+    })();
     function closeMenu() {
         if (!mobileMenu) return;
         mobileMenu.classList.remove('is-open');

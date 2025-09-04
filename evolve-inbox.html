@@ -101,14 +101,10 @@
         /* Narrow only the journey map image to 50% width */
         #journey-map .solution-placeholder img { width: 50% !important; margin-left: auto; margin-right: auto; }
         /* Zoom overlay (viewframe) */
-        .zoom-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); display: none; z-index: 2000; }
-        .zoom-overlay.is-open { display: grid; place-items: center; }
-        .zoom-frame { width: min(96vw, 1920px); height: min(90vh, 1080px); background: #111; border-radius: 12px; overflow: auto; position: relative; }
-        .zoom-content { position: relative; display: inline-block; }
-        .zoom-image { display: block; max-width: none; height: auto; }
-        .zoom-controls { position: absolute; right: 12px; top: 12px; display: flex; gap: 8px; z-index: 1; }
-        .zoom-btn { background: rgba(255,255,255,0.9); color: var(--text-accent); border: 0; border-radius: 6px; padding: 6px 10px; cursor: pointer; }
-        .zoom-close { position: absolute; left: 12px; top: 12px; }
+        /* Inline zoom wrapper (scrollable) */
+        .zoom-inline { position: relative; overflow: auto; border-radius: 16px; background: var(--color-white); }
+        .zoom-controls-inline { position: absolute; left: 12px; top: 12px; display: flex; flex-direction: column; gap: 8px; z-index: 1; }
+        .zoom-btn { background: rgba(255,255,255,0.95); color: var(--text-accent); border: 1px solid var(--text-accent); border-radius: 6px; padding: 6px 10px; cursor: pointer; box-shadow: var(--shadow-sm); }
 
         /* Full-height quote section (matches hero height) */
         .case-quote { min-height: 100vh; background: var(--color-white); display: grid; place-items: center; padding: var(--space-64) 0; }
@@ -489,9 +485,9 @@
         <section id="designs" class="solution-images">
             <div class="container">
                 <div class="solution-image">
-                    <p class="text-body-base-bold solution-caption">Designs – beta</p>
+                    <p class="text-body-base-bold solution-caption">Final designs for the beta release</p>
                     <div class="solution-placeholder">
-                        <img src="assets/evolve_inbox_beta_designs.svg" alt="Designs - beta" data-zoomable />
+                        <img src="assets/evolve_inbox_beta_designs.svg" alt="Final designs for beta" data-zoomable />
                     </div>
                 </div>
                 <div class="design-cta">
@@ -500,20 +496,7 @@
             </div>
         </section>
 
-        <!-- Zoom overlay (viewframe) -->
-        <div id="zoomOverlay" class="zoom-overlay" role="dialog" aria-modal="true" aria-label="Image zoom view">
-            <div class="zoom-frame">
-                <div class="zoom-controls">
-                    <button class="zoom-btn" data-zoom="in" aria-label="Zoom in">+</button>
-                    <button class="zoom-btn" data-zoom="out" aria-label="Zoom out">−</button>
-                    <button class="zoom-btn" data-zoom="fit" aria-label="Fit to screen">Fit</button>
-                </div>
-                <button class="zoom-btn zoom-close" data-zoom="close" aria-label="Close">Close</button>
-                <div class="zoom-content">
-                    <img id="zoomImage" class="zoom-image" alt="Zoomed" />
-                </div>
-            </div>
-        </div>
+        <!-- Inline zoom uses DOM created by JS; no modal markup needed -->
 
         <!-- Impact (left column width like other sections) -->
         <section class="case-metrics">
