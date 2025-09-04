@@ -100,6 +100,15 @@
         .metrics-placeholder img, .discovery-placeholder img, .solution-placeholder img { width: 100%; height: auto; object-fit: contain; border-radius: 16px; display: block; }
         /* Narrow only the journey map image to 50% width */
         #journey-map .solution-placeholder img { width: 50% !important; margin-left: auto; margin-right: auto; }
+        /* Zoom overlay (viewframe) */
+        .zoom-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); display: none; z-index: 2000; }
+        .zoom-overlay.is-open { display: grid; place-items: center; }
+        .zoom-frame { width: min(96vw, 1920px); height: min(90vh, 1080px); background: #111; border-radius: 12px; overflow: auto; position: relative; }
+        .zoom-content { position: relative; display: inline-block; }
+        .zoom-image { display: block; max-width: none; height: auto; }
+        .zoom-controls { position: absolute; right: 12px; top: 12px; display: flex; gap: 8px; z-index: 1; }
+        .zoom-btn { background: rgba(255,255,255,0.9); color: var(--text-accent); border: 0; border-radius: 6px; padding: 6px 10px; cursor: pointer; }
+        .zoom-close { position: absolute; left: 12px; top: 12px; }
 
         /* Full-height quote section (matches hero height) */
         .case-quote { min-height: 100vh; background: var(--color-white); display: grid; place-items: center; padding: var(--space-64) 0; }
@@ -468,25 +477,43 @@
                     </div>
                 </div>
                 <div class="design-cta">
-                    <a class="btn-secondary text-button" href="https://www.figma.com/design/1IAFFuWuWRupowgyrUU2Wq/Evolve--Inbox?node-id=154-37698&t=QMRPdkKFBSMVQDnE-11" target="_blank" rel="noopener noreferrer">View the journey map in Figma</a>
-                    <a class="btn-secondary text-button" href="https://www.figma.com/design/1IAFFuWuWRupowgyrUU2Wq/Evolve--Inbox?node-id=1-4&p=f&t=QMRPdkKFBSMVQDnE-11" target="_blank" rel="noopener noreferrer">View the full project in Figma</a>
+                    <a class="btn-secondary text-button" href="https://www.figma.com/design/1IAFFuWuWRupowgyrUU2Wq/Evolve--Inbox?node-id=1-4&p=f&t=QMRPdkKFBSMVQDnE-11" target="_blank" rel="noopener noreferrer">View mockups in Figma</a>
+                    <a class="btn-secondary text-button" href="https://www.figma.com/design/1IAFFuWuWRupowgyrUU2Wq/Evolve--Inbox?node-id=154-37698&t=QMRPdkKFBSMVQDnE-11" target="_blank" rel="noopener noreferrer">View journey map in Figma</a>
+                    
                 </div>
             </div>
         </section>
 
         <!-- Design section -->
-        <section class="design-section">
+        <!-- Designs image section (matches other image sections) -->
+        <section id="designs" class="solution-images">
             <div class="container">
-                <h3 class="text-heading-3">Designs</h3>
-                <div class="design-stack">
-                    <div class="design-placeholder"></div>
-                    <div class="design-placeholder"></div>
+                <div class="solution-image">
+                    <p class="text-body-base-bold solution-caption">Designs – beta</p>
+                    <div class="solution-placeholder">
+                        <img src="assets/evolve_inbox_beta_designs.svg" alt="Designs - beta" data-zoomable />
+                    </div>
                 </div>
                 <div class="design-cta">
                     <a class="cta-button text-button" href="#" target="_blank" rel="noopener noreferrer">View my designs in Figma</a>
                 </div>
             </div>
         </section>
+
+        <!-- Zoom overlay (viewframe) -->
+        <div id="zoomOverlay" class="zoom-overlay" role="dialog" aria-modal="true" aria-label="Image zoom view">
+            <div class="zoom-frame">
+                <div class="zoom-controls">
+                    <button class="zoom-btn" data-zoom="in" aria-label="Zoom in">+</button>
+                    <button class="zoom-btn" data-zoom="out" aria-label="Zoom out">−</button>
+                    <button class="zoom-btn" data-zoom="fit" aria-label="Fit to screen">Fit</button>
+                </div>
+                <button class="zoom-btn zoom-close" data-zoom="close" aria-label="Close">Close</button>
+                <div class="zoom-content">
+                    <img id="zoomImage" class="zoom-image" alt="Zoomed" />
+                </div>
+            </div>
+        </div>
 
         <!-- Impact (left column width like other sections) -->
         <section class="case-metrics">

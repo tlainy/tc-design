@@ -62,6 +62,38 @@ document.addEventListener('DOMContentLoaded', function() {
         if (toggleButton) toggleButton.setAttribute('aria-expanded', 'true');
     }
 
+    // Simple image zoom viewframe for solution-images
+    const zoomOverlay = document.getElementById('zoomOverlay');
+    const zoomImage = document.getElementById('zoomImage');
+    if (zoomOverlay && zoomImage) {
+        const zoomables = document.querySelectorAll('img[data-zoomable]');
+        let scale = 1;
+        function openZoom(src, alt) {
+            zoomImage.src = src;
+            zoomImage.alt = alt || '';
+            scale = 1;
+            zoomImage.style.transform = 'scale(1)';
+            zoomOverlay.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeZoom() {
+            zoomOverlay.classList.remove('is-open');
+            document.body.style.overflow = '';
+        }
+        zoomables.forEach(img => {
+            img.style.cursor = 'zoom-in';
+            img.addEventListener('click', () => openZoom(img.src, img.alt));
+        });
+        zoomOverlay.addEventListener('click', (e) => {
+            if (e.target === zoomOverlay || e.target.dataset.zoom === 'close') {
+                closeZoom();
+            }
+        });
+        zoomOverlay.querySelector('[data-zoom="in"]').addEventListener('click', (e) => { e.stopPropagation(); scale = Math.min(4, scale + 0.25); zoomImage.style.transform = `scale(${scale})`; });
+        zoomOverlay.querySelector('[data-zoom="out"]').addEventListener('click', (e) => { e.stopPropagation(); scale = Math.max(0.5, scale - 0.25); zoomImage.style.transform = `scale(${scale})`; });
+        zoomOverlay.querySelector('[data-zoom="fit"]').addEventListener('click', (e) => { e.stopPropagation(); scale = 1; zoomImage.style.transform = 'scale(1)'; });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeZoom(); });
+    }
     function closeMenu() {
         if (!mobileMenu) return;
         mobileMenu.classList.remove('is-open');
