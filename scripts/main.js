@@ -109,12 +109,22 @@ document.addEventListener('DOMContentLoaded', function() {
         const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
         const prevBtn = carousel.querySelector('[data-dir="prev"]');
         const nextBtn = carousel.querySelector('[data-dir="next"]');
+        let currentIndex = 0;
+        const slideCount = slides.length;
 
         function equalizeHeights() { /* fixed to 680px in CSS, no-op kept for safety */ }
 
+        function getSlideWidth() {
+            return carousel.getBoundingClientRect().width;
+        }
+
+        function goTo(index) {
+            currentIndex = (index + slideCount) % slideCount; // wrap endlessly
+            track.scrollTo({ left: currentIndex * getSlideWidth(), behavior: 'smooth' });
+        }
+
         function scrollBySlide(dir) {
-            const slideWidth = carousel.getBoundingClientRect().width; // snap by viewport width
-            track.scrollBy({ left: dir * slideWidth, behavior: 'smooth' });
+            goTo(currentIndex + dir);
         }
 
         if (prevBtn) prevBtn.addEventListener('click', () => scrollBySlide(-1));
@@ -129,7 +139,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
-        window.addEventListener('resize', equalizeHeights);
+        // Keep index in sync with manual scroll (e.g., swipe)
+        let scrollTimeout;
+        track.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                const w = getSlideWidth();
+                currentIndex = Math.round(track.scrollLeft / w);
+            }, 100);
+        });
+
+        window.addEventListener('resize', () => {
+            equalizeHeights();
+            // snap to current slide after resize
+            track.scrollTo({ left: currentIndex * getSlideWidth(), behavior: 'instant' });
+        });
         equalizeHeights();
     }
 });
