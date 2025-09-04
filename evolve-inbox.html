@@ -317,7 +317,7 @@
                     <p class="text-body-base">I led a research-first approach combining:</p>
                     <ul>
                         <li class="text-body-base"><span class="text-body-base-bold">Owner feedback:</span> Mined NPS feedback and in-app feedback to surface recurring pain points, looking specifically at feedback mentioning “communication”.</li>
-                        <li class="text-body-base"><span class="text-body-base-bold">Launched user surveys:</span> I developed an initial set of questions and goals and reviewed with my PM and Researcher. I wanted to better understand their current behaviors in the entire booking journey.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Launched user surveys:</span> I developed an initial set of questions and goals and reviewed with my PM and Researcher. I wanted to better understand their current behaviors and expectations of responsibility by booking phase.</li>
                         <li class="text-body-base"><span class="text-body-base-bold">AI + Design:</span> Used ChatGPT to analyze thousands of lines of owner feedback, cluster themes, and identify root causes behind service breakdowns, user dissatisfaction, and pain points.</li>
                         <li class="text-body-base"><span class="text-body-base-bold">Current state analysis:</span> Mapped out current flow and process, and interviewed internal stakeholders to understand frontline team issues, needs, and process gaps. Created a user journey map with insights pulled from our survey, NPS feedback, and any frontline team feedback.</li>
                         <li class="text-body-base"><span class="text-body-base-bold">Data insights:</span> Identified >20K off-platform messages exchanged across 23K reservations, showing the scale of fragmented communication. We also analyzed the timing of the inbound messages in each booking phase to inform changes in the product strategy.</li>
@@ -375,7 +375,7 @@
             </div>
         </section>
 
-        <!-- Two full-width images with captions -->
+        <!-- One full-width image with caption -->
         <section id="empathy-storming" class="discovery-images">
             <div class="container">
                 <div class="discovery-image">
@@ -402,11 +402,11 @@
             <div class="container">
                 <div class="metrics-left">
                     <h3 class="text-heading-3">Solution</h3>
-                    <p class="text-body-base">We prioritized a fast release to validate learnings, focusing the MVP on Inbox access for Airbnb bookings. My key design questions were:</p>
-                    <p class="text-body-base"><span style="color: var(--color-fire-500);">How might we give guests direct access to owners without delays or bottlenecks?</span> I needed to build a seamless, transparent communication platform that let owners manage interactions and give guests a smooth experience.</p>
+                    <p class="text-body-base">We needed to release quickly and gather learnings right away. We decided on a beta release focusing on Inbox for partner Airbnb bookings only. My key design questions were:</p>
+                    <p class="text-body-base"><span style="color: var(--color-fire-500);">How could we give guests direct access to owners when needed and allow owners to address booking requests on their own—without delays or bottlenecks?</span> I needed to build a seamless, transparent communication platform that let owners manage interactions and give guests a smooth experience, while making it clear which user was handling which request.</p>
                     <p class="text-body-base"><span style="color: var(--color-fire-500);">How might we reframe success so owners see messaging as essential to rental performance?</span> Integrated education into UI and marketing, positioning Inbox as a core management tool to boost efficiency and engagement.</p>
-                    <p class="text-body-base">Discovery showed most guest requests came 4–7 days pre-check-in, a critical window for connection. Rather than granting access only after check-in, I proposed opening messaging earlier to drive adoption and reduce issues.</p>
-                    <p class="text-body-base">I defined our success metrics with my PM:</p>
+                    <p class="text-body-base">In addition to that, discovery showed most guest requests came 4–7 days pre-check-in, a critical window for connection. Rather than granting access only after check-in, I proposed opening messaging earlier to drive adoption and reduce issues. The team was on board with this idea and we adjusted the roadmap.</p>
+                    <p class="text-body-base">I then defined our success metrics with my PM:</p>
                     <ul>
                         <li class="text-body-base"><span class="text-body-base-bold">Owners:</span> Less reliance on off-platform tools, streamlined workflows, personalized guest experiences.</li>
                         <li class="text-body-base"><span class="text-body-base-bold">Guests:</span> Faster responses, fewer repeated questions, consistent communication.</li>
@@ -418,27 +418,19 @@
                 <div class="metrics-right">
                     <div class="metrics-list">
                         <div class="metrics-item">
-                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">What we knew</span></p>
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Key considerations</span></p>
                             <ul>
                                 <li class="text-body-base">On-platform = safer than off-platform.</li>
                                 <li class="text-body-base">Users wanted quick, simple tools and were eager to engage.</li>
+                                <li class="text-body-base">Educating users on engagement and performance would be important for adoption.</li>
+                                <li class="text-body-base">Make it easy for users to handle guest requests so they continuously use the tool.</li>
                             </ul>
                         </div>
                         <div class="metrics-item">
-                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Risks</span></p>
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Key risks</span></p>
                             <ul>
                                 <li class="text-body-base">Owners saw extra workload.</li>
-                                <li class="text-body-base">Only Airbnb messaging supported → potential confusion.</li>
-                                <li class="text-body-base">Timing and peak usage created adoption risks.</li>
-                            </ul>
-                        </div>
-                        <div class="metrics-item">
-                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Rollout plan</span></p>
-                            <ul>
-                                <li class="text-body-base">Airbnb focus.</li>
-                                <li class="text-body-base">2 months to Beta.</li>
-                                <li class="text-body-base">330 owners in pilot.</li>
-                                <li class="text-body-base">180+ Airbnb check-ins first week → 400+ by month’s end.</li>
+                                <li class="text-body-base">Peak periods like seasons and special events introduced timing and usage risks. </li>
                             </ul>
                         </div>
                     </div>
@@ -446,16 +438,26 @@
             </div>
         </section>
 
-        <!-- Two full-width images with captions -->
+        <!-- One full-width image with caption -->
+        <section id="mockups" class="solution-images">
+            <div class="container">
+                <div class="solution-image">
+                    <p class="text-body-base-bold solution-caption">I starting by mocking up the beta flow and screens</p>
+                    <div class="solution-placeholder">
+                        <img src="assets/evolve_inbox_mockups.svg" alt="Mockups" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- One full-width image with caption -->
         <section class="solution-images">
             <div class="container">
                 <div class="solution-image">
-                    <p class="text-body-base-bold solution-caption">Ideal communication journey flow map</p>
-                    <div class="solution-placeholder"></div>
-                </div>
-                <div class="solution-image">
-                    <p class="text-body-base-bold solution-caption">User journey map (ideal state)</p>
-                    <div class="solution-placeholder"></div>
+                    <p class="text-body-base-bold solution-caption">Created a user journey map to bulid empathy for the user</p>
+                    <div class="solution-placeholder">
+                        <img src="assets/evolve_inbox_journey_map.svg" alt="User journey" />
+                    </div>
                 </div>
             </div>
         </section>
