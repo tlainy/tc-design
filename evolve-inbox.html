@@ -69,10 +69,17 @@
         /* Discovery media: collage + full-width images */
         .discovery-media { padding: var(--space-64) 0; background: var(--color-white); }
         .discovery-media .container { max-width: 1920px; margin: 0 80px; }
-        .collage-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-20); }
-        .collage-item { height: 420px; background: var(--color-grey); border-radius: 16px; }
-        @media (max-width: 1024px) { .collage-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 640px) { .collage-grid { grid-template-columns: 1fr; } }
+        /* Carousel */
+        .carousel { position: relative; overflow: hidden; }
+        .carousel-track { display: flex; gap: var(--space-20); scroll-snap-type: x mandatory; overflow-x: auto; padding-bottom: var(--space-12); }
+        .carousel-slide { min-width: 100%; scroll-snap-align: start; }
+        .carousel-caption { text-align: center; color: var(--color-grey); margin: 0 0 var(--space-12); }
+        .carousel-media { width: 100%; background: var(--color-grey); border-radius: 16px; }
+        .carousel-media img { width: 100%; height: auto; display: block; border-radius: 16px; }
+        .carousel-nav { position: absolute; inset: 0; display: flex; justify-content: space-between; align-items: center; pointer-events: none; }
+        .carousel-btn { pointer-events: all; background: rgba(0,0,0,0.4); color: #fff; border: 0; width: 40px; height: 40px; border-radius: 999px; display: grid; place-items: center; cursor: pointer; }
+        @media (max-width: 1024px) { .discovery-media .container { margin: 0; } }
+        @media (max-width: 640px) { .discovery-media .container { margin: 0; } }
 
         .metrics-images,.discovery-images, .solution-images{ padding: var(--space-48) 0 var(--space-64); background: var(--color-white); }
         /* Ensure image sections span the same full width as other content */
@@ -337,9 +344,31 @@
         <!-- Discovery collage media -->
         <section class="discovery-media">
             <div class="container">
-                <div class="collage-grid">
-                    <div class="collage-item"></div>
-                    <div class="collage-item"></div>
+                <div class="carousel" id="discovery-carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <p class="text-body-base-bold carousel-caption">Competitive audit and analysis for communication tools</p>
+                            <div class="carousel-media">
+                                <img src="assets/evolve_inbox_competitive_research.svg" alt="Competitive research" />
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <p class="text-body-base-bold carousel-caption">Owner survey results overview</p>
+                            <div class="carousel-media">
+                                <img src="assets/evolve_inbox_survey.svg" alt="Owner survey results" />
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <p class="text-body-base-bold carousel-caption">Inbound message timing by booking phase</p>
+                            <div class="carousel-media">
+                                <img src="assets/evolve_inbox_bookingphase.svg" alt="Booking phase timing" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="carousel-btn" data-dir="prev" aria-label="Previous">‹</button>
+                        <button class="carousel-btn" data-dir="next" aria-label="Next">›</button>
+                    </div>
                 </div>
             </div>
         </section>

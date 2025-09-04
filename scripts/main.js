@@ -101,4 +101,47 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', handleResize);
     // Run once on load in case page loads with menu open and wide viewport
     handleResize();
+
+    // Simple horizontal carousel with buttons and equalized height to tallest image
+    const carousel = document.getElementById('discovery-carousel');
+    if (carousel) {
+        const track = carousel.querySelector('.carousel-track');
+        const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+        const prevBtn = carousel.querySelector('[data-dir="prev"]');
+        const nextBtn = carousel.querySelector('[data-dir="next"]');
+
+        function equalizeHeights() {
+            let maxMediaHeight = 0;
+            slides.forEach(slide => {
+                const img = slide.querySelector('img');
+                if (img && img.complete) {
+                    maxMediaHeight = Math.max(maxMediaHeight, img.getBoundingClientRect().height);
+                }
+            });
+            slides.forEach(slide => {
+                const media = slide.querySelector('.carousel-media');
+                if (media) media.style.minHeight = maxMediaHeight ? maxMediaHeight + 'px' : '';
+            });
+        }
+
+        function scrollBySlide(dir) {
+            const width = carousel.getBoundingClientRect().width;
+            track.scrollBy({ left: dir * width, behavior: 'smooth' });
+        }
+
+        if (prevBtn) prevBtn.addEventListener('click', () => scrollBySlide(-1));
+        if (nextBtn) nextBtn.addEventListener('click', () => scrollBySlide(1));
+
+        // Equalize on load and whenever images load/resize
+        slides.forEach(slide => {
+            const img = slide.querySelector('img');
+            if (img) {
+                if (!img.complete) {
+                    img.addEventListener('load', equalizeHeights);
+                }
+            }
+        });
+        window.addEventListener('resize', equalizeHeights);
+        equalizeHeights();
+    }
 });
