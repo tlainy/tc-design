@@ -120,11 +120,17 @@
         .design-section h3 { margin: 0 0 var(--space-32); }
         .design-placeholder { width: 100%; height: 520px; background: var(--color-fire-50); border-radius: 16px; }
         .design-stack { display: grid; gap: var(--space-24); }
-        .design-cta { display: flex; justify-content: center; margin-top: var(--space-24); }
+        .design-cta { display: flex; justify-content: center; margin-top: var(--space-24); gap: var(--space-24); }
         .design-cta .cta-button { background: var(--color-fire-500); color: var(--color-white); border: none; padding: var(--space-12) var(--space-20); border-radius: var(--radius-sm); text-decoration: none; box-shadow: var(--shadow-sm); display: inline-block; }
         .design-cta .cta-button:hover { background: var(--text-accent); text-decoration: none; }
         .design-cta .cta-button:active { background: var(--text-accent); }
-        @media (max-width: 640px) { .design-cta .cta-button { display: block; width: 100%; text-align: center; } }
+        /* Secondary button (outlined) */
+        .design-cta .btn-secondary { background: var(--color-white); color: var(--text-accent); border: 2px solid var(--text-accent); padding: var(--space-12) var(--space-20); border-radius: var(--radius-sm); text-decoration: none; display: inline-block; box-shadow: var(--shadow-sm); }
+        .design-cta .btn-secondary:hover { background: var(--color-fire-50); text-decoration: none; }
+        .design-cta .btn-secondary:active { background: var(--color-fire-50); }
+        /* Stack on tablet/mobile */
+        @media (max-width: 1024px) { .design-cta { flex-direction: column; align-items: center; } }
+        @media (max-width: 640px) { .design-cta .cta-button, .design-cta .btn-secondary { display: block; width: 100%; text-align: center; } }
         @media (max-width: 1024px) { .design-section .container { margin: 0 var(--space-40); } }
 
         /* Impact stats row */
@@ -415,7 +421,7 @@
                         <li class="text-body-base"><span class="text-body-base-bold">Frontline teams:</span> Lower service costs, fewer escalations, greater transparency.</li>
                         <li class="text-body-base"><span class="text-body-base-bold">Business:</span> Higher NPS, improved response time, stronger review trends.</li>
                     </ul>
-                    <p class="text-body-base">We tracked adoption, friction, and sentiment using Sprig and Alchemer dashboards.</p>
+                    <p class="text-body-base">I started with mockups and an initial beta flow. I then created a user journey map to build empathy for the user. Once I presented the general design direction to the team, I worked with the Researcher to test the initial designs with users. We found in testing that our users thought the design was user-friendly, easy to understand, and matched their expectations.</p>
                 </div>
                 <div class="metrics-right">
                     <div class="metrics-list">
@@ -462,18 +468,16 @@
                     </div>
                 </div>
                 <div class="design-cta">
-                    <a class="cta-button text-button" href="https://www.figma.com/design/1IAFFuWuWRupowgyrUU2Wq/Evolve--Inbox?node-id=154-37698&t=QMRPdkKFBSMVQDnE-11" target="_blank" rel="noopener noreferrer">View the journey map in Figma</a>
+                    <a class="btn-secondary text-button" href="https://www.figma.com/design/1IAFFuWuWRupowgyrUU2Wq/Evolve--Inbox?node-id=154-37698&t=QMRPdkKFBSMVQDnE-11" target="_blank" rel="noopener noreferrer">View the journey map in Figma</a>
+                    <a class="btn-secondary text-button" href="https://www.figma.com/design/1IAFFuWuWRupowgyrUU2Wq/Evolve--Inbox?node-id=1-4&p=f&t=QMRPdkKFBSMVQDnE-11" target="_blank" rel="noopener noreferrer">View the full project in Figma</a>
                 </div>
             </div>
         </section>
 
-        
-
-
         <!-- Design section -->
         <section class="design-section">
             <div class="container">
-                <h3 class="text-heading-3">Design</h3>
+                <h3 class="text-heading-3">Designs</h3>
                 <div class="design-stack">
                     <div class="design-placeholder"></div>
                     <div class="design-placeholder"></div>
@@ -490,6 +494,7 @@
                 <div class="metrics-left">
                     <h3 class="text-heading-3">What impact did we have?</h3>
                     <p class="text-body-base">The beta rollout of Inbox demonstrated significant improvements for owners and guests alike.</p>
+                    <p class="text-body-base">We tracked adoption, friction, and sentiment using Sprig and Alchemer dashboards.</p>
                 </div>
             </div>
         </section>
