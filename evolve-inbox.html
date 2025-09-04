@@ -74,11 +74,15 @@
         @media (max-width: 1024px) { .collage-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 640px) { .collage-grid { grid-template-columns: 1fr; } }
 
-        .discovery-images, .solution-images{ padding: var(--space-48) 0 var(--space-64); background: var(--color-white); }
-        .discovery-images, .solution-image .container { max-width: 1920px; margin: 0 80px; }
-        .discovery-image, .solution-image{ margin: 0 0 var(--space-48); }
-        .discovery-caption, .solution-caption{ text-align: center; color: var(--color-grey); margin: 0 0 4px; }
-        .discovery-placeholder, .solution-placeholder{ width: 100%; height: 420px; background: var(--color-grey); border-radius: 16px; }
+        .metrics-images,.discovery-images, .solution-images{ padding: var(--space-48) 0 var(--space-64); background: var(--color-white); }
+        /* Ensure image sections span the same full width as other content */
+        .metrics-images .container, .discovery-images .container, .solution-images .container { max-width: 1920px; margin: 0 80px; }
+        .metrics-image, .discovery-image, .solution-image{ margin: 0 0 var(--space-48); }
+        .metrics-caption, .discovery-caption, .solution-caption{ text-align: center; color: var(--color-grey); margin: 0; }
+        .metrics-placeholder, .discovery-placeholder, .solution-placeholder{ width: 100%; background: var(--color-grey); border-radius: 16px; }
+        /* Let images define height based on width for all image sections */
+        .metrics-placeholder, .discovery-placeholder, .solution-placeholder { height: auto; background: transparent; }
+        .metrics-placeholder img, .discovery-placeholder img, .solution-placeholder img { width: 100%; height: auto; object-fit: contain; border-radius: 16px; display: block; }
 
         /* Full-height quote section (matches hero height) */
         .case-quote { min-height: 100vh; background: var(--color-white); display: grid; place-items: center; padding: var(--space-64) 0; }
@@ -280,6 +284,17 @@
             </div>
         </section>
 
+        <section class="metrics-images">
+            <div class="container">
+                <div class="metrics-image">
+                    <p class="text-body-base-bold metrics-caption">Current communication flow chart</p>
+                    <div class="metrics-placeholder">
+                        <img src="assets/evolve_inbox_current_flow.svg" alt="Current communication flow chart" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Discovery-->
         <section class="case-metrics impact-next">
             <div class="container">
@@ -289,9 +304,9 @@
                     <p class="text-body-base">I led a research-first approach combining:</p>
                     <ul>
                         <li class="text-body-base"><span class="text-body-base-bold">Owner feedback:</span> Mined NPS feedback and in-app feedback to surface recurring pain points, looking specifically at feedback mentioning “communication”.</li>
-                        <li class="text-body-base"><span class="text-body-base-bold">Launched user surveys:</span> I developed an initial set of questions and goals and reviewed with my PM and Researcher. I wanted to better understand their current behaviors by booking phase.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Launched user surveys:</span> I developed an initial set of questions and goals and reviewed with my PM and Researcher. I wanted to better understand their current behaviors in the entire booking journey.</li>
                         <li class="text-body-base"><span class="text-body-base-bold">AI + Design:</span> Used ChatGPT to analyze thousands of lines of owner feedback, cluster themes, and identify root causes behind service breakdowns, user dissatisfaction, and pain points.</li>
-                        <li class="text-body-base"><span class="text-body-base-bold">Current flow analysis:</span> Mapped out current flow and process, and interviewed internal stakeholders to understand frontline team pain points.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Current flow analysis:</span> Mapped out current flow and process, and interviewed internal stakeholders to understand frontline team issues, needs, and process gaps.</li>
                         <li class="text-body-base"><span class="text-body-base-bold">Data insights:</span> Identified >20K off-platform emails exchanged across 23K reservations, showing the scale of fragmented communication. We also analyzed the timing of the inbound messages in each booking phase to inform changes in the product strategy.</li>
                         <li class="text-body-base"><span class="text-body-base-bold">Competitive audit:</span> Studied Airbnb, Guesty, and other property management tools to understand industry standards.</li>
                     </ul>
@@ -344,7 +359,7 @@
             <div class="container">
                 <div class="quote-inner">
                     <p class="text-body-base-bold quote-kicker">key finding that drove our direction for mvp</p>
-                    <p class="text-heading-3 quote-text">The biggest concern was efficiency—owners wanted to ensure that the right person handled guest inquiries. They worried guests would feel unsure whether to contact them or Evolve when issues arose. Regardless of communication tool, owners wanted to establish a personal connection with guests, as that may have resuled in a positive guest review post stay.</p>
+                    <p class="text-heading-3 quote-text">The biggest concern was efficiency—owners wanted to ensure that the right person handled guest inquiries. They worried guests would feel unsure whether to contact them or Evolve when issues arose. Regardless of communication tool, owners wanted to establish a personal connection with guests, as that may have resulted in a positive guest review after their stay.</p>
                 </div>
             </div>
         </section>
