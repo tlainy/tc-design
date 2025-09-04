@@ -79,6 +79,10 @@
         .metrics-images .container, .discovery-images .container, .solution-images .container { max-width: 1920px; margin: 0 80px; }
         @media (max-width: 1024px) { .metrics-images .container, .discovery-images .container, .solution-images .container { margin: 0; } }
         @media (max-width: 640px) { .metrics-images .container, .discovery-images .container, .solution-images .container { margin: 0; } }
+        /* Narrow layout for the specific empathy storming section */
+        #empathy-storming .container { max-width: 1000px; margin: 0 auto; }
+        @media (max-width: 1024px) { #empathy-storming .container { margin: 0 var(--space-40); } }
+        @media (max-width: 640px) { #empathy-storming .container { margin: 0 var(--space-40); } }
         .metrics-image, .discovery-image, .solution-image{ margin: 0 0 var(--space-48); }
         .metrics-caption, .discovery-caption, .solution-caption{ text-align: center; color: var(--color-grey); margin: 0; }
         .metrics-placeholder, .discovery-placeholder, .solution-placeholder{ width: 100%; background: var(--color-grey); border-radius: 16px; }
@@ -250,14 +254,13 @@
                 <div class="metrics-left">
                     <h3 class="text-heading-3">The problem, in detail</h3>
                     <p class="text-body-base"><span style="font-weight: 700;">Problem 1:</span> Communication for a property booking between guests, owners, and frontline teams happened in silos, leaving each party without visibility into the others’ interactions. Nearly half of bookings required manual intervention, with many guest requests still needing owner approval. This created gaps that prevented Evolve from delivering a seamless experience.  <span style="color: var(--color-fire-500);">How could we give guests direct access to owners when needed and allow owners to address booking requests on their own—without delays or bottlenecks?</span></p>
-                    <p class="text-body-base"><span style="font-weight: 700;">Problem 2:</span> Owners had varying expectations of how hands-on Evolve would be in managing guests and bookings. In reality, owners could never be fully removed—certain requests and issues always required their approval, and their engagement was critical to rental success.<span style="color: var(--color-fire-500);">How could we reframe success so that owners see engagement as essential, not optional, to their rental’s performance?</span></p>
+                    <p class="text-body-base"><span style="font-weight: 700;">Problem 2:</span> Owners had varying expectations of how hands-on Evolve would be in managing guests and bookings. In reality, owners could never be fully removed—certain requests and issues always required their approval, and their engagement was critical to rental success. <span style="color: var(--color-fire-500);">How could we reframe success so that owners see engagement as essential, not optional, to their rental’s performance?</span></p>
                     <p class="text-body-base">I needed to solve for three distinct users—Owners, Guests, and frontline teams—each with unique needs:</p>
                     <ul>
                         <li class="text-body-base" style="margin-bottom: var(--space-8);"><span class="text-body-base-bold">Owners:</span> Needed visibility into all guest interactions, without relying on off-platform tools</li>
                         <li class="text-body-base" style="margin-bottom: var(--space-8);"><span class="text-body-base-bold">Guests:</span> Expected quick, familiar, friction-free communication, like what they’re used to with messaging apps and other vacation rental platforms</li>
                         <li class="text-body-base"><span class="text-body-base-bold">Frontline teams:</span> Needed transparency into owner–guest communication to reduce duplicate work and service costs</li>
                     </ul>
-                    <p class="text-body-base">I knew I couldn’t just build a communication tool without educating the user how to engage with guests and manage booking requests on their own, which would ultimately lead to higher rental performance.</p>
                 </div>
                 <div class="metrics-right">
                     <div class="metrics-list">
@@ -265,10 +268,10 @@
                             <h2 class="text-heading-2">48%</h2>
                             <p class="text-body-base">bookings requiring manual intervention</p>
                         </div>
-                        <div class="metrics-item">
+                        <!--<div class="metrics-item">
                             <h2 class="text-heading-2">20k+</h2>
                             <p class="text-body-base">emails exchanged across 23k+ bookings – a large amount of off-platform communication</p>
-                        </div>
+                        </div>-->
                         <div class="metrics-item">
                             <h2 class="text-heading-2">30%</h2>
                             <p class="text-body-base">outbound messages for Airbnb bookings instructed the guest to reach out to the owner, forcing guests to do the resolution work</p>
@@ -289,7 +292,7 @@
         <section class="metrics-images">
             <div class="container">
                 <div class="metrics-image">
-                    <p class="text-body-base-bold metrics-caption">Current communication flow chart</p>
+                    <p class="text-body-base-bold metrics-caption">Current communication flow chart, noting which mode of communication was used and by which user</p>
                     <div class="metrics-placeholder">
                         <img src="assets/evolve_inbox_current_flow.svg" alt="Current communication flow chart" />
                     </div>
@@ -308,7 +311,7 @@
                         <li class="text-body-base"><span class="text-body-base-bold">Launched user surveys:</span> I developed an initial set of questions and goals and reviewed with my PM and Researcher. I wanted to better understand their current behaviors in the entire booking journey.</li>
                         <li class="text-body-base"><span class="text-body-base-bold">AI + Design:</span> Used ChatGPT to analyze thousands of lines of owner feedback, cluster themes, and identify root causes behind service breakdowns, user dissatisfaction, and pain points.</li>
                         <li class="text-body-base"><span class="text-body-base-bold">Current state analysis:</span> Mapped out current flow and process, and interviewed internal stakeholders to understand frontline team issues, needs, and process gaps. Created a user journey map with insights pulled from our survey, NPS feedback, and any frontline team feedback.</li>
-                        <li class="text-body-base"><span class="text-body-base-bold">Data insights:</span> Identified >20K off-platform emails exchanged across 23K reservations, showing the scale of fragmented communication. We also analyzed the timing of the inbound messages in each booking phase to inform changes in the product strategy.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Data insights:</span> Identified >20K off-platform messages exchanged across 23K reservations, showing the scale of fragmented communication. We also analyzed the timing of the inbound messages in each booking phase to inform changes in the product strategy.</li>
                         <li class="text-body-base"><span class="text-body-base-bold">Competitive audit:</span> Studied Airbnb, Guesty, and other property management tools to understand industry standards.</li>
                     </ul>
                 </div>
@@ -342,15 +345,13 @@
         </section>
 
         <!-- Two full-width images with captions -->
-        <section class="discovery-images">
+        <section id="empathy-storming" class="discovery-images">
             <div class="container">
                 <div class="discovery-image">
-                    <p class="text-body-base-bold discovery-caption">Current communication journey flow map</p>
-                    <div class="discovery-placeholder"></div>
-                </div>
-                <div class="discovery-image">
                     <p class="text-body-base-bold discovery-caption">Empathy storming to create a tool the user would want to use, based on concerns uncovered in research</p>
-                    <div class="discovery-placeholder"></div>
+                    <div class="discovery-placeholder">
+                        <img src="assets/evolve_inbox_empathy_storming.svg" alt="Empathy storming" />
+                    </div>
                 </div>
             </div>
         </section>
