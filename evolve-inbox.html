@@ -77,6 +77,8 @@
         .metrics-images,.discovery-images, .solution-images{ padding: var(--space-48) 0 var(--space-64); background: var(--color-white); }
         /* Ensure image sections span the same full width as other content */
         .metrics-images .container, .discovery-images .container, .solution-images .container { max-width: 1920px; margin: 0 80px; }
+        @media (max-width: 1024px) { .metrics-images .container, .discovery-images .container, .solution-images .container { margin: 0; } }
+        @media (max-width: 640px) { .metrics-images .container, .discovery-images .container, .solution-images .container { margin: 0; } }
         .metrics-image, .discovery-image, .solution-image{ margin: 0 0 var(--space-48); }
         .metrics-caption, .discovery-caption, .solution-caption{ text-align: center; color: var(--color-grey); margin: 0; }
         .metrics-placeholder, .discovery-placeholder, .solution-placeholder{ width: 100%; background: var(--color-grey); border-radius: 16px; }
@@ -300,13 +302,12 @@
             <div class="container">
                 <div class="metrics-left">
                     <h3 class="text-heading-3">Discovery</h3>
-                    <p class="text-body-base">We set out to understand owners’ current behaviors and expectations for engagement, and to identify the most critical needs we could address to drive adoption.</p>
                     <p class="text-body-base">I led a research-first approach combining:</p>
                     <ul>
                         <li class="text-body-base"><span class="text-body-base-bold">Owner feedback:</span> Mined NPS feedback and in-app feedback to surface recurring pain points, looking specifically at feedback mentioning “communication”.</li>
                         <li class="text-body-base"><span class="text-body-base-bold">Launched user surveys:</span> I developed an initial set of questions and goals and reviewed with my PM and Researcher. I wanted to better understand their current behaviors in the entire booking journey.</li>
                         <li class="text-body-base"><span class="text-body-base-bold">AI + Design:</span> Used ChatGPT to analyze thousands of lines of owner feedback, cluster themes, and identify root causes behind service breakdowns, user dissatisfaction, and pain points.</li>
-                        <li class="text-body-base"><span class="text-body-base-bold">Current flow analysis:</span> Mapped out current flow and process, and interviewed internal stakeholders to understand frontline team issues, needs, and process gaps.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Current state analysis:</span> Mapped out current flow and process, and interviewed internal stakeholders to understand frontline team issues, needs, and process gaps. Created a user journey map with insights pulled from our survey, NPS feedback, and any frontline team feedback.</li>
                         <li class="text-body-base"><span class="text-body-base-bold">Data insights:</span> Identified >20K off-platform emails exchanged across 23K reservations, showing the scale of fragmented communication. We also analyzed the timing of the inbound messages in each booking phase to inform changes in the product strategy.</li>
                         <li class="text-body-base"><span class="text-body-base-bold">Competitive audit:</span> Studied Airbnb, Guesty, and other property management tools to understand industry standards.</li>
                     </ul>
