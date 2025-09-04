@@ -98,6 +98,8 @@
         /* Let images define height based on width for all image sections */
         .metrics-placeholder, .discovery-placeholder, .solution-placeholder { height: auto; background: transparent; }
         .metrics-placeholder img, .discovery-placeholder img, .solution-placeholder img { width: 100%; height: auto; object-fit: contain; border-radius: 16px; display: block; }
+        /* Narrow only the journey map image to 50% width */
+        #journey-map .solution-placeholder img { width: 50% !important; margin-left: auto; margin-right: auto; }
 
         /* Full-height quote section (matches hero height) */
         .case-quote { min-height: 100vh; background: var(--color-white); display: grid; place-items: center; padding: var(--space-64) 0; }
@@ -451,7 +453,7 @@
         </section>
 
         <!-- One full-width image with caption -->
-        <section class="solution-images">
+        <section id="journey-map" class="solution-images">
             <div class="container">
                 <div class="solution-image">
                     <p class="text-body-base-bold solution-caption">Created a user journey map to bulid empathy for the user</p>
