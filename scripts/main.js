@@ -34,14 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // CTA button interaction
-    const ctaButton = document.querySelector('.cta-button');
-    
-    if (ctaButton) {
-        ctaButton.addEventListener('click', function() {
-            alert('Thank you for your interest! This is a placeholder - contact functionality would go here.');
-        });
-    }
+    // Removed legacy CTA alert placeholder
     
     // Project card hover effects
     const projectCards = document.querySelectorAll('.project-card');
