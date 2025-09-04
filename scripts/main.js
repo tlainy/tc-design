@@ -110,23 +110,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const prevBtn = carousel.querySelector('[data-dir="prev"]');
         const nextBtn = carousel.querySelector('[data-dir="next"]');
 
-        function equalizeHeights() {
-            let maxMediaHeight = 0;
-            slides.forEach(slide => {
-                const img = slide.querySelector('img');
-                if (img && img.complete) {
-                    maxMediaHeight = Math.max(maxMediaHeight, img.getBoundingClientRect().height);
-                }
-            });
-            slides.forEach(slide => {
-                const media = slide.querySelector('.carousel-media');
-                if (media) media.style.minHeight = maxMediaHeight ? maxMediaHeight + 'px' : '';
-            });
-        }
+        function equalizeHeights() { /* fixed to 680px in CSS, no-op kept for safety */ }
 
         function scrollBySlide(dir) {
-            const width = carousel.getBoundingClientRect().width;
-            track.scrollBy({ left: dir * width, behavior: 'smooth' });
+            const slideWidth = carousel.getBoundingClientRect().width; // snap by viewport width
+            track.scrollBy({ left: dir * slideWidth, behavior: 'smooth' });
         }
 
         if (prevBtn) prevBtn.addEventListener('click', () => scrollBySlide(-1));
