@@ -862,3 +862,22 @@ body {
     .case-metrics .metrics-left,
     .case-metrics .metrics-right { grid-column: 1 / -1; }
 }
+
+/* Responsive section spacing: halve vertical padding on tablet/mobile */
+@media (max-width: 1024px) {
+    /* Generic hero spacing */
+    .hero { padding: calc(var(--space-64) / 2) 0 calc(var(--space-48) / 2) !important; }
+    /* Site sections */
+    .projects, .work, .about { padding-top: calc(var(--space-48) / 2) !important; padding-bottom: calc(var(--space-48) / 2) !important; }
+    /* Case study sections (inline styles exist; force override) */
+    .case-overview, .case-metrics, .case-quote, .design-section, .impact-stats, .project-nav,
+    .discovery-media { padding-top: calc(var(--space-64) / 2) !important; padding-bottom: calc(var(--space-64) / 2) !important; }
+    .discovery-images, .solution-images { padding-top: calc(var(--space-48) / 2) !important; padding-bottom: calc(var(--space-64) / 2) !important; }
+}
+@media (max-width: 640px) {
+    .hero { padding: calc(var(--space-64) / 2) 0 calc(var(--space-48) / 2) !important; }
+    .projects, .work, .about { padding-top: calc(var(--space-48) / 2) !important; padding-bottom: calc(var(--space-48) / 2) !important; }
+    .case-overview, .case-metrics, .case-quote, .design-section, .impact-stats, .project-nav,
+    .discovery-media { padding-top: calc(var(--space-64) / 2) !important; padding-bottom: calc(var(--space-64) / 2) !important; }
+    .discovery-images, .solution-images { padding-top: calc(var(--space-48) / 2) !important; padding-bottom: calc(var(--space-64) / 2) !important; }
+}
