@@ -100,6 +100,16 @@
         .metrics-placeholder img, .discovery-placeholder img, .solution-placeholder img { width: 100%; height: auto; object-fit: contain; border-radius: 16px; display: block; }
         /* Narrow only the journey map image to 50% width */
         #journey-map .solution-placeholder img { width: 50% !important; margin-left: auto; margin-right: auto; }
+        /* Designs section: emulate metrics layout */
+        #designs .container { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-64); align-items: start; max-width: 1920px; }
+        #designs h3 { grid-column: 1 / -1; margin: 0 0 var(--space-20); }
+        #designs .metrics-left { grid-column: span 6; }
+        #designs .metrics-left p { margin: 0 0 var(--space-12); }
+        #designs .solution-image, #designs .design-cta { grid-column: 1 / -1; }
+        @media (max-width: 1024px) {
+            #designs .container { grid-template-columns: 1fr; gap: var(--space-48); }
+            #designs .metrics-left, #designs .solution-image, #designs .design-cta { grid-column: 1 / -1; }
+        }
         /* Zoom overlay (viewframe) */
         /* Inline zoom wrapper (scrollable) */
         .zoom-inline { position: relative; overflow: auto; border-radius: 16px; background: var(--color-white); }
@@ -484,6 +494,10 @@
         <!-- Designs image section (matches other image sections) -->
         <section id="designs" class="solution-images">
             <div class="container">
+                <h3 class="text-heading-3">Designs</h3>
+                <div class="metrics-left">
+                    <p class="text-body-base">Due to the timeline of beta and releasing sooner to gather learnings, the beta was lean. I designed a minimal Inbox feature with a few educational interactions to help solve the problem of engagement and adoption. To make it easier for users to handle booking requests from Inbox, I created a pathway to the existing booking view.</p>
+                </div>
                 <div class="solution-image">
                     <p class="text-body-base-bold solution-caption">Final designs for the beta release</p>
                     <div class="solution-placeholder">
@@ -491,7 +505,7 @@
                     </div>
                 </div>
                 <div class="design-cta">
-                    <a class="cta-button text-button" href="#" target="_blank" rel="noopener noreferrer">View my designs in Figma</a>
+                    <a class="cta-button text-button" href="https://www.figma.com/design/1IAFFuWuWRupowgyrUU2Wq/Evolve--Inbox?node-id=1-7&p=f&t=QMRPdkKFBSMVQDnE-11" target="_blank" rel="noopener noreferrer">View finals designs in Figma</a>
                 </div>
             </div>
         </section>
