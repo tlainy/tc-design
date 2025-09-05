@@ -100,21 +100,21 @@
         .metrics-placeholder img, .discovery-placeholder img, .solution-placeholder img { width: 100%; height: auto; object-fit: contain; border-radius: 16px; display: block; }
         /* Narrow only the journey map image to 50% width */
         #journey-map .solution-placeholder img { width: 50% !important; margin-left: auto; margin-right: auto; }
-        /* Designs section: emulate metrics layout */
-        #designs .container { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-64); align-items: start; max-width: 1920px; }
-        #designs .metrics-left h3 { margin: 0 0 var(--space-20); }
-        #designs .metrics-left { grid-column: span 6; }
-        #designs .metrics-left p { margin: 0 0 var(--space-12); }
-        #designs .solution-image, #designs .design-cta { grid-column: 1 / -1; }
-        @media (max-width: 1024px) {
-            #designs .container { grid-template-columns: 1fr; gap: var(--space-48); }
-            #designs .metrics-left, #designs .solution-image, #designs .design-cta { grid-column: 1 / -1; }
-        }
         /* Zoom overlay (viewframe) */
         /* Inline zoom wrapper (scrollable) */
         .zoom-inline { position: relative; overflow: auto; border-radius: 16px; background: var(--color-white); }
         .zoom-controls-inline { position: absolute; left: 12px; top: 12px; display: flex; flex-direction: column; gap: 8px; z-index: 1; }
         .zoom-btn { background: rgba(255,255,255,0.95); color: var(--text-accent); border: 1px solid var(--text-accent); border-radius: 6px; padding: 6px 10px; cursor: pointer; box-shadow: var(--shadow-sm); }
+        /* Case designs section – mimic metrics layout */
+        .case-designs { padding: var(--space-64) 0; background: var(--color-white); }
+        .case-designs .container { max-width: 1920px; margin: 0 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-64); align-items: start; }
+        .case-designs h3 { grid-column: 1 / -1; margin: 0 0 var(--space-20); }
+        .case-designs .metrics-left { grid-column: span 6; }
+        .case-designs .metrics-left p { margin: 0 0 var(--space-12); }
+        @media (max-width: 1024px) {
+            .case-designs .container { grid-template-columns: 1fr; gap: var(--space-48); margin: 0 var(--space-40); }
+            .case-designs .metrics-left { grid-column: 1 / -1; }
+        }
 
         /* Full-height quote section (matches hero height) */
         .case-quote { min-height: 100vh; background: var(--color-white); display: grid; place-items: center; padding: var(--space-64) 0; }
@@ -491,13 +491,19 @@
         </section>
 
         <!-- Design section -->
-        <!-- Designs image section (matches other image sections) -->
-        <section id="designs" class="solution-images">
+         <section class="case-designs">
             <div class="container">
                 <h3 class="text-heading-3">Designs</h3>
                 <div class="metrics-left">
                     <p class="text-body-base">Due to the timeline of beta and releasing sooner to gather learnings, the beta was lean. I designed a minimal Inbox feature with a few educational interactions to help solve the problem of engagement and adoption. To make it easier for users to handle booking requests from Inbox, I created a pathway to the existing booking view.</p>
                 </div>
+            </div>
+
+
+         </section>
+        <!-- Designs image section (matches other image sections) -->
+        <section id="designs" class="solution-images">
+            <div class="container">
                 <div class="solution-image">
                     <p class="text-body-base-bold solution-caption">Final designs for the beta release</p>
                     <div class="solution-placeholder">
@@ -506,6 +512,20 @@
                 </div>
                 <div class="design-cta">
                     <a class="cta-button text-button" href="https://www.figma.com/design/1IAFFuWuWRupowgyrUU2Wq/Evolve--Inbox?node-id=1-7&p=f&t=QMRPdkKFBSMVQDnE-11" target="_blank" rel="noopener noreferrer">View finals designs in Figma</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="designs" class="solution-images">
+            <div class="container">
+                <div class="solution-image">
+                    <p class="text-body-base-bold solution-caption">Concepts for Inbox</p>
+                    <div class="solution-placeholder">
+                        <img src="assets/evolve_inbox_beta_designs.svg" alt="Concepts for Inbox" data-zoomable />
+                    </div>
+                </div>
+                <div class="design-cta">
+                    <a class="cta-button text-button" href="https://www.figma.com/design/1IAFFuWuWRupowgyrUU2Wq/Evolve--Inbox?node-id=49-68713&p=f&t=QMRPdkKFBSMVQDnE-11" target="_blank" rel="noopener noreferrer">View concepts in Figma</a>
                 </div>
             </div>
         </section>
