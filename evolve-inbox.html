@@ -105,16 +105,6 @@
         .zoom-inline { position: relative; overflow: auto; border-radius: 16px; background: var(--color-white); }
         .zoom-controls-inline { position: absolute; left: 12px; top: 12px; display: flex; flex-direction: column; gap: 8px; z-index: 1; }
         .zoom-btn { background: rgba(255,255,255,0.95); color: var(--text-accent); border: 1px solid var(--text-accent); border-radius: 6px; padding: 6px 10px; cursor: pointer; box-shadow: var(--shadow-sm); }
-        /* Case designs section – mimic metrics layout */
-        .case-designs { padding: var(--space-64) 0; background: var(--color-white); }
-        .case-designs .container { max-width: 1920px; margin: 0 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-64); align-items: start; }
-        .case-designs h3 { grid-column: 1 / -1; margin: 0 0 var(--space-20); }
-        .case-designs .metrics-left { grid-column: span 6; }
-        .case-designs .metrics-left p { margin: 0 0 var(--space-12); }
-        @media (max-width: 1024px) {
-            .case-designs .container { grid-template-columns: 1fr; gap: var(--space-48); margin: 0 var(--space-40); }
-            .case-designs .metrics-left { grid-column: 1 / -1; }
-        }
 
         /* Full-height quote section (matches hero height) */
         .case-quote { min-height: 100vh; background: var(--color-white); display: grid; place-items: center; padding: var(--space-64) 0; }
@@ -461,6 +451,47 @@
             </div>
         </section>
 
+        <!-- Designs (duplicate of Solution structure) -->
+        <section class="case-metrics solution-section">
+            <div class="container">
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">Designs</h3>
+                    <p class="text-body-base">We needed to release quickly and gather learnings right away. We decided on a beta release focusing on Inbox for partner Airbnb bookings only. My key design questions were:</p>
+                    <p class="text-body-base"><span style="color: var(--color-fire-500);">How could we give guests direct access to owners when needed and allow owners to address booking requests on their own—without delays or bottlenecks?</span> I needed to build a seamless, transparent communication platform that let owners manage interactions and give guests a smooth experience, while making it clear which user was handling which request.</p>
+                    <p class="text-body-base"><span style="color: var(--color-fire-500);">How might we reframe success so owners see messaging as essential to rental performance?</span> Integrated education into UI and marketing, positioning Inbox as a core management tool to boost efficiency and engagement.</p>
+                    <p class="text-body-base">In addition to that, discovery showed most guest requests came 4–7 days pre-check-in, a critical window for connection. Rather than granting access only after check-in, I proposed opening messaging earlier to drive adoption and reduce issues. The team was on board with this idea and we adjusted the roadmap.</p>
+                    <p class="text-body-base">I then defined our success metrics with my PM:</p>
+                    <ul>
+                        <li class="text-body-base"><span class="text-body-base-bold">Owners:</span> Less reliance on off-platform tools, streamlined workflows, personalized guest experiences.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Guests:</span> Faster responses, fewer repeated questions, consistent communication.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Frontline teams:</span> Lower service costs, fewer escalations, greater transparency.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Business:</span> Higher NPS, improved response time, stronger review trends.</li>
+                    </ul>
+                    <p class="text-body-base">I started with mockups and an initial beta flow. I then created a user journey map to build empathy for the user. Once I presented the general design direction to the team, I worked with the Researcher to test the initial designs with users. We found in testing that our users thought the design was user-friendly, easy to understand, and matched their expectations.</p>
+                </div>
+                <div class="metrics-right">
+                    <div class="metrics-list">
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Key considerations</span></p>
+                            <ul>
+                                <li class="text-body-base">On-platform = safer than off-platform.</li>
+                                <li class="text-body-base">Users wanted quick, simple tools and were eager to engage.</li>
+                                <li class="text-body-base">Educating users on engagement and performance would be important for adoption.</li>
+                                <li class="text-body-base">Make it easy for users to handle guest requests so they continuously use the tool.</li>
+                            </ul>
+                        </div>
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Key risks</span></p>
+                            <ul>
+                                <li class="text-body-base">Owners saw extra workload.</li>
+                                <li class="text-body-base">Peak periods like seasons and special events introduced timing and usage risks. </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- One full-width image with caption -->
         <section id="mockups" class="solution-images">
             <div class="container">
@@ -521,7 +552,7 @@
                 <div class="solution-image">
                     <p class="text-body-base-bold solution-caption">Concepts for Inbox</p>
                     <div class="solution-placeholder">
-                        <img src="assets/evolve_inbox_beta_designs.svg" alt="Concepts for Inbox" data-zoomable />
+                        <img src="assets/evolve_inbox_concepts.svg" alt="Concepts for Inbox" data-zoomable />
                     </div>
                 </div>
                 <div class="design-cta">
@@ -530,7 +561,7 @@
             </div>
         </section>
 
-        <!-- Inline zoom uses DOM created by JS; no modal markup needed -->
+        <!-- Inine zoom uses DOM created by JS; no modal markup needed -->
 
         <!-- Impact (left column width like other sections) -->
         <section class="case-metrics">
@@ -570,10 +601,7 @@
         <!-- Follow-up constrained to left column width -->
         <section class="case-metrics">
             <div class="container">
-                <div class="metrics-left">
-                    <p class="text-body-base-bold">What was next?</p>
-                    <p class="text-body-base">LAlalalalalal.</p>
-                </div>
+                <div class="metrics-left"> </div>
             </div>
         </section>
 
