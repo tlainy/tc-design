@@ -53,7 +53,7 @@
         .case-metrics h3 { margin: 0 0 var(--space-20); }
         .metrics-left { grid-column: span 6; }
         .metrics-right { grid-column: span 5 / -1; }
-        .metrics-left p { margin: 0 0 var(--space-0); }
+        .metrics-left p { margin: 0 0 var(--space-12); }
         .metrics-list { display: grid; gap: var(--space-24); }
         .metrics-item h2 { color: var(--text-accent); margin: 0 0 var(--space-0); }
         .metrics-item p { margin: 0; }
@@ -69,16 +69,33 @@
         /* Discovery media: collage + full-width images */
         .discovery-media { padding: var(--space-64) 0; background: var(--color-white); }
         .discovery-media .container { max-width: 1920px; margin: 0 80px; }
-        .collage-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-20); }
-        .collage-item { height: 420px; background: var(--color-grey); border-radius: 16px; }
-        @media (max-width: 1024px) { .collage-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 640px) { .collage-grid { grid-template-columns: 1fr; } }
+        /* Carousel (copied from evolve-inbox) */
+        .carousel { position: relative; overflow: hidden; }
+        .carousel-track { display: flex; gap: 0; scroll-snap-type: x mandatory; overflow-x: auto; padding-bottom: var(--space-12); scrollbar-width: none; -ms-overflow-style: none; overscroll-behavior-x: contain; }
+        .carousel-track::-webkit-scrollbar { display: none; }
+        .carousel-slide { min-width: 100%; scroll-snap-align: start; }
+        .carousel-caption { text-align: center; color: var(--color-grey); margin: 0 0 var(--space-12); }
+        .carousel-media { width: 100%; height: 680px; background: var(--color-white); border-radius: 16px; display: grid; place-items: center; overflow: hidden; position: relative; }
+        .carousel-media img { height: 680px; width: auto; max-width: 100%; display: block; border-radius: 16px; object-fit: contain; }
+        .carousel-nav { position: absolute; top: calc(50% + var(--space-12)); left: 0; right: 0; transform: translateY(-50%); display: flex; justify-content: space-between; align-items: center; pointer-events: none; padding: 0 var(--space-20); }
+        .carousel-btn { pointer-events: all; background: transparent; color: var(--color-fire-500); border: 0; width: 48px; height: 48px; display: grid; place-items: center; cursor: pointer; font-size: 48px; line-height: 1; }
+        @media (max-width: 640px) { .carousel-btn { font-size: 36px; width: 36px; height: 36px; } }
+        @media (max-width: 1024px) { .discovery-media .container { margin: 0 var(--space-40); } }
+        @media (max-width: 640px) { .discovery-media .container { margin: 0 var(--space-40); } }
 
         .discovery-images, .solution-images{ padding: var(--space-48) 0 var(--space-64); background: var(--color-white); }
-        .discovery-images, .solution-image .container { max-width: 1920px; margin: 0 80px; }
+        .discovery-images .container, .solution-images .container { max-width: 1920px; margin: 0 80px; }
+        @media (max-width: 1024px) { .discovery-images .container, .solution-images .container { margin: 0 var(--space-40); } }
+        @media (max-width: 640px) { .discovery-images .container, .solution-images .container { margin: 0 var(--space-40); } }
         .discovery-image, .solution-image{ margin: 0 0 var(--space-48); }
-        .discovery-caption, .solution-caption{ text-align: center; color: var(--color-grey); margin: 0 0 4px; }
-        .discovery-placeholder, .solution-placeholder{ width: 100%; height: 420px; background: var(--color-grey); border-radius: 16px; }
+        .discovery-caption, .solution-caption{ text-align: center; color: var(--color-grey); margin: 0 0 var(--space-12); }
+        /* Match evolve-inbox responsive image behavior */
+        .discovery-placeholder, .solution-placeholder{ width: 100%; background: transparent; border-radius: 16px; overflow: hidden; }
+        .discovery-placeholder img, .solution-placeholder img { width: 100%; height: auto; max-width: 100%; object-fit: contain; border-radius: 16px; display: block; }
+        /* Narrow empathy-storming container like evolve-inbox */
+        #empathy-storming .container { max-width: 1000px; margin: 0 auto; }
+        @media (max-width: 1024px) { #empathy-storming .container { margin: 0 var(--space-40); } }
+        @media (max-width: 640px) { #empathy-storming .container { margin: 0 var(--space-40); } }
 
         /* Full-height quote section (matches hero height) */
         .case-quote { min-height: 100vh; background: var(--color-white); display: grid; place-items: center; padding: var(--space-64) 0; }
@@ -176,7 +193,7 @@
             <div class="container">
                 <div class="hero-content">
                     <span class="launch-badge">Launched</span>
-                    <h2 class="text-heading-2">Evolve Owner Account and some really long title</h2>
+                    <h2 class="text-heading-2">Transforming the Owner Journey with a Seamless Owner Account Experience</h2>
                 </div>
                 <div class="hero-media">
                     <div class="hero-placeholder"></div>
@@ -189,45 +206,47 @@
                 <div class="case-content">
                     <div class="content-section">
                         <h3 class="text-heading-3">Overview</h3>
-                        <p class="text-body-base">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere, purus et laoreet volutpat, ipsum nisi ultrices nibh, in iaculis ligula lorem at nunc.</p>
-                        <p class="text-body-base">Nullam id dapibus lectus. Curabitur luctus justo erat, in porttitor nunc posuere in. Integer in arcu a enim fermentum viverra.</p>
+                        <p class="text-body-base">Evolve is a vacation rental management company focused on delivering 5‑star guest experiences and management services for vacation rental owners. Most of Evolve’s owner users fall within the 45–64 age range and are distributed across the US.</p>
                     </div>
                     <div class="content-section">
                         <h3 class="text-heading-3">Problem</h3>
-                        <p class="text-body-base">Suspendisse potenti. Nunc feugiat, nibh nec iaculis tristique, massa lorem efficitur sem, a sodales tortor nisi in tortor.</p>
+                        <p class="text-body-base">The Owner Account (OA) was outdated, fragmented, and difficult to use. Over 30k owners relied on it weekly, if not daily. Built on Salesforce Communities, which meant it was hard to scale and customize, and the legacy experience broke accessibility standards, used clunky flows that often led to dead ends, and forced owners to call support for basic tasks. This eroded trust and created major inefficiencies. Compared to competitors like Airbnb and Vrbo, Evolve’s OA felt opaque and unsupportive, leaving owners disempowered. To move forward, we needed a modern platform, a stronger research foundation, and a scalable design that rebuilt trust and put owners back in control.</p>
                     </div>
                     <div class="content-section">
                         <h3 class="text-heading-3">Solution</h3>
-                        <p class="text-body-base">Praesent nec lorem at mi interdum rhoncus. Etiam condimentum nisl at sapien tristique, id mollis lectus venenatis.</p>
+                        <p class="text-body-base">I partnered with another designer to redesign the Owner Account (OA) on a modern platform with a new design system, refreshed branding, and improved information architecture. I unified web and mobile, prioritized self-serve features, and removed frustrating dead ends. We rolled out iteratively—starting with mobile, where ~56% of users were active—while keeping the legacy platform live to ease adoption. I conducted continuous usability testing with our researcher to ground decisions in data, partnered with content marketing on new guidelines, created a new communication framework, and designed micro-interactions that made the experience feel polished.</p>
                     </div>
                     <div class="content-section">
                         <h3 class="text-heading-3">Impact</h3>
-                        <p class="text-body-base">Aliquam ut risus ligula. Quisque vitae ipsum sit amet ex interdum aliquet. Nam commodo, tortor sed condimentum dapibus, neque arcu facilisis felis, vitae luctus nunc felis vitae tellus.</p>
+                        <p class="text-body-base">The redesign significantly boosted satisfaction and usability. Nearly 90% of owners rated the new experience as extremely user-friendly, often calling out the cleaner layout and streamlined navigation as major improvements over legacy. Repeat bug reports dropped by ~30%, and support calls for legacy issues declined as well. By giving owners self-serve tools and transparent information, we began rebuilding trust and creating a more empowering partnership.</p>
                     </div>
                 </div>
                 <div class="case-details">
                     <div class="detail-section">
                         <h4 class="text-body-large">Role</h4>
-                        <p class="text-body-base">Lead designer</p>
+                        <p class="text-body-base">1 of 2 lead designers</p>
                     </div>
                     <div class="detail-section">
                         <h4 class="text-body-large">Team</h4>
-                        <p class="text-body-base">Lorem ipsum dolor sit amet, consectetur.</p>
+                        <p class="text-body-base">2 PMs, 1 Researcher, 5 Engineers</p>
                     </div>
                     <div class="detail-section">
                         <h4 class="text-body-large">Timeline</h4>
-                        <p class="text-body-base">Jan 2025 – Mar 2025</p>
+                        <p class="text-body-base">Mar 2023 - Jan 2025 reached 1:1 parity</p>
                     </div>
                     <div class="detail-section">
                         <h4 class="text-body-large">Platforms & integrations</h4>
-                        <p class="text-body-base">Responsive web</p>
+                        <p class="text-body-base">Native app, responsive web. Salesforce, React.</p>
                     </div>
                     <div class="detail-section">
                         <h4 class="text-body-large">Process</h4>
                         <ul>
-                            <li class="text-body-base">Research & discovery</li>
-                            <li class="text-body-base">Wireframes & IA</li>
-                            <li class="text-body-base">Design system components</li>
+                            <li class="text-body-base">Full redesign UI, UX, and IA</li>
+                            <li class="text-body-base">User persona creation, usability and user research</li>
+                            <li class="text-body-base">Flow analysis, internal process audits, competitive analyses</li>
+                            <li class="text-body-base">Created new design system components and styles</li>
+                            <li class="text-body-base">Brand guidelines and communication framework</li>
+                            <li class="text-body-base">Product strategy</li>
                         </ul>
                     </div>
                 </div>
@@ -238,46 +257,25 @@
             <div class="container">
                 <div class="metrics-left">
                     <h3 class="text-heading-3">The problem, in detail</h3>
-                    <p class="text-body-base">Cras pulvinar, sem in sollicitudin euismod, justo nunc gravida dolor, vitae dignissim diam nisl ac nulla.</p>
-                    <p class="text-body-base">In hac habitasse platea dictumst. Integer tincidunt, mauris at efficitur pulvinar, mi nibh fringilla nisl, nec aliquet augue risus at nunc.</p>
-                    <ul>
-                        <li class="text-body-base"><span class="text-body-base-bold">User A:</span> Lorem ipsum dolor sit amet.</li>
-                        <li class="text-body-base"><span class="text-body-base-bold">User B:</span> Integer non luctus eros.</li>
-                        <li class="text-body-base"><span class="text-body-base-bold">Business:</span> Morbi a efficitur lorem.</li>
-                    </ul>
+                    <p class="text-body-base">When I started this project, the legacy Owner Account (OA) was a mystery box. Opening it was like opening Pandora’s box. Built years earlier on the Salesforce Communities platform, it had little documentation and was a patchwork of flows that didn’t always connect.</p>
+                    <p class="text-body-base">Owner NPS was declining as users grew frustrated with an experience that no longer met their needs. Compared to competitors like Airbnb and Vrbo, the platform lacked the self-serve tools and transparency owners expected. Too often, they hit dead ends that pushed them to call or email for support, leaving them feeling dependent on Evolve rather than empowered as partners in their own vacation rental journey.</p>
+                    <p class="text-body-base">Digging into the problem revealed how heavily technical debt held us back—small fixes were slow, messy, and often invisible to users. The result was an outdated product that fell short of modern standards, leaving owners wanting a self-serve, mobile-first, and transparent experience. To move forward, we needed a redesigned—but still familiar—platform that delivered the functionality they expected.</p>
                 </div>
                 <div class="metrics-right">
                     <div class="metrics-list">
                         <div class="metrics-item">
-                            <h2 class="text-heading-2">48%</h2>
-                            <p class="text-body-base">lorem metric description</p>
+                            <h2 class="text-heading-2">30k+</h2>
+                            <p class="text-body-base">owners on the OA platform</p>
                         </div>
                         <div class="metrics-item">
-                            <h2 class="text-heading-2">20k+</h2>
-                            <p class="text-body-base">lorem metric description</p>
+                            <h2 class="text-heading-2">56% vs 44%</h2>
+                            <p class="text-body-base">app vs web users</p>
                         </div>
                         <div class="metrics-item">
-                            <h2 class="text-heading-2">30%</h2>
-                            <p class="text-body-base">lorem metric description</p>
-                        </div>
-                        <div class="metrics-item">
-                            <h2 class="text-heading-2">7h–24h</h2>
-                            <p class="text-body-base">lorem metric description</p>
-                        </div>
-                        <div class="metrics-item">
-                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">user feedback</span></p>
-                            <p class="text-body-base">“Lorem ipsum dolor sit amet, consectetur adipiscing elit.”</p>
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">owner sentiment</span></p>
+                            <p class="text-body-base">Users felt OA was hard to navigate, clunky, and time-consuming. They also felt dashboard had tons of information everywhere, a lot going on, and it feels like an advertisement board.</p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="discovery-media">
-            <div class="container">
-                <div class="collage-grid">
-                    <div class="collage-item"></div>
-                    <div class="collage-item"></div>
                 </div>
             </div>
         </section>
@@ -285,32 +283,93 @@
         <section class="discovery-images">
             <div class="container">
                 <div class="discovery-image">
-                    <p class="text-body-base-bold discovery-caption">Sample caption</p>
-                    <div class="discovery-placeholder"></div>
-                </div>
-                <div class="discovery-image">
-                    <p class="text-body-base-bold discovery-caption">Sample caption</p>
-                    <div class="discovery-placeholder"></div>
+                    <p class="text-body-base-bold discovery-caption">Legacy OA experience</p>
+                    <div class="discovery-placeholder">
+                        <img src="assets/evolve_oa_legacy.png" alt="Legacy OA experience" />
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="case-quote" aria-label="Key finding">
+         <!-- Discovery (copied from evolve-inbox) -->
+        <section class="case-metrics impact-next">
+            <div class="container">
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">Discovery</h3>
+                    <p class="text-body-base">To understand what problems we needed to solve in a feature-parity project, I partnered with our researcher on a qualitative and quantitative deep dive.</p>
+                    <ul>
+                        <li class="text-body-base"><span class="text-body-base-bold">Defining key personas:</span> First-time Renters, FRBOs, Investors, and Hands-on Hosts—making sure my designs reflected our diverse user needs.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Digging for user insight:</span> I collaborated with our dedicated researcher to conduct interviews and surveys to gather direct feedback from users on what was working and what wasn’t. </li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Analyzing flows:</span> I uncovered pain points like dead-ends, accessibility issues, and lack of responsiveness.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Internal audit & competitive analysis:</span> I ran these to see how frontline teams were supporting owners and conducted a competitive review to benchmark against industry standards.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Wireframing:</span> I created quick wireframes to guide strategy discussions.</li>
+                    </ul>
+                    <p class="text-body-base">By time-boxing research to 1–2 weeks per phase, I kept momentum and stayed lean while grounding my design decisions in data.</p>
+                </div>
+                <div class="metrics-right">
+                    <div class="metrics-list">
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Timeline</span></p>
+                            <p class="text-body-base">Varied; we time boxed research to 1-2 weeks, including synthesis</p>
+                        </div>
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">User types</span></p>
+                            <p class="text-body-base">First-time Renters, For Rent by Owners (FRBO), Investor, Hands-on Host</p>
+                        </div>
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Total features needing redesign</span></p>
+                            <p class="text-body-base">19+ features on web and app</p>
+                        </div>
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Tools</span></p>
+                            <p class="text-body-base">UserTesting, Chattermill, NPS surveys, Zoom, In-house owners</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Full-width image -->
+        <section class="discovery-images">
+            <div class="container">
+                <div class="discovery-image">
+                    <p class="text-body-base-bold discovery-caption">A compilation of extensive user research on OA pain points</p>
+                    <div class="discovery-placeholder">
+                        <img src="assets/evolve_oa_research_stickies.png" alt="Owner Account research" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <!-- Full-width image -->
+         <section class="discovery-images">
+            <div class="container">
+                <div class="discovery-image">
+                    <p class="text-body-base-bold discovery-caption">Starting to wireframe different features. My co-designer and I dot voted for designs we wanted to continue exploring.</p>
+                    <div class="discovery-placeholder">
+                        <img src="assets/evolve_oa_wireframes.png" alt="OA wireframes" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--<section class="case-quote" aria-label="Key finding">
             <div class="container">
                 <div class="quote-inner">
                     <p class="text-body-base-bold quote-kicker">key finding</p>
                     <p class="text-heading-3 quote-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales, justo in blandit imperdiet, est arcu facilisis nibh.</p>
                 </div>
             </div>
-        </section>
+        </section>-->
 
         <section class="case-metrics solution-section">
             <div class="container">
                 <div class="metrics-left">
                     <h3 class="text-heading-3">Solution</h3>
-                    <p class="text-body-base">Donec placerat, metus sed sollicitudin tempus, libero arcu posuere mi, vitae elementum nibh dui et lorem.</p>
-                    <p class="text-body-base">Curabitur sed enim ut magna placerat luctus sit amet vitae arcu.</p>
-                    <p class="text-body-base">Success metrics:</p>
+                    <p class="text-body-base">Our ultimate goal with the redesign was 1:1 feature parity, but I also saw it as a chance to make meaningful UX improvements without ballooning scope or timelines. By staying lean and creative, I was able to shape a smoother, more intuitive experience along the way.</p>
+                    <p class="text-body-base">Looking back, delivering a full web and app redesign felt like orchestrating a smorgasbord of methods, workflows, and responsibilities. My work included:</p>
                     <ul>
                         <li class="text-body-base">Owners: lorem benefit</li>
                         <li class="text-body-base">Users: lorem benefit</li>
@@ -421,7 +480,7 @@
                     <div class="nav-prev">
                         <span class="text-body-sm prev-project-label">← Previous</span>
                         <a class="prev-project-link" href="evolve-inbox.html" aria-label="Previous project: Reimagining Owner – Guest Communication with Inbox">
-                            <span class="text-heading-5">Reimagining Owner – Guest Communication with Inbox</span>
+                            <span class="text-heading-5">Streamlining Owner – Guest Communication with Inbox</span>
                         </a>
                     </div>
                 </div>

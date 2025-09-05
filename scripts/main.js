@@ -91,6 +91,16 @@ document.addEventListener('DOMContentLoaded', function() {
             ctrls.appendChild(btnIn); ctrls.appendChild(btnOut); ctrls.appendChild(btnFit);
             wrapper.appendChild(ctrls);
 
+            // Keep controls pinned within the scrollable viewframe
+            function syncControlsToScroll() {
+                const x = wrapper.scrollLeft;
+                const y = wrapper.scrollTop;
+                ctrls.style.transform = `translate(${x}px, ${y}px)`;
+            }
+            // Initialize and bind scroll synchronization
+            syncControlsToScroll();
+            wrapper.addEventListener('scroll', syncControlsToScroll, { passive: true });
+
             // Behavior
             let scale = 1;
             img.style.transformOrigin = '0 0';
@@ -101,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
             function apply() { img.style.transform = `scale(${scale})`; }
             btnIn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); scale = Math.min(4, scale + 0.25); apply(); });
             btnOut.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); scale = Math.max(0.5, scale - 0.25); apply(); });
-            btnFit.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); scale = 1; apply(); wrapper.scrollTop = 0; wrapper.scrollLeft = 0; });
+            btnFit.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); scale = 1; apply(); wrapper.scrollTop = 0; wrapper.scrollLeft = 0; syncControlsToScroll(); });
         });
     })();
     function closeMenu() {

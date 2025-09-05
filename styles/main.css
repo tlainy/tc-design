@@ -183,6 +183,17 @@ p { font-size: 16px; color: var(--text-body); margin-top: 0; margin-bottom: var(
     height: 420px;
     background: var(--color-grey);
     border-radius: 16px;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+}
+.media-placeholder img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
 }
 .hero .text-heading-1 { margin-top: 0; margin-bottom: var(--space-16); }
 .hero .text-body-lg { color: var(--text-body); }
@@ -880,4 +891,14 @@ body {
     .case-overview, .case-metrics, .case-quote, .design-section, .impact-stats, .project-nav,
     .discovery-media { padding-top: calc(var(--space-64) / 2) !important; padding-bottom: calc(var(--space-64) / 2) !important; }
     .discovery-images, .solution-images { padding-top: calc(var(--space-48) / 2) !important; padding-bottom: calc(var(--space-64) / 2) !important; }
+}
+
+/* Offset content for fixed header on tablet/mobile to prevent hero cut-off */
+@media (max-width: 1024px) {
+    main { margin-top: 80px; }
+    #home { scroll-margin-top: 80px; }
+}
+@media (max-width: 640px) {
+    main { margin-top: 88px; }
+    #home { scroll-margin-top: 88px; }
 }

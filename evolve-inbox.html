@@ -81,14 +81,14 @@
         .carousel-nav { position: absolute; top: calc(50% + var(--space-12)); left: 0; right: 0; transform: translateY(-50%); display: flex; justify-content: space-between; align-items: center; pointer-events: none; padding: 0 var(--space-20); }
         .carousel-btn { pointer-events: all; background: transparent; color: var(--color-fire-500); border: 0; width: 48px; height: 48px; display: grid; place-items: center; cursor: pointer; font-size: 48px; line-height: 1; }
         @media (max-width: 640px) { .carousel-btn { font-size: 36px; width: 36px; height: 36px; } }
-        @media (max-width: 1024px) { .discovery-media .container { margin: 0; } }
-        @media (max-width: 640px) { .discovery-media .container { margin: 0; } }
+        @media (max-width: 1024px) { .discovery-media .container { margin: 0 var(--space-40); } }
+        @media (max-width: 640px) { .discovery-media .container { margin: 0 var(--space-40); } }
 
         .metrics-images,.discovery-images, .solution-images{ padding: var(--space-48) 0 var(--space-64); background: var(--color-white); }
         /* Ensure image sections span the same full width as other content */
         .metrics-images .container, .discovery-images .container, .solution-images .container { max-width: 1920px; margin: 0 80px; }
-        @media (max-width: 1024px) { .metrics-images .container, .discovery-images .container, .solution-images .container { margin: 0; } }
-        @media (max-width: 640px) { .metrics-images .container, .discovery-images .container, .solution-images .container { margin: 0; } }
+        @media (max-width: 1024px) { .metrics-images .container, .discovery-images .container, .solution-images .container { margin: 0 var(--space-40); } }
+        @media (max-width: 640px) { .metrics-images .container, .discovery-images .container, .solution-images .container { margin: 0 var(--space-40); } }
         /* Narrow layout for the specific empathy storming section */
         #empathy-storming .container { max-width: 1000px; margin: 0 auto; }
         @media (max-width: 1024px) { #empathy-storming .container { margin: 0 var(--space-40); } }
@@ -104,7 +104,7 @@
         /* Zoom overlay (viewframe) */
         /* Inline zoom wrapper (scrollable) */
         .zoom-inline { position: relative; overflow: auto; border-radius: 16px; background: var(--color-white); }
-        .zoom-controls-inline { position: absolute; left: 12px; top: 12px; display: flex; flex-direction: column; gap: 8px; z-index: 1; }
+        .zoom-controls-inline { position: absolute; left: 12px; top: 12px; display: inline-flex; flex-direction: column; gap: 8px; z-index: 10; }
         .zoom-btn { background: rgba(255,255,255,0.95); color: var(--text-accent); border: 1px solid var(--text-accent); border-radius: 6px; padding: 6px 10px; cursor: pointer; box-shadow: var(--shadow-sm); }
 
         /* Full-height quote section (matches hero height) */
@@ -138,6 +138,10 @@
         @media (max-width: 1024px) { .design-cta { flex-direction: column; align-items: center; } }
         @media (max-width: 640px) { .design-cta .cta-button, .design-cta .btn-secondary { display: block; width: 100%; text-align: center; } }
         @media (max-width: 1024px) { .design-section .container { margin: 0 var(--space-40); } }
+        /* Ensure standalone CTA row (direct child of main) keeps gutters */
+        main > .design-cta { max-width: 1920px; margin: 0 80px; }
+        @media (max-width: 1024px) { main > .design-cta { margin: 0 var(--space-40); } }
+        @media (max-width: 640px) { main > .design-cta { margin: 0 var(--space-40); } }
 
         /* Impact stats row */
         .impact-stats { padding: var(--space-0) 0; background: var(--color-white); }
@@ -209,11 +213,11 @@
             <div class="container">
                 <div class="hero-content">
                     <span class="launch-badge">Launched</span>
-                    <h2 class="text-heading-2">Reimagining Owner – Guest Communication with Inbox</h2>
+                    <h2 class="text-heading-2">Streamlining Owner – Guest Communication with Inbox</h2>
                 </div>
                 <div class="hero-media">
                     <div class="hero-placeholder">
-                        <img src="assets/evolve_inbox_project_thumbnail.svg" alt="Project thumbnail"/>
+                        <img src="assets/evolve_inbox_project_thumbnail2.svg" alt="Project thumbnail"/>
                     </div>
                 </div>
             </div>
@@ -224,20 +228,19 @@
                 <div class="case-content">
                     <div class="content-section">
                         <h3 class="text-heading-3">Overview</h3>
-                        <p class="text-body-base">Evolve is a vacation rental management company focused on delivering 5‑star guest experiences and management services for vacation rental owners. Most of Evolve’s core owner platform users fall within the 45–64 age range and were distributed across the US.</p>
-                        <p class="text-body-base">Most of Evolve’s core owner platform users fall within the 45–64 age range and are distributed across the US. Evolve guests book on a variety of partner platforms which include Airbnb, Vrbo, Booking.com, Homes & Villas Marriott Bonvoy, Expedia, Google, and Hopper. In total, there are ~30k+ owners and ~4.4k service partners on active listings.</p>
+                        <p class="text-body-base">Evolve is a vacation rental management company focused on delivering 5‑star guest experiences and management services for vacation rental owners. Most of Evolve’s owner users fall within the 45–64 age range and are distributed across the US.</p>
                     </div>
                     <div class="content-section">
                         <h3 class="text-heading-3">Problem</h3>
-                        <p class="text-body-base">For property bookings, there was fragmented communication between guests, owners, and frontline teams at Evolve. This led to confusion, duplicated work, and delayed responses. It also created inefficiencies for teams, eroded guest trust, and left owners frustrated by a lack of visibility. We needed to change how we approached communication and to redefine what support looked like for the guest and owner for all booking phases, such as when a guest booked to when a guest checks out.</p>
+                        <p class="text-body-base">For property bookings, there was fragmented communication between guests, owners, and frontline teams at Evolve due to a lack of an on-platform communication tool. Frontline teams would handle the guest requests but would often need to contact the owner for final approval. In other cases, the owner would coordinate with the guest directly and off-platform (i.e. SMS, email). This led to confusion, duplicated work, and delayed responses to guest needs. It eroded guest trust and left owners frustrated by a lack of visibility. We needed to change how we approached communication and to redefine what support looked like for the guest and owner for all booking phases, such as when a guest booked to when a guest checks out.</p>
                     </div>
                     <div class="content-section">
                         <h3 class="text-heading-3">Solution</h3>
-                        <p class="text-body-base">I led the design of Inbox, a centralized hub consolidating all communication between guests, owners, and frontline teams. We prioritized speed by releasing an MVP for our partner Airbnb bookings, informed by research into owner behaviors, guest messaging patterns, and industry standards. Key design decisions included enabling messaging 4–7 days before check-in (when most guest questions occurred) and embedding education to reframe owner engagement as essential to performance. Success was defined by improved response times, reduced off-platform communication, and increased owner adoption.</p>
+                        <p class="text-body-base">I designed Inbox, a centralized hub consolidating all communication between guests, owners, and frontline teams. We prioritized speed by releasing an MVP for our partner Airbnb bookings, informed by research into owner behaviors, guest messaging patterns, and industry standards. Key design decisions included enabling messaging 4–7 days before check-in (when most guest questions occurred) and embedding education to reframe owner engagement as essential to performance. Success was defined by improved response times, reduced off-platform communication, and increased owner adoption.</p>
                     </div>
                     <div class="content-section">
                         <h3 class="text-heading-3">Impact</h3>
-                        <p class="text-body-base">The beta rollout showed strong early results: 83% of owners reported Inbox made guest communication easier, 73% found it valuable, and response times dropped by 98%.The beta demonstrated our ability to streamline workflows, improve guest experiences, and set the foundation for scalable communication improvements across Evolve.</p>
+                        <p class="text-body-base">The beta rollout showed strong early results: 83% of owners reported Inbox made guest communication easier, 73% found it valuable, and response times dropped by 98%. The beta demonstrated our ability to streamline workflows, improve guest experiences, and set the foundation for scalable communication improvements across Evolve.</p>
                     </div>
                 </div>
                 <div class="case-details">
@@ -330,7 +333,7 @@
             <div class="container">
                 <div class="metrics-left">
                     <h3 class="text-heading-3">Discovery</h3>
-                    <p class="text-body-base">I led a research-first approach combining:</p>
+                    <p class="text-body-base">First, I needed to understand how our owners were currently communicating. Second, I needed to uncover opportunities that I could leverage to build a tool they would use. I led a research-first approach combining:</p>
                     <ul>
                         <li class="text-body-base"><span class="text-body-base-bold">Owner feedback:</span> Mined NPS feedback and in-app feedback to surface recurring pain points, looking specifically at feedback mentioning “communication”.</li>
                         <li class="text-body-base"><span class="text-body-base-bold">Launched user surveys:</span> I developed an initial set of questions and goals and reviewed with my PM and Researcher. I wanted to better understand their current behaviors and expectations of responsibility by booking phase.</li>
@@ -397,7 +400,7 @@
                 <div class="discovery-image">
                     <p class="text-body-base-bold discovery-caption">Empathy storming to create a tool the user would want to use, based on concerns uncovered in research</p>
                     <div class="discovery-placeholder">
-                        <img src="assets/evolve_inbox_empathy_storming.svg" alt="Empathy storming" />
+                        <img src="assets/evolve_inbox_empathy_storming.png" alt="Empathy storming" />
                     </div>
                 </div>
             </div>
@@ -424,12 +427,12 @@
                     <p class="text-body-base">In addition to that, discovery showed most guest requests came 4–7 days pre-check-in, a critical window for connection. Rather than granting access only after check-in, I proposed opening messaging earlier to drive adoption and reduce issues. The team was on board with this idea and we adjusted the roadmap.</p>
                     <p class="text-body-base">I then defined our success metrics with my PM:</p>
                     <ul>
-                        <li class="text-body-base"><span class="text-body-base-bold">Owners:</span> Less reliance on off-platform tools, streamlined workflows, personalized guest experiences.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Owners:</span> Less reliance on off-platform tools, indicated by decreased SMS or emails sent.</li>
                         <li class="text-body-base"><span class="text-body-base-bold">Guests:</span> Faster responses, fewer repeated questions, consistent communication.</li>
                         <li class="text-body-base"><span class="text-body-base-bold">Frontline teams:</span> Lower service costs, fewer escalations, greater transparency.</li>
                         <li class="text-body-base"><span class="text-body-base-bold">Business:</span> Higher NPS, improved response time, stronger review trends.</li>
                     </ul>
-                    <p class="text-body-base">I started with mockups and an initial beta flow. I then created a user journey map to build empathy for the user. Once I presented the general design direction to the team, I worked with the Researcher to test the initial designs with users. We found in testing that our users thought the design was user-friendly, easy to understand, and matched their expectations.</p>
+                    <p class="text-body-base">I started with mockups and an initial beta flow. I then created a user journey map to build empathy for the user. Once I presented the general design direction to the team, I worked with the Researcher to test the initial designs with users. We found in testing that our users thought the design was user-friendly and easy to understand.</p>
                 </div>
                 <div class="metrics-right">
                     <div class="metrics-list">
@@ -489,9 +492,15 @@
             <div class="metrics-left">
                 <h3 class="text-heading-3">Designs</h3>
                 <p class="text-body-base">Due to the timeline of beta and releasing sooner to gather learnings, the beta was lean. I designed a minimal Inbox feature with a few educational interactions to help solve the problem of engagement and adoption. To make it easier for users to handle booking requests from Inbox, I created a pathway to the existing booking view.</p>
+                <p class="text-body-base">In my design work for beta and future releases, I made sure to address their needs mentioned in the survey (see <a href="#discovery-carousel">Discovery</a>), which included automated messaging, easier dispute resolution, a guest review system, clear guidelines on communication expectations between owner and guests. </p>
+                <p class="text-body-base">Follow along with my design process and decision making in my annotations throughout the Figma file.</p>
             </div>
         </div>
       </section>
+
+      <div class="design-cta">
+        <a class="cta-button text-button" href="https://www.figma.com/design/1IAFFuWuWRupowgyrUU2Wq/Evolve--Inbox?node-id=1-7&p=f&t=QMRPdkKFBSMVQDnE-11" target="_blank" rel="noopener noreferrer">View finals designs in Figma</a>
+    </div>
 
          </section>
         <!-- Designs image section (matches other image sections) -->
@@ -502,9 +511,6 @@
                     <div class="solution-placeholder">
                         <img src="assets/evolve_inbox_beta_designs.svg" alt="Final designs for beta" data-zoomable />
                     </div>
-                </div>
-                <div class="design-cta">
-                    <a class="cta-button text-button" href="https://www.figma.com/design/1IAFFuWuWRupowgyrUU2Wq/Evolve--Inbox?node-id=1-7&p=f&t=QMRPdkKFBSMVQDnE-11" target="_blank" rel="noopener noreferrer">View finals designs in Figma</a>
                 </div>
             </div>
         </section>
@@ -517,6 +523,10 @@
             </div>
           </section>
 
+          <div class="design-cta">
+            <a class="cta-button text-button" href="https://www.figma.com/design/1IAFFuWuWRupowgyrUU2Wq/Evolve--Inbox?node-id=49-68713&p=f&t=QMRPdkKFBSMVQDnE-11" target="_blank" rel="noopener noreferrer">View concepts in Figma</a>
+        </div>
+
         <section id="designs" class="solution-images">
             <div class="container">
                 <div class="solution-image">
@@ -524,9 +534,6 @@
                     <div class="solution-placeholder">
                         <img src="assets/evolve_inbox_concepts.svg" alt="Concepts for Inbox" data-zoomable />
                     </div>
-                </div>
-                <div class="design-cta">
-                    <a class="cta-button text-button" href="https://www.figma.com/design/1IAFFuWuWRupowgyrUU2Wq/Evolve--Inbox?node-id=49-68713&p=f&t=QMRPdkKFBSMVQDnE-11" target="_blank" rel="noopener noreferrer">View concepts in Figma</a>
                 </div>
             </div>
         </section>
@@ -538,7 +545,7 @@
             <div class="container">
                 <div class="metrics-left">
                     <h3 class="text-heading-3">What impact did we have?</h3>
-                    <p class="text-body-base">The beta rollout of Inbox demonstrated significant improvements for owners and guests alike. We tracked adoption, friction, and sentiment using Sprig and Alchemer dashboards.</p>
+                    <p class="text-body-base">The beta rollout of Inbox demonstrated significant improvements for owners and guests alike. We tracked adoption, friction, and sentiment using Sprig and Alchemer dashboards. Overall, response time to guest requests improved significantly, frontline team back-and-forth decreased and so did the cost to serve, and owner users were more satisfied with communication. </p>
                     
                 </div>
             </div>
@@ -553,8 +560,8 @@
                         <p class="text-body-base">84% responded within this time</p>
                     </div>
                     <div class="stats-item">
-                        <h2 class="text-heading-2">59%</h2>
-                        <p class="text-body-base">of beta owners used Inbox</p>
+                        <h2 class="text-heading-2">+1.9</h2>
+                        <p class="text-body-base">NPS points increase around the communication theme</p>
                     </div>
                     <div class="stats-item">
                         <h2 class="text-heading-2">83%</h2>
@@ -574,7 +581,7 @@
                 <div class="metrics-left">
                     <p class="text-body-base-bold">Opportunities we noted</p>
                     <ul>
-                        <li class="text-body-base">Due to what we hypothesize as disengagement from certain types of owner users or guest interactions that didn’t require a response, usage dropped to 35%. How could we better educate the user that increased owner engagement could increase positive guest reviews?</li>
+                        <li class="text-body-base">Inbox usage dropped 35% during a certain period. We hypothesized that certain owners or guests were disengaged or the interaction didn't require a response. How could we better educate the user that increased owner engagement could increase positive guest reviews?</li>
                         <li class="text-body-base">We didn’t notice a measurable shift in NPS scores around communication, only a 0.5pt increase in a 30-day analysis. We believe it was due to our beta group being relatively small. How could we increase NPS around communication in future iterations?</li>
                     </ul>
                 </div>
