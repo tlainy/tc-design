@@ -92,6 +92,10 @@
         /* Match evolve-inbox responsive image behavior */
         .discovery-placeholder, .solution-placeholder{ width: 100%; background: transparent; border-radius: 16px; overflow: hidden; }
         .discovery-placeholder img, .solution-placeholder img { width: 100%; height: auto; max-width: 100%; object-fit: contain; border-radius: 16px; display: block; }
+        /* Inline zoom wrapper (scrollable) – match evolve-inbox */
+        .zoom-inline { position: relative; overflow: auto; border-radius: 16px; background: var(--color-white); }
+        .zoom-controls-inline { position: absolute; left: 12px; top: 12px; display: inline-flex; flex-direction: column; gap: 8px; z-index: 10; }
+        .zoom-btn { background: rgba(255,255,255,0.95); color: var(--text-accent); border: 1px solid var(--text-accent); border-radius: 6px; padding: 6px 10px; cursor: pointer; box-shadow: var(--shadow-sm); }
         /* Narrow empathy-storming container like evolve-inbox */
         #empathy-storming .container { max-width: 1000px; margin: 0 auto; }
         @media (max-width: 1024px) { #empathy-storming .container { margin: 0 var(--space-40); } }
@@ -299,10 +303,10 @@
                     <p class="text-body-base">To understand what problems we needed to solve in a feature-parity project, I partnered with our researcher on a qualitative and quantitative deep dive.</p>
                     <ul>
                         <li class="text-body-base"><span class="text-body-base-bold">Defining key personas:</span> First-time Renters, FRBOs, Investors, and Hands-on Hosts—making sure my designs reflected our diverse user needs.</li>
-                        <li class="text-body-base"><span class="text-body-base-bold">Digging for user insight:</span> I collaborated with our dedicated researcher to conduct interviews and surveys to gather direct feedback from users on what was working and what wasn’t. </li>
-                        <li class="text-body-base"><span class="text-body-base-bold">Analyzing flows:</span> I uncovered pain points like dead-ends, accessibility issues, and lack of responsiveness.</li>
-                        <li class="text-body-base"><span class="text-body-base-bold">Internal audit & competitive analysis:</span> I ran these to see how frontline teams were supporting owners and conducted a competitive review to benchmark against industry standards.</li>
-                        <li class="text-body-base"><span class="text-body-base-bold">Wireframing:</span> I created quick wireframes to guide strategy discussions.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Digging for user insight:</span> I collaborated with our researcher to conduct interviews and surveys to understand what was working and what wasn’t. </li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Analyzing the UX and UI:</span> I uncovered pain points like dead-ends, accessibility issues, and lack of responsiveness.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Internal audit & competitive analysis:</span> I wanted to better understand  how frontline teams were supporting owners. I also conducted competitive reviews to benchmark against industry standards.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Wireframing:</span> I created quick wires to guide the team in strategy discussions.</li>
                     </ul>
                     <p class="text-body-base">By time-boxing research to 1–2 weeks per phase, I kept momentum and stayed lean while grounding my design decisions in data.</p>
                 </div>
@@ -313,12 +317,8 @@
                             <p class="text-body-base">Varied; we time boxed research to 1-2 weeks, including synthesis</p>
                         </div>
                         <div class="metrics-item">
-                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">User types</span></p>
-                            <p class="text-body-base">First-time Renters, For Rent by Owners (FRBO), Investor, Hands-on Host</p>
-                        </div>
-                        <div class="metrics-item">
-                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Total features needing redesign</span></p>
-                            <p class="text-body-base">19+ features on web and app</p>
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Total features analyzed</span></p>
+                            <p class="text-body-base">19+ features on both web and app</p>
                         </div>
                         <div class="metrics-item">
                             <p class="text-body-base-bold"><span style="color: var(--color-grey);">Tools</span></p>
@@ -371,35 +371,18 @@
                     <p class="text-body-base">Our ultimate goal with the redesign was 1:1 feature parity, but I also saw it as a chance to make meaningful UX improvements without ballooning scope or timelines. By staying lean and creative, I was able to shape a smoother, more intuitive experience along the way.</p>
                     <p class="text-body-base">Looking back, delivering a full web and app redesign felt like orchestrating a smorgasbord of methods, workflows, and responsibilities. My work included:</p>
                     <ul>
-                        <li class="text-body-base">Owners: lorem benefit</li>
-                        <li class="text-body-base">Users: lorem benefit</li>
-                        <li class="text-body-base">Teams: lorem benefit</li>
-                        <li class="text-body-base">Business: lorem benefit</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Establishing the visual brand:</span> Partnering with the design system team, I ran component workshops, audits, and syncs to build out patterns and styles that could scale.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Redefining the foundation:</span> I audited the legacy IA, combined findings with research insights, and redesigned navigation across app and web to better support user goals.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Mapping end-to-end journeys:</span> This helped me identify expectations we weren’t meeting and pinpoint where creative design could make the biggest impact within our constraints.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Iterating designs with cross-functional input:</span> For every feature, I started with quick wires, reviewed feasibility with engineering, tested with users, and refined into final designs.</li>
                     </ul>
                 </div>
                 <div class="metrics-right">
                     <div class="metrics-list">
                         <div class="metrics-item">
-                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">What we knew</span></p>
-                            <ul>
-                                <li class="text-body-base">Lorem ipsum dolor sit amet</li>
-                                <li class="text-body-base">Consectetur adipiscing elit</li>
-                            </ul>
-                        </div>
-                        <div class="metrics-item">
-                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Risks</span></p>
-                            <ul>
-                                <li class="text-body-base">Risk one</li>
-                                <li class="text-body-base">Risk two</li>
-                                <li class="text-body-base">Risk three</li>
-                            </ul>
-                        </div>
-                        <div class="metrics-item">
                             <p class="text-body-base-bold"><span style="color: var(--color-grey);">Rollout plan</span></p>
                             <ul>
-                                <li class="text-body-base">Phase one</li>
-                                <li class="text-body-base">Phase two</li>
-                                <li class="text-body-base">Phase three</li>
+                                <li class="text-body-base">Since mobile app usage was higher—driven by push notifications—we started with the new app experience first, followed shortly by web. I partnered with the PMs to prioritize the feature release order, using both feature usage stats and importance based on task analysis.</li>
                             </ul>
                         </div>
                     </div>
@@ -407,15 +390,28 @@
             </div>
         </section>
 
-        <section class="solution-images">
+        <!-- IA Carousel (same pattern as evolve-inbox) -->
+        <section class="discovery-media">
             <div class="container">
-                <div class="solution-image">
-                    <p class="text-body-base-bold solution-caption">Sample caption</p>
-                    <div class="solution-placeholder"></div>
-                </div>
-                <div class="solution-image">
-                    <p class="text-body-base-bold solution-caption">Sample caption</p>
-                    <div class="solution-placeholder"></div>
+                <div class="carousel" id="oa-ia-carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <p class="text-body-base-bold carousel-caption">Information architecture — legacy app</p>
+                            <div class="carousel-media">
+                                <img src="assets/evolve_oa_app IA.png" alt="OA app IA map" />
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <p class="text-body-base-bold carousel-caption">Information architecture — legacy web</p>
+                            <div class="carousel-media">
+                                <img src="assets/evolve_oa_web IA.png" alt="OA web IA map" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="carousel-btn" data-dir="prev" aria-label="Previous"><img src="assets/arrow-left.svg" alt="Previous" width="48" height="48" /></button>
+                        <button class="carousel-btn" data-dir="next" aria-label="Next"><img src="assets/arrow-right.svg" alt="Next" width="48" height="48" /></button>
+                    </div>
                 </div>
             </div>
         </section>

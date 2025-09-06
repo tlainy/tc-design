@@ -147,10 +147,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Run once on load in case page loads with menu open and wide viewport
     handleResize();
 
-    // Simple horizontal carousel with buttons and equalized height to tallest image
-    const carousel = document.getElementById('discovery-carousel');
-    if (carousel) {
+    // Simple horizontal carousel with buttons; supports all .carousel instances
+    document.querySelectorAll('.carousel').forEach((carousel) => {
         const track = carousel.querySelector('.carousel-track');
+        if (!track) return;
         const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
         const prevBtn = carousel.querySelector('[data-dir="prev"]');
         const nextBtn = carousel.querySelector('[data-dir="next"]');
@@ -178,10 +178,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Equalize on load and whenever images load/resize
         slides.forEach(slide => {
             const img = slide.querySelector('img');
-            if (img) {
-                if (!img.complete) {
-                    img.addEventListener('load', equalizeHeights);
-                }
+            if (img && !img.complete) {
+                img.addEventListener('load', equalizeHeights);
             }
         });
         // Keep index in sync with manual scroll (e.g., swipe)
@@ -200,5 +198,5 @@ document.addEventListener('DOMContentLoaded', function() {
             track.scrollTo({ left: currentIndex * getSlideWidth(), behavior: 'instant' });
         });
         equalizeHeights();
-    }
+    });
 });
