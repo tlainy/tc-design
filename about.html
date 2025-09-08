@@ -42,12 +42,14 @@
         <style>
             /* About: right-side 3x3 grid next to text */
             .about-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-20); width: 100%; max-width: 560px; }
-            .about-photo { width: 100%; aspect-ratio: 1 / 1; height: 160px; background: var(--color-grey); border-radius: 16px; }
+            .about-photo { width: 100%; aspect-ratio: 1 / 1; background: var(--color-grey); border-radius: 16px; overflow: hidden; }
+            .about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: inherit; }
+            .about-photo--accent { background: #C65CFF; }
             .hero .hero-media { align-items: flex-start; }
-            /* Tablet: grid stacks below text (handled by existing hero responsive); make squares smaller */
-            @media (max-width: 1024px) { .about-grid { gap: var(--space-16); max-width: 520px; } .about-photo { height: 140px; border-radius: 14px; } }
+            /* Tablet: grid stacks below text (handled by existing hero responsive); adjust size via container width */
+            @media (max-width: 1024px) { .about-grid { gap: var(--space-16); max-width: 520px; } .about-photo { border-radius: 14px; } }
             /* Mobile: keep 3x3 but smaller squares */
-            @media (max-width: 640px) { .about-grid { gap: var(--space-12); max-width: 440px; } .about-photo { height: 110px; border-radius: 12px; } }
+            @media (max-width: 640px) { .about-grid { gap: var(--space-12); max-width: 440px; } .about-photo { border-radius: 12px; } }
         </style>
         <section class="hero">
             <div class="hero-grid container">
@@ -55,19 +57,35 @@
                     <h1 class="text-heading-1">你好 (hey)!</h1>
                     <p class="text-body-lg">All right—there’s already a little About section on the homepage, but here’s a bit more 🤓</p>
                     <p class="text-body-lg">I’m a designer who loves creating things that bring both me and my community joy. I enjoy technical problem-solving as much as creative exploration, so lately I’ve been dabbling in AI-powered code editors. I love learning about the story behind every design—and that makes me the type to read every plaque in a museum.</p>
-                    <p class="text-body-lg">Based in Colorado, I split my time between screens and trails—you’ll usually find me traveling, climbing, hiking, or biking.</p>
+                    <p class="text-body-lg">Based in Colorado, I split my time between screens and trails—you’ll usually find me traveling, dabbling in ceramics, climbing, hiking, or fishing.</p>
                 </div>
                 <div class="hero-media" aria-hidden="true">
                     <div class="about-grid">
-                        <div class="about-photo"></div>
-                        <div class="about-photo"></div>
-                        <div class="about-photo"></div>
-                        <div class="about-photo"></div>
-                        <div class="about-photo"></div>
-                        <div class="about-photo"></div>
-                        <div class="about-photo"></div>
-                        <div class="about-photo"></div>
-                        <div class="about-photo"></div>
+                        <div class="about-photo">
+                            <img src="assets/images/museum.png" alt="Tracy in a museum" />
+                        </div>
+                        <div class="about-photo">
+                            <img src="assets/images/ceramics.png" alt="Ceramics" />
+                        </div>
+                        <div class="about-photo">
+                            <img src="assets/images/climbing.png" alt="Climbing via ferrata" />
+                        </div>
+                        <div class="about-photo">
+                            <img src="assets/images/hiking.png" alt="Hiking" />
+                        </div>
+                        <div class="about-photo about-photo--accent"></div>
+                        <div class="about-photo">
+                            <img src="assets/images/climbing2.png" alt="Climbing in Golden" />
+                        </div>
+                        <div class="about-photo">
+                            <img src="assets/images/travel.png" alt="Traveling" />
+                        </div>
+                        <div class="about-photo">
+                            <img src="assets/images/ski.png" alt="Skiing" />
+                        </div>
+                        <div class="about-photo">
+                            <img src="assets/images/travel2.png" alt="Traveling again" />
+                        </div>
                     </div>
                 </div>
             </div>
