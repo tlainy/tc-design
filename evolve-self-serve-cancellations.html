@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolve Self‑Serve Cancellations · TC Design</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <meta name="description" content="Evolve Self‑Serve Cancellations case study">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script defer src="scripts/main.js"></script>
+    <style>
+        /* Mirror evolve-inbox layout and responsiveness */
+        .case-hero { padding: 120px 20px 80px; min-height: 100vh; background: var(--color-white); display: grid; place-items: center; }
+        .case-hero .container { max-width: 1920px; margin: 0 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-20); align-items: center; }
+        .case-hero .hero-content { grid-column: span 7; padding: 0; max-width: 870px; text-align: left; }
+        .case-hero .hero-media { grid-column: span 5 / -1; display: flex; justify-content: center; align-items: center; }
+        .hero-placeholder { width: 100%; height: 420px; background: var(--color-white); border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .hero-placeholder img { width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: contain; display: block; border-radius: inherit; }
+        .launch-badge { display: inline-block; background: var(--color-off-black); color: var(--color-white); padding: 6px 10px; border-radius: 6px; font-size: 14px; font-weight: 700; letter-spacing: 0.02em; margin-bottom: var(--space-24); }
+
+        .case-overview { background: var(--color-fire-50); padding: var(--space-64) 0; }
+        .case-overview .container { max-width: 1920px; margin: 0 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-64); align-items: start; }
+        .case-content { grid-column: span 6; }
+        .case-details { grid-column: span 5 / -1; margin-top: 48px; }
+        .case-content h3 { margin: 0 0 var(--space-8); }
+        .case-content .content-section { margin-bottom: var(--space-32); }
+        .case-details h4 { margin: 0 0 var(--space-2); }
+        .case-details p { margin: 0 0 var(--space-24); }
+        .case-details ul { list-style: none; padding: 0; margin: 0 0 var(--space-20); }
+        .case-details li { margin-bottom: var(--space-8); padding-left: var(--space-16); position: relative; }
+        .case-details li:before { content: "•"; position: absolute; left: 0; color: var(--text-body); }
+
+        @media (max-width: 1024px) {
+            .case-hero .container { grid-template-columns: 1fr; align-items: start; }
+            .case-hero .container { margin: 0 var(--space-40); }
+            .case-hero .hero-media { grid-column: 1 / -1; order: 1; }
+            .case-hero .hero-content { grid-column: 1 / -1; order: 2; max-width: 100%; padding: 0; }
+            .case-overview .container { grid-template-columns: 1fr; gap: var(--space-48); margin: 0 var(--space-40); }
+            .case-content { order: 1; }
+            .case-details { order: 2; margin-top: 0; }
+        }
+        @media (max-width: 640px) {
+            .case-hero .container, .case-overview .container { margin: 0 var(--space-40); }
+        }
+
+        .case-metrics .testing { padding: var(--space-64) 0; background: var(--color-white); }
+        .case-metrics .container { max-width: 1920px; margin: 0 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-64); align-items: start; }
+        .case-metrics h3 { margin: 0 0 var(--space-20); }
+        .metrics-left { grid-column: span 6; }
+        .metrics-right { grid-column: span 5 / -1; }
+        .metrics-left p { margin: 0 0 var(--space-12); }
+        .metrics-list { display: grid; gap: var(--space-24); }
+        .metrics-item h2 { color: var(--text-accent); margin: 0 0 var(--space-0); }
+        .metrics-item p { margin: 0; }
+        .metrics-left ul { list-style: none; padding-left: 0; margin: 0 0 var(--space-20); }
+        .metrics-left li { display: block; position: relative; padding-left: var(--space-20); margin: 0 0 var(--space-8); }
+        .metrics-left li::before { content: "•"; position: absolute; left: 0; top: 0.2em; color: var(--text-body); }
+        .metrics-right { margin-top: 54px; }
+        @media (max-width: 1024px) {
+            .case-metrics .container { grid-template-columns: 1fr; gap: var(--space-40); margin: 0 var(--space-40); }
+            .metrics-left, .metrics-right { grid-column: 1 / -1; }
+        }
+
+        .discovery-media { padding: var(--space-64) 0; background: var(--color-white); }
+        .discovery-media .container { max-width: 1920px; margin: 0 80px; }
+        .carousel { position: relative; overflow: hidden; }
+        .carousel-track { display: flex; gap: 0; scroll-snap-type: x mandatory; overflow-x: auto; padding-bottom: var(--space-12); scrollbar-width: none; -ms-overflow-style: none; overscroll-behavior-x: contain; }
+        .carousel-track::-webkit-scrollbar { display: none; }
+        .carousel-slide { min-width: 100%; scroll-snap-align: start; }
+        .carousel-caption { text-align: center; color: var(--color-grey); margin: 0 0 var(--space-12); }
+        .carousel-media { width: 100%; height: 680px; background: var(--color-white); border-radius: 16px; display: grid; place-items: center; overflow: hidden; position: relative; }
+        .carousel-media img { height: 680px; width: auto; max-width: 100%; display: block; border-radius: 16px; object-fit: contain; }
+        .carousel-nav { position: absolute; top: calc(50% + var(--space-12)); left: 0; right: 0; transform: translateY(-50%); display: flex; justify-content: space-between; align-items: center; pointer-events: none; padding: 0 var(--space-20); }
+        .carousel-btn { pointer-events: all; background: transparent; color: var(--color-fire-500); border: 0; width: 48px; height: 48px; display: grid; place-items: center; cursor: pointer; font-size: 48px; line-height: 1; }
+        @media (max-width: 640px) { .carousel-btn { font-size: 36px; width: 36px; height: 36px; } }
+        @media (max-width: 1024px) { .discovery-media .container { margin: 0 var(--space-40); } }
+        @media (max-width: 640px) { .discovery-media .container { margin: 0 var(--space-40); } }
+
+        .metrics-images,.discovery-images, .solution-images{ padding: var(--space-48) 0 var(--space-64); background: var(--color-white); }
+        .metrics-images .container, .discovery-images .container, .solution-images .container { max-width: 1920px; margin: 0 80px; }
+        @media (max-width: 1024px) { .metrics-images .container, .discovery-images .container, .solution-images .container { margin: 0 var(--space-40); } }
+        @media (max-width: 640px) { .metrics-images .container, .discovery-images .container, .solution-images .container { margin: 0 var(--space-40); } }
+        .metrics-image, .discovery-image, .solution-image{ margin: 0 0 var(--space-48); }
+        .metrics-caption, .discovery-caption, .solution-caption{ text-align: center; color: var(--color-grey); margin: 0 0 var(--space-12); }
+        .metrics-placeholder, .discovery-placeholder, .solution-placeholder{ width: 100%; background: var(--color-grey); border-radius: 16px; }
+        .metrics-placeholder, .discovery-placeholder, .solution-placeholder { height: auto; background: transparent; }
+        .metrics-placeholder img, .discovery-placeholder img, .solution-placeholder img { width: 100%; height: auto; object-fit: contain; border-radius: 16px; display: block; }
+
+        .case-quote { min-height: 100vh; background: var(--color-white); display: grid; place-items: center; padding: var(--space-64) 0; }
+        .case-quote .container { max-width: 1920px; margin: 0 80px; }
+        .case-quote .quote-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+        .case-quote .quote-kicker { margin: 0 0 var(--space-16); color: var(--color-grey); }
+        .case-quote .quote-text { color: var(--color-fire-500); }
+        @media (max-width: 640px) { .case-quote .container { margin: 0 var(--space-40); } }
+
+        .solution-section .metrics-right ul { list-style: none; padding: 0; margin: 0 0 var(--space-8); }
+        .solution-section .metrics-right li { margin-bottom: var(--space-8); padding-left: var(--space-16); position: relative; }
+        .solution-section .metrics-right li:before { content: "•"; position: absolute; left: 0; color: var(--text-body); }
+
+        .design-section { padding: var(--space-64) 0; background: var(--color-white); }
+        .design-section .container { max-width: 1920px; margin: 0 80px; }
+        .design-section h3 { margin: 0 0 var(--space-32); }
+        .design-placeholder { width: 100%; height: 520px; background: var(--color-fire-50); border-radius: 16px; }
+        .design-stack { display: grid; gap: var(--space-24); }
+        .design-cta { display: flex; justify-content: center; margin-top: var(--space-24); gap: var(--space-24); }
+        .design-cta .cta-button { background: var(--color-fire-500); color: var(--color-white); border: none; padding: var(--space-12) var(--space-20); border-radius: var(--radius-sm); text-decoration: none; box-shadow: var(--shadow-sm); display: inline-block; }
+        .design-cta .cta-button:hover { background: var(--text-accent); text-decoration: none; }
+        .design-cta .cta-button:active { background: var(--text-accent); }
+        @media (max-width: 1024px) { .design-cta { flex-direction: column; align-items: center; } }
+        @media (max-width: 640px) { .design-cta .cta-button { display: block; width: 100%; text-align: center; } }
+        @media (max-width: 1024px) { .design-section .container { margin: 0 var(--space-40); } }
+
+        /* Standalone CTA button (not wrapped in .design-cta) */
+        .cta-button { background: var(--color-fire-500); color: var(--color-white); border: none; padding: var(--space-12) var(--space-20); border-radius: var(--radius-sm); text-decoration: none; box-shadow: var(--shadow-sm); display: inline-block; }
+        .cta-button:hover { background: var(--text-accent); text-decoration: none; }
+        .cta-button:active { background: var(--text-accent); }
+        /* Center the button within section containers on desktop */
+        .solution-images .container > .cta-button { display: block; width: fit-content; margin: var(--space-24) auto 0; }
+        /* Full-width button within gutters on tablet/mobile */
+        @media (max-width: 1024px) { .solution-images .container > .cta-button { display: block; width: 100%; text-align: center; } }
+        @media (max-width: 640px) { .solution-images .container > .cta-button { display: block; width: 100%; text-align: center; } }
+
+        .impact-stats { padding: var(--space-0) 0; background: var(--color-white); }
+        .impact-stats .container { max-width: 1920px; margin: 0 80px; }
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-54); }
+        .stats-item h2 { color: var(--text-accent); margin: 0 0 var(--space-0); }
+        .stats-item p { margin: 0; }
+        @media (max-width: 1024px) { .impact-stats .container { margin: 0 var(--space-40); }.stats-row { grid-template-columns: repeat(2, 1fr); gap: var(--space-40); } }
+        @media (max-width: 640px) { .stats-row { grid-template-columns: repeat(2, 1fr); gap: var(--space-24); } }
+
+        .impact-intro { padding-bottom: var(--space-40); }
+        .impact-next { padding-top: var(--space-40); }
+
+        .project-nav { padding: calc(var(--space-64) * 2) 0; background: var(--color-fire-50); }
+        .project-nav .container { max-width: 1920px; margin: 0 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-64); align-items: end; }
+        .project-nav .nav-left { grid-column: span 6; }
+        .project-nav .nav-right { grid-column: span 5 / -1; display: flex; justify-content: flex-end; align-items: flex-end; gap: var(--space-4); }
+        .prev-project-label, .next-project-label { color: var(--text-body); display: block; margin-bottom: var(--space-8); }
+        .prev-project-link, .next-project-link { max-width: 400px; display: block; text-decoration: none; text-decoration-color: #232323; text-decoration-thickness: 2px; }
+        .prev-project-link { text-align: left; }
+        .next-project-link { text-align: right; }
+        .nav-next { text-align: right; }
+        .prev-project-link:hover, .next-project-link:hover { text-decoration: underline; text-underline-offset: 25%; text-decoration-thickness: 17%; }
+        @media (max-width: 1024px) {
+            .project-nav .container { grid-template-columns: 1fr; gap: var(--space-40); margin: 0 var(--space-40); }
+            .project-nav .nav-right { justify-content: flex-start; }
+            .nav-next { text-align: left; }
+            .next-project-link { text-align: left; }
+        }
+    </style>
+    </head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <h3 class="logo"><a href="index.html#home" class="logo-link" aria-label="TC Design Home"><img src="assets/TC_logo_illustration.svg" alt="" class="logo-mark" aria-hidden="true"><span class="logo-text">T C L</span></a></h3>
+                <button class="nav-toggle" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html#work" class="nav-link">Work</a></li>
+                    <li><a href="ai-design.html" class="nav-link">AI + Design</a></li>
+                    <li><a href="extra.html" class="nav-link">Extra</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div id="mobileMenu" class="mobile-menu">
+        <button class="menu-close" aria-label="Close menu"></button>
+        <ul class="mobile-menu-list" role="menu">
+            <li role="none"><a role="menuitem" href="index.html#work" class="mobile-menu-link">Work</a></li>
+            <li role="none"><a role="menuitem" href="ai-design.html" class="mobile-menu-link">AI + Design</a></li>
+            <li role="none"><a role="menuitem" href="extra.html" class="mobile-menu-link">Extra</a></li>
+            <li role="none"><a role="menuitem" href="about.html" class="mobile-menu-link">About</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <section class="case-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="launch-badge">Launched</span>
+                    <h2 class="text-heading-3">Guided Self-Serve Cancellations Designed to Reduce Cost</h2>
+                </div>
+                <div class="hero-media">
+                    <div class="hero-placeholder">
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="case-overview">
+            <div class="container">
+                <div class="case-content">
+                    <div class="content-section">
+                        <h3 class="text-heading-3">Overview</h3>
+                        <p class="text-body-base">Evolve is a vacation rental management company focused on delivering 5‑star guest experiences and management services for vacation rental owners. Most of Evolve’s owner users fall within the 45–64 age range and are distributed across the US. </p>
+                    </div>
+                    <div class="content-section">
+                        <h3 class="text-heading-3">Problem</h3>
+                        <p class="text-body-base">In the vacation rental industry, homeowners often need the ability to cancel guest bookings quickly, whether due to maintenance issues, double bookings, or unexpected personal circumstances. At Evolve, however, the process was manual and cumbersome: owners had to submit a support request, call, or email to make a cancellation. Because cancellations are time-sensitive, this dependency on frontline teams frustrated owners and left guests with less time to adjust their travel plans. The lack of a self-serve option not only slowed resolution but also eroded trust in the platform’s ability to support both owners and guests in critical moments.</p>
+                    </div>
+                    <div class="content-section">
+                        <h3 class="text-heading-3">Solution</h3>
+                        <p class="text-body-base">I designed a self-serve cancellation flow for the responsive web Owner Account experience. Since booking cancellation rules differ across distribution partners like Airbnb and Vrbo, the solution needed to balance clarity, guidance, and compliance. The final design combined step-by-step instructions, education, and document collection to simplify what had been a complex approval process. At the same time, I built in strategic content to help owners understand the impact cancellations have on their rental performance—encouraging fewer cancellations overall. The result: a tool that reduced cancelation requests, cut frontline support costs, and gave owners the flexibility they needed.</p>
+                    </div>
+                    <div class="content-section">
+                        <h3 class="text-heading-3">Impact</h3>
+                        <p class="text-body-base">The new self-serve booking cancellation tool saw immediate adoption, with ~20%  of the cancellations completed by owners in the first month. Our data dashboard revealed significant drop-off rates in each successive step or section. Rather than signaling confusion, these drop-offs showed that owners were pausing to reconsider after understanding the consequences of canceling. In other words, the tool not only enabled self-service but also successfully influenced behavior, helping reduce unnecessary cancellations.</p>
+                    </div>
+                </div>
+                <div class="case-details">
+                    <div class="detail-section">
+                        <h4 class="text-body-large">Role</h4>
+                        <p class="text-body-base">Lead designer</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="text-body-large">Team</h4>
+                        <p class="text-body-base">1 PM, 1 Researcher, 1 Engineer</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="text-body-large">Timeline</h4>
+                        <p class="text-body-base">1.5 mo</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="text-body-large">Platform</h4>
+                        <p class="text-body-base">Responsive web</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="text-body-large">Process</h4>
+                        <ul>
+                            <li class="text-body-base">New UI/UX</li>
+                            <li class="text-body-base">Wireframes</li>
+                            <li class="text-body-base">Flow analysis, internal process audits</li>
+                            <li class="text-body-base">Usability testing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="case-metrics case-details">
+            <div class="container">
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">The problem, in detail</h3>
+                    <p class="text-body-base">Guest booking cancellations were inherently complex. Since Evolve owners’ properties were listed across multiple distribution partners like Airbnb and Vrbo, each with its own rules and penalties, owners faced varying requirements when canceling. Cancellation fees acted as a deterrent, discouraging owners from backing out of bookings since cancellations negatively impacted their performance, search ranking, and long-term guest satisfaction. At the same time, these penalties upheld trust and credibility on the platform by holding owners to consistent standards.</p>
+                    <p class="text-body-base">Fees were calculated based on how close the cancellation was to the guest’s check-in date and the reason for canceling, often amounting to a percentage of the total booking. In certain cases, owners could request a waive fee, but this required timely submission of specific documentation—adding another layer of complexity to the process.</p>
+                    <p class="text-body-base"><span style="color: var(--color-fire-500);">How could I design a self-serve tool that made cancellations quick and intuitive, while also educating owners on the negative impacts—ultimately reducing cancellations altogether?</span></p>
+                </div>
+                <div class="metrics-right">
+                    <div class="metrics-list">
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">owner feedback</span></p>
+                            <p class="text-body-base">Users felt like they should be able to cancel guest bookings on their own. They were appreciative that frontline teams handled rebooking guests but were frustrated it took longer than expected.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="designs" class="metrics-images">
+            <div class="container">
+                <div class="solution-image">
+                    <p class="text-body-base-bold solution-caption" style="margin: 0 0 var(--space-24);">Digging into the cancellation reasons for one year</p>
+                    <div class="solution-placeholder">
+                        <img src="assets/evolve_cancellations_reason stats.png" alt="Stats" style="width: 50%; height: auto; display: block; margin: 0 auto;" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <!-- Discovery-->
+        <section class="case-metrics impact-next">
+            <div class="container">
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">Discovery</h3>
+                    <p class="text-body-base">I took a step back to understand the current state of the cancellation approval process from the user and internal team perspectives.</p>
+                    <ul>
+                        <li class="text-body-base"><span class="text-body-base-bold">Collaborated with frontline team to update fee process:</span> I reviewed all the cancellation reasons, grouped them into clearer categories, and updated outdated options so they better reflected whether a fee would actually apply.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Audited partner cancellation rules:</span> I documented the different cancellation rules and requirements from partner platforms like Airbnb and Vrbo. This helped define my content strategy for the tool and how I could simplify the instructions to best fit a majority of the rules.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Communication & resources audit:</span> I audited the communications and content owners received around cancellations (i.e. emails, help center articles), then simplified them with Marketing to make the process easier to follow.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Wireframing & testing:</span> I went through several iterations of wires, discussing variations with my PM and engineer, and refining based on the usability tests that were conducted with users. I also passed screens for feedback to the wider product org and design team.</li>
+                    </ul>
+                </div>
+                <div class="metrics-right">
+                    <div class="metrics-list">
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Timeline</span></p>
+                            <p class="text-body-base">2 weeks</p>
+                        </div>
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Participants</span></p>
+                            <p class="text-body-base">10 owners completed a usability test</p>
+                        </div>
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Tools</span></p>
+                            <p class="text-body-base">Sprig</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="designs" class="solution-images">
+            <div class="container">
+                <div class="solution-image">
+                    <p class="text-body-base-bold solution-caption">Re-grouping cancellation reasons took several iteration and a close collab with frontline teams</p>
+                    <div class="solution-placeholder">
+                        <img src="assets/evolve_cancellation_reasongroups.png" alt="Reason grouping" style="width: 50%; height: auto; display: block; margin: 0 auto;"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="designs" class="solution-images">
+            <div class="container">
+                <div class="solution-image">
+                    <p class="text-body-base-bold solution-caption">I created three variations of concepts, each with a different cancellation flow</p>
+                    <div class="solution-placeholder">
+                        <img src="assets/evolve_cancellation_wires v1.svg" alt="Wireframes V1" />
+                        <img src="assets/evolve_cancellation_wires v2.svg" alt="Wireframes V2" />
+                        <img src="assets/evolve_cancellation_wires v3.svg" alt="Wireframes V3" />
+                    </div>
+                </div>
+                <a class="design-cta cta-button" href="https://www.figma.com/design/zWbS3hKfzky8P9bfDodTab/Evolve--Self-serve-cancellations?node-id=40004013-120985&p=f&t=Wjck6HQkud16W6h7-11" target="_blank" rel="noopener noreferrer">View wires in Figma</a>
+            </div>
+        </section>
+
+        <!-- Testing -->
+        <section class="case-metrics testing">
+            <div class="container">
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">Testing</h3>
+                    <p class="text-body-base">I took a step back to understand the current state of the cancellation approval process from the user and internal team perspectives.</p>
+                    <ul>
+                        <li class="text-body-base"><span class="text-body-base-bold">Collaborated with frontline team to update fee process:</span> I reviewed all the cancellation reasons, grouped them into clearer categories, and updated outdated options so they better reflected whether a fee would actually apply.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Audited partner cancellation rules:</span> I documented the different cancellation rules and requirements from partner platforms like Airbnb and Vrbo. This helped define my content strategy for the tool and how I could simplify the instructions to best fit a majority of the rules.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Communication & resources audit:</span> I audited the communications and content owners received around cancellations (i.e. emails, help center articles), then simplified them with Marketing to make the process easier to follow.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Wireframing & testing:</span> I went through several iterations of wires, discussing variations with my PM and engineer, and refining based on the usability tests that were conducted with users. I also passed screens for feedback to the wider product org and design team.</li>
+                    </ul>
+                </div>
+                <div class="metrics-right">
+                    <div class="metrics-list">
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Timeline</span></p>
+                            <p class="text-body-base">2 weeks</p>
+                        </div>
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Participants</span></p>
+                            <p class="text-body-base">10 owners completed a usability test</p>
+                        </div>
+                        <div class="metrics-item">
+                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Tools</span></p>
+                            <p class="text-body-base">Sprig</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Project navigation -->
+        <nav class="project-nav" aria-label="Project navigation">
+            <div class="container">
+                <div class="nav-left"></div>
+                <div class="nav-right">
+                    <div class="nav-next">
+                        <span class="text-body-sm next-project-label">Next →</span>
+                        <a class="next-project-link" href="evolve-inbox.html" aria-label="Next project: Streamlining Owner–Guest Communication with Inbox">
+                            <span class="text-heading-5">Streamlining Owner–Guest Communication with Inbox</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links" role="navigation" aria-label="Social links">
+                <a class="social-btn" href="https://www.linkedin.com/in/tlainy" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <img src="assets/Linkedin_circular.svg" alt="" aria-hidden="true" />
+                </a>
+                <a class="social-btn" href="mailto:oh.hello.tc@gmail.com" aria-label="Email">
+                    <img src="assets/Email_circular.svg" alt="" aria-hidden="true" />
+                </a>
+            </div>
+            <p class="text-body-sm">&copy; 2025 TC Design. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+
