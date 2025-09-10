@@ -199,4 +199,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         equalizeHeights();
     });
+
+    // Subtle reveal animation for elements with .reveal-on-scroll
+    (function initRevealOnScroll() {
+        const revealEls = Array.from(document.querySelectorAll('.reveal-on-scroll'));
+        if (!revealEls.length) return;
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+        revealEls.forEach(el => observer.observe(el));
+    })();
 });

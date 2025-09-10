@@ -10,6 +10,59 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <script defer src="scripts/main.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const wrappers = document.querySelectorAll('.video-wrapper');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const wrapper = entry.target;
+                const video = wrapper.querySelector('video');
+                const overlay = wrapper.querySelector('.video-overlay');
+                const loopsToPlay = Number(wrapper.getAttribute('data-loop-count') || 3);
+                if (!video) return;
+
+                if (entry.isIntersecting) {
+                    if (video.dataset.started === 'true') return;
+                    video.currentTime = 0;
+                    video.loop = false;
+                    video.muted = true;
+                    video.playbackRate = 1.0;
+                    video.dataset.loopCounter = '0';
+                    video.dataset.started = 'true';
+                    video.play().catch(() => {});
+
+                    const onEnded = () => {
+                        const n = Number(video.dataset.loopCounter || '0') + 1;
+                        video.dataset.loopCounter = String(n);
+                        if (n < loopsToPlay) {
+                            video.currentTime = 0;
+                            video.play().catch(() => {});
+                        } else {
+                            video.pause();
+                            overlay && overlay.classList.add('is-visible');
+                            video.removeEventListener('ended', onEnded);
+                        }
+                    };
+                    video.addEventListener('ended', onEnded);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        wrappers.forEach(w => observer.observe(w));
+
+        document.querySelectorAll('.video-wrapper').forEach(wrapper => {
+            const video = wrapper.querySelector('video');
+            const overlay = wrapper.querySelector('.video-overlay');
+            const playBtn = wrapper.querySelector('.video-play-btn');
+            if (!video || !overlay || !playBtn) return;
+
+            playBtn.addEventListener('click', () => {
+                overlay.classList.remove('is-visible');
+                video.play().catch(() => {});
+            });
+        });
+    });
+    </script>
     <style>
         /* Mirror evolve-inbox layout and responsiveness */
         .case-hero { padding: 120px 20px 80px; min-height: 100vh; background: var(--color-white); display: grid; place-items: center; }
@@ -45,7 +98,8 @@
             .case-hero .container, .case-overview .container { margin: 0 var(--space-40); }
         }
 
-        .case-metrics .testing { padding: var(--space-64) 0; background: var(--color-white); }
+        .case-metrics .testing .solution{ padding: var(--space-64) 0; background: var(--color-white); }
+        .case-metrics { padding: var(--space-64) 0; background: var(--color-white); }
         .case-metrics .container { max-width: 1920px; margin: 0 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-64); align-items: start; }
         .case-metrics h3 { margin: 0 0 var(--space-20); }
         .metrics-left { grid-column: span 6; }
@@ -87,6 +141,26 @@
         .metrics-placeholder, .discovery-placeholder, .solution-placeholder{ width: 100%; background: var(--color-grey); border-radius: 16px; }
         .metrics-placeholder, .discovery-placeholder, .solution-placeholder { height: auto; background: transparent; }
         .metrics-placeholder img, .discovery-placeholder img, .solution-placeholder img { width: 100%; height: auto; object-fit: contain; border-radius: 16px; display: block; }
+
+        /* Video section */
+        .video-wrapper { position: relative; width: 100%; border-radius: 16px; overflow: hidden; background: var(--color-off-black); }
+        .video-wrapper video { width: 100%; height: auto; display: block; border-radius: 16px; }
+        .video-overlay { position: absolute; inset: 0; display: grid; place-items: center; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
+        .video-overlay.is-visible { opacity: 1; pointer-events: all; }
+        .video-play-btn { background: var(--color-fire-500); color: var(--color-white); border: none; padding: var(--space-12) var(--space-20); border-radius: var(--radius-sm); box-shadow: var(--shadow-sm); cursor: pointer; }
+
+        /* Device frame wrapper to scale video to 50% on desktop */
+        .device-frame { width: 50%; margin: 0 auto; background: #000; border-radius: 32px; padding: var(--space-12); border: 8px solid #111; box-shadow: var(--shadow-sm); }
+        .device-notch { width: 96px; height: 8px; background: #222; border-radius: 8px; margin: 0 auto var(--space-8); }
+        @media (max-width: 1024px) { .device-frame { width: 100%; } }
+
+        /* MacBook Air SVG device with video placed in the screen area */
+        .device-mac { position: relative; width: 50%; margin: 0 auto; }
+        .device-mac .frame { width: 100%; height: auto; display: block; }
+        .device-mac .screen { position: absolute; top: 5.3%; left: 12.3%; width: 75.5%; height: 76.7%; }
+        .device-mac .screen .video-wrapper { height: 100%; }
+        .device-mac .screen video { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
+        @media (max-width: 1024px) { .device-mac { width: 100%; } }
 
         .case-quote { min-height: 100vh; background: var(--color-white); display: grid; place-items: center; padding: var(--space-64) 0; }
         .case-quote .container { max-width: 1920px; margin: 0 80px; }
@@ -190,7 +264,7 @@
                 </div>
                 <div class="hero-media">
                     <div class="hero-placeholder">
-                        
+                        <img src="assets/evolve_cancellation_thumbnail.svg" alt="Thumbnail" />
                     </div>
                 </div>
             </div>
@@ -339,29 +413,58 @@
             <div class="container">
                 <div class="metrics-left">
                     <h3 class="text-heading-3">Testing</h3>
-                    <p class="text-body-base">I took a step back to understand the current state of the cancellation approval process from the user and internal team perspectives.</p>
-                    <ul>
-                        <li class="text-body-base"><span class="text-body-base-bold">Collaborated with frontline team to update fee process:</span> I reviewed all the cancellation reasons, grouped them into clearer categories, and updated outdated options so they better reflected whether a fee would actually apply.</li>
-                        <li class="text-body-base"><span class="text-body-base-bold">Audited partner cancellation rules:</span> I documented the different cancellation rules and requirements from partner platforms like Airbnb and Vrbo. This helped define my content strategy for the tool and how I could simplify the instructions to best fit a majority of the rules.</li>
-                        <li class="text-body-base"><span class="text-body-base-bold">Communication & resources audit:</span> I audited the communications and content owners received around cancellations (i.e. emails, help center articles), then simplified them with Marketing to make the process easier to follow.</li>
-                        <li class="text-body-base"><span class="text-body-base-bold">Wireframing & testing:</span> I went through several iterations of wires, discussing variations with my PM and engineer, and refining based on the usability tests that were conducted with users. I also passed screens for feedback to the wider product org and design team.</li>
-                    </ul>
+                    <p class="text-body-base">I created a prototype, designing a hybrid solution based on the 3 variations of wireframes.</p>
+                    <p class="text-body-base">Overall, the cancellation flow performed well with users saying it was easy to use. All users successfully navigated the process and clearly understood that their request was in progress. They also consistently valued the alternative options, with most indicating a preference for offering a discount instead of canceling.</p>
                 </div>
-                <div class="metrics-right">
-                    <div class="metrics-list">
-                        <div class="metrics-item">
-                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Timeline</span></p>
-                            <p class="text-body-base">2 weeks</p>
-                        </div>
-                        <div class="metrics-item">
-                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Participants</span></p>
-                            <p class="text-body-base">10 owners completed a usability test</p>
-                        </div>
-                        <div class="metrics-item">
-                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Tools</span></p>
-                            <p class="text-body-base">Sprig</p>
+            </div>
+        </section>
+
+        <section id="designs" class="solution-images">
+            <div class="container">
+                <div class="solution-image">
+                    <div class="solution-placeholder">
+                        <img src="assets/evolve_cancellation_research.png" alt="Final designs" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Designs -->
+        <section class="case-metrics solution">
+            <div class="container">
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">Solution</h3>
+                    <p class="text-body-base">Based on the test findings, I put a bigger spotlight on solutions that help owners save bookings, like offering a discount to a guest for an inconvenience. I also simplified the whole process by trimming down the amount of text on screen and linking to our Help Center and other resources.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="designs" class="solution-images">
+            <div class="container">
+                <div class="solution-image">
+                    <div class="device-mac">
+                        <img src="assets/Device - Macbook Air.svg" alt="MacBook Air frame" class="frame" />
+                        <div class="screen">
+                            <div class="video-wrapper" data-loop-count="3">
+                                <video id="cxl-video-1" preload="metadata" playsinline muted controlslist="nodownload noremoteplayback" disablepictureinpicture>
+                                    <source src="assets/Evolve_Cancellations.mp4" type="video/mp4">
+                                </video>
+                                <div class="video-overlay" aria-hidden="true">
+                                    <button class="video-play-btn" type="button" aria-label="Play video">Play</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact -->
+        <section class="case-metrics impact-next">
+            <div class="container">
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">What impact did we have?</h3>
+                    <p class="text-body-base">The new self-serve booking cancellation tool saw immediate adoption, with ~20% of the cancellations completed by owners in the first month. Our data dashboard revealed significant drop-off rates in each successive step, which my team saw as a success—we were successfully deterring the user from canceling with appropriately placed education and tips.</p>
                 </div>
             </div>
         </section>
@@ -370,12 +473,19 @@
         <!-- Project navigation -->
         <nav class="project-nav" aria-label="Project navigation">
             <div class="container">
-                <div class="nav-left"></div>
+                <div class="nav-left">
+                    <div class="nav-prev">
+                        <span class="text-body-sm prev-project-label">← Previous</span>
+                        <a class="prev-project-link" href="evolve-inbox.html" aria-label="Previous project: Streamlining Owner–Guest Communication with Inbox">
+                            <span class="text-heading-5">Streamlining Owner–Guest Communication with Inbox</span>
+                        </a>
+                    </div>
+                </div>
                 <div class="nav-right">
                     <div class="nav-next">
                         <span class="text-body-sm next-project-label">Next →</span>
-                        <a class="next-project-link" href="evolve-inbox.html" aria-label="Next project: Streamlining Owner–Guest Communication with Inbox">
-                            <span class="text-heading-5">Streamlining Owner–Guest Communication with Inbox</span>
+                        <a class="next-project-link" href="evolve-owner-account.html" aria-label="Next project: Transforming the Owner Journey with a Seamless Experience">
+                            <span class="text-heading-5">Transforming the Owner Journey with a Seamless Experience</span>
                         </a>
                     </div>
                 </div>

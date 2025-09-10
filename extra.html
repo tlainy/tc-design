@@ -5,13 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Extra · TC Design</title>
     <link rel="stylesheet" href="styles/main.css">
-    <meta name="description" content="Extra project case study">
+    <meta name="description" content="AI + Design at TC Design">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <script defer src="scripts/main.js"></script>
-    <style> .case-hero { padding: 120px 20px 80px; } .case-hero .container { max-width: 870px; margin: 0 auto; } .case-hero h1 { margin: 0 0 12px; } .case-hero p { margin: 0; } </style>
-    </head>
+    <style>
+        /* Right-side hero media for AI + Design */
+        .ai-hero-media .ai-media-stack { display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; max-width: 420px; }
+        .ai-hero-media .ai-media-stack img { max-width: 320px; width: 100%; height: auto; border-radius: 16px; box-shadow: var(--shadow-md); }
+        .hero .hero-content h2 { padding-bottom: 16px; }
+
+        /* Offset for fixed header on desktop so H2 isn't hidden */
+        @media (min-width: 1025px) { main { margin-top: 80px; } }
+
+        /* Other Work grid — mirrors layout and responsiveness from reference */
+        .other-work { padding: var(--space-48) 0 var(--space-64); background: var(--color-white); }
+        .other-work .container { max-width: 1920px; margin: 40px 80px; }
+        /* Ensure 40px gap between section header and gallery */
+        .other-work h2 { margin-bottom: var(--space-40); }
+        .other-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-24); }
+        .other-item { position: relative; overflow: hidden; border-radius: 12px; background: var(--color-white); }
+        /* Show full image within variable-height containers */
+        .other-item img { width: 100%; height: auto; display: block; object-fit: contain; }
+        /* Center-specific tweak for items that need inner centering */
+        .other-item--center { display: grid; place-items: center; }
+        .other-item--center img { width: auto; max-width: 100%; height: auto; }
+        /* Tablet */
+        @media (max-width: 1024px) { .other-work .container { margin: 0 var(--space-40); } .other-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-16); } }
+        /* Mobile */
+        @media (max-width: 640px) { .other-grid { grid-template-columns: 1fr; gap: var(--space-12); } }
+
+        /* Subtle reveal animation on scroll */
+        .reveal-on-scroll { opacity: 0; transform: translateY(12px) scale(0.98); transition: opacity 420ms ease, transform 520ms ease; }
+        .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
+        /* Stagger effect */
+        .other-grid .reveal-on-scroll:nth-child(1) { transition-delay: 40ms; }
+        .other-grid .reveal-on-scroll:nth-child(2) { transition-delay: 80ms; }
+        .other-grid .reveal-on-scroll:nth-child(3) { transition-delay: 120ms; }
+        .other-grid .reveal-on-scroll:nth-child(4) { transition-delay: 160ms; }
+        .other-grid .reveal-on-scroll:nth-child(5) { transition-delay: 200ms; }
+        .other-grid .reveal-on-scroll:nth-child(6) { transition-delay: 240ms; }
+        .other-grid .reveal-on-scroll:nth-child(7) { transition-delay: 280ms; }
+        .other-grid .reveal-on-scroll:nth-child(8) { transition-delay: 320ms; }
+    </style>
+</head>
 <body>
     <header class="header">
         <nav class="nav">
@@ -31,7 +68,7 @@
             </div>
         </nav>
     </header>
-
+    
     <div id="mobileMenu" class="mobile-menu">
         <button class="menu-close" aria-label="Close menu"></button>
         <ul class="mobile-menu-list" role="menu">
@@ -43,12 +80,22 @@
     </div>
 
     <main>
-        <section class="case-hero">
-            <div class="container">
-                <h1 class="text-heading-1">Extra</h1>
-                <p class="text-body-lg">Case study page placeholder. Content coming soon.</p>
+    <section class="other-work" aria-label="Other Work gallery">
+        <div class="container">
+          <h2 class="text-heading-2" id="extra">Extra</h2>
+             <div class="other-grid">
+                <figure class="other-item reveal-on-scroll"><img src="assets/extra_square_lady.png" alt="Square lady" /></figure>
+                <figure class="other-item reveal-on-scroll"><img src="assets/extra_woman_balloon.webp" alt="Woman with balloon" /></figure>
+                    <figure class="other-item reveal-on-scroll"><img src="assets/extra_a2frisbee.webp" alt="A2 Frisbee logo" /></figure>
+                    <figure class="other-item reveal-on-scroll"><img src="assets/extra_doglogo.webp" alt="Dog logo concept" /></figure>
+                    <figure class="other-item other-item--center reveal-on-scroll"><img src="assets/extra_pizza_graphic.webp" alt="Pizza graphic" /></figure>
+                    <figure class="other-item reveal-on-scroll"><img src="assets/extra_painting.png" alt="Painting" /></figure>
+                    <figure class="other-item reveal-on-scroll"><img src="assets/extra_drawing.png" alt="Drawing" /></figure>
+                    <figure class="other-item reveal-on-scroll"><img src="assets/extra_pepgraphic.JPEG" alt="Mr. Pep" /></figure>
+                    <figure class="other-item reveal-on-scroll"><img src="assets/extra_square_man.png" alt="Square man" /></figure>
             </div>
-        </section>
+        </div>
+    </section>
     </main>
 
     <footer class="footer">
@@ -64,7 +111,7 @@
             <p class="text-body-sm">&copy; 2025 TC Design. All rights reserved.</p>
         </div>
     </footer>
+    <script src="scripts/main.js"></script>
 </body>
 </html>
-
 
