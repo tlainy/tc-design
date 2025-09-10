@@ -15,8 +15,9 @@
         .case-hero { padding: 120px 20px 80px; min-height: 100vh; background: var(--color-white); display: grid; place-items: center; }
         .case-hero .container { max-width: 1920px; margin: 0 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-20); align-items: center; }
         .case-hero .hero-content { grid-column: span 7; padding: 0; max-width: 870px; text-align: left; }
-        .case-hero .hero-media { grid-column: span 5 / -1; display: flex; justify-content: center; }
-        .hero-placeholder { width: 100%; height: 420px; background: var(--color-fire-100); border-radius: 16px; }
+        .case-hero .hero-media { grid-column: span 5 / -1; display: flex; justify-content: center; align-items: center; }
+        .hero-placeholder { width: 100%; height: 420px; background: var(--color-white); border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .hero-placeholder img { width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: contain; display: block; border-radius: inherit; }
         .launch-badge { display: inline-block; background: var(--color-off-black); color: var(--color-white); padding: 6px 10px; border-radius: 6px; font-size: 14px; font-weight: 700; letter-spacing: 0.02em; margin-bottom: var(--space-24); }
 
         /* Overview section: fire-50 background */
@@ -73,11 +74,17 @@
         @media (max-width: 1024px) { .collage-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 640px) { .collage-grid { grid-template-columns: 1fr; } }
 
-        .discovery-images, .solution-images{ padding: var(--space-48) 0 var(--space-64); background: var(--color-white); }
-        .discovery-images, .solution-image .container { max-width: 1920px; margin: 0 80px; }
-        .discovery-image, .solution-image{ margin: 0 0 var(--space-48); }
-        .discovery-caption, .solution-caption{ text-align: center; color: var(--color-grey); margin: 0 0 4px; }
-        .discovery-placeholder, .solution-placeholder{ width: 100%; height: 420px; background: var(--color-grey); border-radius: 16px; }
+        .metrics-images,.discovery-images, .solution-images{ padding: var(--space-48) 0 var(--space-64); background: var(--color-white); }
+        /* Ensure image sections span the same full width as other content */
+        .metrics-images .container, .discovery-images .container, .solution-images .container { max-width: 1920px; margin: 0 80px; }
+        @media (max-width: 1024px) { .metrics-images .container, .discovery-images .container, .solution-images .container { margin: 0 var(--space-40); } }
+        @media (max-width: 640px) { .metrics-images .container, .discovery-images .container, .solution-images .container { margin: 0 var(--space-40); } }
+        .metrics-image, .discovery-image, .solution-image{ margin: 0 0 var(--space-48); }
+        .metrics-caption, .discovery-caption, .solution-caption{ text-align: center; color: var(--color-grey); margin: 0 0 var(--space-12); }
+        .metrics-placeholder, .discovery-placeholder, .solution-placeholder{ width: 100%; background: var(--color-grey); border-radius: 16px; }
+        /* Let images define height based on width for all image sections */
+        .metrics-placeholder, .discovery-placeholder, .solution-placeholder { height: auto; background: transparent; }
+        .metrics-placeholder img, .discovery-placeholder img, .solution-placeholder img { width: 100%; height: auto; object-fit: contain; border-radius: 16px; display: block; }
 
         /* Full-height quote section (matches hero height) */
         .case-quote { min-height: 100vh; background: var(--color-white); display: grid; place-items: center; padding: var(--space-64) 0; }

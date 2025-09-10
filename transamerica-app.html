@@ -15,8 +15,9 @@
         .case-hero { padding: 120px 20px 80px; min-height: 100vh; background: var(--color-white); display: grid; place-items: center; }
         .case-hero .container { max-width: 1920px; margin: 0 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-20); align-items: center; }
         .case-hero .hero-content { grid-column: span 7; padding: 0; max-width: 870px; text-align: left; }
-        .case-hero .hero-media { grid-column: span 5 / -1; display: flex; justify-content: center; }
-        .hero-placeholder { width: 100%; height: 420px; background: var(--color-fire-100); border-radius: 16px; }
+        .case-hero .hero-media { grid-column: span 5 / -1; display: flex; justify-content: center; align-items: center; }
+        .hero-placeholder { width: 100%; height: 420px; background: var(--color-white); border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .hero-placeholder img { width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: contain; display: block; border-radius: inherit; }
         .launch-badge { display: inline-block; background: var(--color-off-black); color: var(--color-white); padding: 6px 10px; border-radius: 6px; font-size: 14px; font-weight: 700; letter-spacing: 0.02em; margin-bottom: var(--space-24); }
         
         /* Overview section: fire-50 background */
@@ -74,11 +75,44 @@
         @media (max-width: 1024px) { .collage-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 640px) { .collage-grid { grid-template-columns: 1fr; } }
 
-        .discovery-images, .solution-images{ padding: var(--space-48) 0 var(--space-64); background: var(--color-white); }
-        .discovery-images, .solution-image .container { max-width: 1920px; margin: 0 80px; }
-        .discovery-image, .solution-image{ margin: 0 0 var(--space-48); }
-        .discovery-caption, .solution-caption{ text-align: center; color: var(--color-grey); margin: 0 0 4px; }
-        .discovery-placeholder, .solution-placeholder{ width: 100%; height: 420px; background: var(--color-grey); border-radius: 16px; }
+        /* Carousel */
+        .carousel { position: relative; overflow: hidden; }
+        .carousel-track { display: flex; gap: 0; scroll-snap-type: x mandatory; overflow-x: auto; padding-bottom: var(--space-12); scrollbar-width: none; -ms-overflow-style: none; overscroll-behavior-x: contain; }
+        .carousel-track::-webkit-scrollbar { display: none; }
+        .carousel-slide { min-width: 100%; scroll-snap-align: start; }
+        .carousel-caption { text-align: center; color: var(--color-grey); margin: 0 0 var(--space-12); }
+        .carousel-media { width: 100%; height: 680px; background: var(--color-white); border-radius: 16px; display: grid; place-items: center; overflow: hidden; position: relative; }
+        .carousel-media img { height: 680px; width: auto; max-width: 100%; display: block; border-radius: 16px; object-fit: contain; }
+        .carousel-nav { position: absolute; top: calc(50% + var(--space-12)); left: 0; right: 0; transform: translateY(-50%); display: flex; justify-content: space-between; align-items: center; pointer-events: none; padding: 0 var(--space-20); }
+        .carousel-btn { pointer-events: all; background: transparent; color: var(--color-fire-500); border: 0; width: 48px; height: 48px; display: grid; place-items: center; cursor: pointer; font-size: 48px; line-height: 1; }
+        @media (max-width: 640px) { .carousel-btn { font-size: 36px; width: 36px; height: 36px; } }
+        @media (max-width: 1024px) { .discovery-media .container { margin: 0 var(--space-40); } }
+        @media (max-width: 640px) { .discovery-media .container { margin: 0 var(--space-40); } }
+
+        /* Instance layout: place nav to the left/right (not overlapping) */
+        #final-designs-carousel { display: grid; grid-template-columns: 56px 1fr 56px; align-items: center; }
+        #final-designs-carousel .carousel-track { grid-column: 2; }
+        #final-designs-carousel .carousel-nav { position: static; display: contents; transform: none; padding: 0; margin: 0; pointer-events: none; }
+        #final-designs-carousel .carousel-btn { pointer-events: all; }
+        #final-designs-carousel .carousel-btn[data-dir="prev"] { grid-column: 1; justify-self: start; }
+        #final-designs-carousel .carousel-btn[data-dir="next"] { grid-column: 3; justify-self: end; }
+
+        .metrics-images,.discovery-images, .solution-images{ padding: var(--space-48) 0 var(--space-64); background: var(--color-white); }
+        /* Ensure image sections span the same full width as other content */
+        .metrics-images .container, .discovery-images .container, .solution-images .container { max-width: 1920px; margin: 0 80px; }
+        @media (max-width: 1024px) { .metrics-images .container, .discovery-images .container, .solution-images .container { margin: 0 var(--space-40); } }
+        @media (max-width: 640px) { .metrics-images .container, .discovery-images .container, .solution-images .container { margin: 0 var(--space-40); } }
+        .metrics-image, .discovery-image, .solution-image{ margin: 0 0 var(--space-48); }
+        .metrics-caption, .discovery-caption, .solution-caption{ text-align: center; color: var(--color-grey); margin: 0 0 var(--space-12); }
+        .metrics-placeholder, .discovery-placeholder, .solution-placeholder{ width: 100%; background: var(--color-grey); border-radius: 16px; }
+        /* Let images define height based on width for all image sections */
+        .metrics-placeholder, .discovery-placeholder, .solution-placeholder { height: auto; background: transparent; }
+        .metrics-placeholder img, .discovery-placeholder img, .solution-placeholder img { width: 100%; height: auto; object-fit: contain; border-radius: 16px; display: block; }
+        /* Utility: center a single image at 60% width */
+        .img-60-center { width: 60% !important; margin-left: auto; margin-right: auto; display: block; }
+        /* Two-up image row helper */
+        .image-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-24); }
+        @media (max-width: 1024px) { .image-grid { grid-template-columns: 1fr; } }
 
         /* Full-height quote section (matches hero height) */
         .case-quote { min-height: 100vh; background: var(--color-white); display: grid; place-items: center; padding: var(--space-64) 0; }
@@ -123,6 +157,23 @@
         /* Impact spacing tweaks */
         .impact-intro { padding-bottom: var(--space-40); }
         .impact-next { padding-top: var(--space-40); }
+
+        /* Process grid (Discovery → Test & learn) */
+        .process-section { padding: var(--space-64) 0; background: var(--color-fire-50); }
+        .process-section .container { max-width: 1920px; margin: 0 80px; }
+        .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-64); text-align: center; align-items: start; }
+        .process-item { display: grid; gap: var(--space-8); justify-items: center; }
+        .process-emoji { font-size: 24px; line-height: 1; margin-bottom: var(--space-8); }
+        .process-title { margin: 0 0 var(--space-8); }
+        .process-text { margin: 0; max-width: 42ch; color: var(--text-body); }
+        @media (max-width: 1024px) {
+            .process-section .container { margin: 0 var(--space-40); }
+            .process-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-40); }
+        }
+        @media (max-width: 640px) {
+            .process-section .container { margin: 0 var(--space-40); }
+            .process-grid { grid-template-columns: 1fr; gap: var(--space-24); }
+        }
 
         /* Project navigation (bottom of page) */
         .project-nav { padding: calc(var(--space-64) * 2) 0; background: var(--color-fire-50); }
@@ -178,10 +229,12 @@
             <div class="container">
                 <div class="hero-content">
                     <span class="launch-badge">Launched</span>
-                    <h2 class="text-heading-2">Transamerica App and some longer title</h2>
+                    <h2 class="text-heading-2">Transamerica App:<br>Designing a Mobile App that Empowers Users on their Retirement Journey</h2>
                 </div>
                 <div class="hero-media">
-                    <div class="hero-placeholder"></div>
+                    <div class="hero-placeholder">
+                        <img src="assets/transamerica_app_thumbnail.png" alt="Project thumbnail" />
+                    </div>
                 </div>
             </div>
         </section>
@@ -191,45 +244,45 @@
                 <div class="case-content">
                     <div class="content-section">
                         <h3 class="text-heading-3">Overview</h3>
-                        <p class="text-body-base">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere, purus et laoreet volutpat, ipsum nisi ultrices nibh, in iaculis ligula lorem at nunc.</p>
-                        <p class="text-body-base">Nullam id dapibus lectus. Curabitur luctus justo erat, in porttitor nunc posuere in. Integer in arcu a enim fermentum viverra.</p>
+                        <p class="text-body-base">Transamerica is a financial services company that helps millions of people prepare for retirement through investment products and workplace retirement plans. Their focus is on making financial planning more accessible, building trust through education, and supporting people in living healthier, wealthier lives*.</p>
+                        <p class="text-body-base">*Wealth and Health℠ was the main tenet in the Transamerica philosophy: protecting your Health can pay dividends in the future. Wealth and Health℠ focuses on a more holistic approach to retirement journey management, one that’s also focused on physical and mental wellbeing.</p>
                     </div>
                     <div class="content-section">
                         <h3 class="text-heading-3">Problem</h3>
-                        <p class="text-body-base">Suspendisse potenti. Nunc feugiat, nibh nec iaculis tristique, massa lorem efficitur sem, a sodales tortor nisi in tortor.</p>
+                        <p class="text-body-base">Transamerica has two retirement journey management mobile apps: one app places a focus on Wealth and Health℠* but lacks the functionality the users need (more recent); the other app meets the users’ needs but does not embrace the Wealth and Health℠ philosophy (legacy). We needed to merge the two mobile apps into one. We had to rethink the architecture, interaction flow, and visual design while keeping inline with the Transamerica philosophy.</p>
                     </div>
                     <div class="content-section">
                         <h3 class="text-heading-3">Solution</h3>
-                        <p class="text-body-base">Praesent nec lorem at mi interdum rhoncus. Etiam condimentum nisl at sapien tristique, id mollis lectus venenatis.</p>
+                        <p class="text-body-base">I designed a new mobile app experience that made complex features easier to use, streamlined the navigation and information architecture, and refreshed the overall UI. I also rethought how we approached retirement education—making it more approachable and digestible for our users. The end experience was a combination of new design and redesign of the former app.</p>
                     </div>
                     <div class="content-section">
                         <h3 class="text-heading-3">Impact</h3>
-                        <p class="text-body-base">Aliquam ut risus ligula. Quisque vitae ipsum sit amet ex interdum aliquet. Nam commodo, tortor sed condimentum dapibus, neque arcu facilisis felis, vitae luctus nunc felis vitae tellus.</p>
+                        <p class="text-body-base">We completed all feature designs in the provided timeline of six months. In order to make the design-developer handoff seamless, we created style guides to ensure our design vision could be easily understood and to set a foundation for the next releases. The Transamerica Retirement App was released in December, 2020.</p>
                     </div>
                 </div>
                 <div class="case-details">
                     <div class="detail-section">
                         <h4 class="text-body-large">Role</h4>
-                        <p class="text-body-base">Senior designer</p>
+                        <p class="text-body-base">UX/UI Designer (1 of 3)</p>
                     </div>
                     <div class="detail-section">
                         <h4 class="text-body-large">Team</h4>
-                        <p class="text-body-base">Lorem ipsum dolor sit amet, consectetur.</p>
+                        <p class="text-body-base">1 PM, 1 Researcher, 3 Engineers</p>
                     </div>
                     <div class="detail-section">
                         <h4 class="text-body-large">Timeline</h4>
-                        <p class="text-body-base">2024 – 2025</p>
+                        <p class="text-body-base">Final designs completed in 6 months</p>
                     </div>
                     <div class="detail-section">
-                        <h4 class="text-body-large">Platforms & integrations</h4>
-                        <p class="text-body-base">iOS, Android</p>
+                        <h4 class="text-body-large">Platforms</h4>
+                        <p class="text-body-base">Native app iOS and Android</p>
                     </div>
                     <div class="detail-section">
                         <h4 class="text-body-large">Process</h4>
                         <ul>
-                            <li class="text-body-base">Research & discovery</li>
-                            <li class="text-body-base">Wireframes & IA</li>
-                            <li class="text-body-base">Design system components</li>
+                            <li class="text-body-base">New design</li>
+                            <li class="text-body-base">Redesign</li>
+                            <li class="text-body-base">Information architecture (IA)</li>
                         </ul>
                     </div>
                 </div>
@@ -240,46 +293,70 @@
             <div class="container">
                 <div class="metrics-left">
                     <h3 class="text-heading-3">The problem, in detail</h3>
-                    <p class="text-body-base">Cras pulvinar, sem in sollicitudin euismod, justo nunc gravida dolor, vitae dignissim diam nisl ac nulla.</p>
-                    <p class="text-body-base">In hac habitasse platea dictumst. Integer tincidunt, mauris at efficitur pulvinar, mi nibh fringilla nisl, nec aliquet augue risus at nunc.</p>
+                    <p class="text-body-base">Transamerica has two retirement journey management mobile apps: one app places a focus on Wealth and Health but lacks the functionality the users need (more recent); the other app meets the users’ needs but does not embrace the Wealth and Health philosophy (legacy). We needed to merge the two into one. I asked myself:</p>
                     <ul>
-                        <li class="text-body-base"><span class="text-body-base-bold">User A:</span> Lorem ipsum dolor sit amet.</li>
-                        <li class="text-body-base"><span class="text-body-base-bold">User B:</span> Integer non luctus eros.</li>
-                        <li class="text-body-base"><span class="text-body-base-bold">Business:</span> Morbi a efficitur lorem.</li>
+                        <li class="text-body-base">How could we design a mobile app that embodies the Wealth and Health philosophy and provide key retirement journey management functionality?</li>
+                        <li class="text-body-base">How could we create a space that could engage the users beyond the simple task of checking account balances? </li>
+                        <li class="text-body-base">How could we add, improve, or augment 21 features in a design deliverable timeline of six months?</li>
                     </ul>
+                    <p class="text-body-base">One of our biggest design challenges was working within those constraints and minimizing any new patterns or styles; we had to stick with what was in the more recent app and build on that. We had a small yet very effective team of three designers and one researcher.</p>
                 </div>
                 <div class="metrics-right">
-                    <div class="metrics-list">
-                        <div class="metrics-item">
-                            <h2 class="text-heading-2">48%</h2>
-                            <p class="text-body-base">lorem metric description</p>
-                        </div>
-                        <div class="metrics-item">
-                            <h2 class="text-heading-2">20k+</h2>
-                            <p class="text-body-base">lorem metric description</p>
-                        </div>
-                        <div class="metrics-item">
-                            <h2 class="text-heading-2">30%</h2>
-                            <p class="text-body-base">lorem metric description</p>
-                        </div>
-                        <div class="metrics-item">
-                            <h2 class="text-heading-2">7h–24h</h2>
-                            <p class="text-body-base">lorem metric description</p>
-                        </div>
-                        <div class="metrics-item">
-                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">user feedback</span></p>
-                            <p class="text-body-base">“Lorem ipsum dolor sit amet, consectetur adipiscing elit.”</p>
-                        </div>
+                    <div class="metrics-placeholder">
+                        <img src="assets/transamerica_app_legacy%20comparison.png" alt="Legacy vs new app comparison" />
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="discovery-media">
+        <section class="case-metrics impact-next">
             <div class="container">
-                <div class="collage-grid">
-                    <div class="collage-item"></div>
-                    <div class="collage-item"></div>
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">Discovery</h3>
+                    <p class="text-body-base">Our initial discovery phase shed light on key issues we needed to address:</p>
+                    <ul>
+                        <li class="text-body-base">The user base of the more recent app was upset about the lack of financial tools that were available in the legacy app.</li>
+                        <li class="text-body-base">The users of the more recent app were confused: Why was Transamerica requiring users to answer Health questions when they just wanted to check their account status? What does Health have to do with Wealth?</li>
+                        <li class="text-body-base">The user base of the more recent app reverted to the legacy app as that offered more functionality, even though the experience and visuals were outdated.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process overview section -->
+        <section class="process-section" aria-label="Process overview">
+            <div class="container">
+                <div class="process-grid">
+                    <div class="process-item">
+                        <div class="process-emoji" aria-hidden="true">🧭</div>
+                        <h4 class="text-heading-4 process-title">Discovery & research</h4>
+                        <p class="text-body-base process-text">Conduct a content audit, complete a competitive analysis, understand limitations, and learn about the users.</p>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-emoji" aria-hidden="true">🔎</div>
+                        <h4 class="text-heading-4 process-title">Analysis & documentation</h4>
+                        <p class="text-body-base process-text">Analyze feature flows, create flow and site maps, and identify experience gaps and opportunities.</p>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-emoji" aria-hidden="true">✏️</div>
+                        <h4 class="text-heading-4 process-title">Design & collaboration</h4>
+                        <p class="text-body-base process-text">Pair design, create style guides, and conduct an accessibility audit to ensure quality.</p>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-emoji" aria-hidden="true">🚀</div>
+                        <h4 class="text-heading-4 process-title">Test & learn</h4>
+                        <p class="text-body-base process-text">Define research goals, run usability sessions, synthesize findings, and refine.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Personas-->
+        <section class="case-metrics personas">
+            <div class="container">
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">Who were our users?</h3>
+                    <p class="text-body-base">First, we needed to understand who would be using the app. What were their needs, wants, and motivations? What could we help deliver to our users that would meet their needs in the timeline we had?</p>
                 </div>
             </div>
         </section>
@@ -287,21 +364,43 @@
         <section class="discovery-images">
             <div class="container">
                 <div class="discovery-image">
-                    <p class="text-body-base-bold discovery-caption">Sample caption</p>
-                    <div class="discovery-placeholder"></div>
+                    <p class="text-body-base-bold discovery-caption">We had four personas for our user base</p>
+                    <div class="discovery-placeholder">
+                        <img src="assets/transamerica_app_personas.png" alt="Personas" />
+                    </div>
                 </div>
                 <div class="discovery-image">
-                    <p class="text-body-base-bold discovery-caption">Sample caption</p>
-                    <div class="discovery-placeholder"></div>
+                    <p class="text-body-base-bold discovery-caption">We conducted a review of the two apps and documented the site maps for each</p>
+                    <div class="discovery-placeholder">
+                        <img src="assets/transamerica_app_analysis flow.png" alt="Analysis flow" />
+                    </div>
+                </div>
+            </div>
+        </section>
+         
+        <!-- Solution: Nav & IA -->
+        <section class="case-metrics solution-section">
+            <div class="container">
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">Solution: Navigation & IA</h3>
+                    <p class="text-body-base">One of the major challenges was navigation: the app IA had to be redefined. We needed to:</p>
+                    <ul>
+                        <li class="text-body-base">Place emphasis on financial features</li>
+                        <li class="text-body-base">Make room for a lot of new content (2x the features)</li>
+                        <li class="text-body-base">Allow user to focus on one plan at a time</li>
+                    </ul>
+                    <p class="text-body-base">Paired designing was key at this phase. We created a lot of mockups and finally ended on three main nav items: Overview, Manage, More.</p>
                 </div>
             </div>
         </section>
 
-        <section class="case-quote" aria-label="Key finding">
+        <section class="solution-images">
             <div class="container">
-                <div class="quote-inner">
-                    <p class="text-body-base-bold quote-kicker">key finding</p>
-                    <p class="text-heading-3 quote-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales, justo in blandit imperdiet, est arcu facilisis nibh.</p>
+                <div class="solution-image">
+                    <p class="text-body-base-bold solution-caption">I mocked up navigation variations</p>
+                    <div class="solution-placeholder">
+                        <img src="assets/transamerica_app_wires.png" alt="Navigation wires" />
+                    </div>
                 </div>
             </div>
         </section>
@@ -309,41 +408,49 @@
         <section class="case-metrics solution-section">
             <div class="container">
                 <div class="metrics-left">
-                    <h3 class="text-heading-3">Solution</h3>
-                    <p class="text-body-base">Donec placerat, metus sed sollicitudin tempus, libero arcu posuere mi, vitae elementum nibh dui et lorem.</p>
-                    <p class="text-body-base">Curabitur sed enim ut magna placerat luctus sit amet vitae arcu.</p>
-                    <p class="text-body-base">Success metrics:</p>
-                    <ul>
-                        <li class="text-body-base">Owners: lorem benefit</li>
-                        <li class="text-body-base">Users: lorem benefit</li>
-                        <li class="text-body-base">Teams: lorem benefit</li>
-                        <li class="text-body-base">Business: lorem benefit</li>
-                    </ul>
+                    <p class="text-body-base">The final solution for the main navigation was driven by our IA restructure. We proposed that the three most important items for the user would allow them to review their accounts at a high-level and then to manage them.</p>
+                    <p class="text-body-base">Other features such as the Health + Wealth content would fit under the “Knowledge center” under More. This would serve as an alternate home for educational content.</p>
                 </div>
-                <div class="metrics-right">
-                    <div class="metrics-list">
-                        <div class="metrics-item">
-                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">What we knew</span></p>
-                            <ul>
-                                <li class="text-body-base">Lorem ipsum dolor sit amet</li>
-                                <li class="text-body-base">Consectetur adipiscing elit</li>
-                            </ul>
+            </div>
+        </section>
+
+        <section class="solution-images">
+            <div class="container">
+                <div class="solution-image">
+                    <div class="solution-placeholder">
+                        <img src="assets/transamerica_app_navIA.png" alt="Navigation" />
+                    </div>
+                </div>
+                <div class="solution-image">
+                    <div class="solution-placeholder">
+                        <img class="img-60-center" src="assets/transamerica_app_navIA 2.png" alt="Navigation" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Solution: Complex flows -->
+        <section class="case-metrics solution-section">
+            <div class="container">
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">Solution: Complex flows</h3>
+                    <p class="text-body-base">Complex features required a large effort on analysis. We created logic charts and feature option matrixes to help us design the features.</p>
+                    <p class="text-body-base">Complex features such as Contributions and Allocations were crucial tools for the user. In order to create an experience for users that was simple and consumable, placing Guidance touchpoints and simplifying content organization was key.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="solution-images">
+            <div class="container">
+                <div class="image-grid">
+                    <div class="solution-image">
+                        <div class="solution-placeholder">
+                            <img src="assets/transamerica_app_complexflow1.png" alt="Plan types" />
                         </div>
-                        <div class="metrics-item">
-                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Risks</span></p>
-                            <ul>
-                                <li class="text-body-base">Risk one</li>
-                                <li class="text-body-base">Risk two</li>
-                                <li class="text-body-base">Risk three</li>
-                            </ul>
-                        </div>
-                        <div class="metrics-item">
-                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Rollout plan</span></p>
-                            <ul>
-                                <li class="text-body-base">Phase one</li>
-                                <li class="text-body-base">Phase two</li>
-                                <li class="text-body-base">Phase three</li>
-                            </ul>
+                    </div>
+                    <div class="solution-image">
+                        <div class="solution-placeholder">
+                            <img src="assets/transamerica_app_complexflow2.png" alt="Flow charts" />
                         </div>
                     </div>
                 </div>
@@ -353,70 +460,138 @@
         <section class="solution-images">
             <div class="container">
                 <div class="solution-image">
-                    <p class="text-body-base-bold solution-caption">Sample caption</p>
-                    <div class="solution-placeholder"></div>
-                </div>
-                <div class="solution-image">
-                    <p class="text-body-base-bold solution-caption">Sample caption</p>
-                    <div class="solution-placeholder"></div>
+                    <p class="text-body-base-bold solution-caption">I simplified the app experience by focusing on the UI</p>
+                    <div class="solution-placeholder">
+                        <img class="img-60-center" src="assets/transamerica_app_complexflows3.png" alt="UI simplification" />
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="design-section">
+        
+        <!-- Test and learn-->
+        <section class="case-metrics solution-section">
             <div class="container">
-                <h3 class="text-heading-3">Design</h3>
-                <div class="design-stack">
-                    <div class="design-placeholder"></div>
-                    <div class="design-placeholder"></div>
-                </div>
-                <div class="design-cta">
-                    <a class="cta-button text-button" href="#" target="_blank" rel="noopener noreferrer">View my designs in Figma</a>
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">Test & learn</h3>
+                    <p class="text-body-base">Our team conducted usability testing on the most complex features, which included navigation. We created three robust, clickable prototypes and synthesized the findings as a group.</p>
                 </div>
             </div>
         </section>
 
+        <section class="solution-images">
+            <div class="container">
+                <div class="image-grid">
+                    <div class="solution-image">
+                        <div class="solution-placeholder">
+                            <img src="assets/transamerica_app_testlearn1.png" alt="Test findings" />
+                        </div>
+                    </div>
+                    <div class="solution-image">
+                        <div class="solution-placeholder">
+                            <img src="assets/transamerica_app_testlearn2.png" alt="Themes" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="case-metrics solution-section">
+            <div class="container">
+                <div class="metrics-left">
+                    <p class="text-body-base">A big thing we learned from research was that retirement in general is confusing. Users need more guidance than we were giving them. Our team then created a strategy to deliver more Help content to the app without pushing out our deliverable date.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="solution-images">
+            <div class="container">
+                <div class="solution-image">
+                    <div class="solution-placeholder">
+                        <img src="assets/transamerica_app_testlearn3.png" alt="User feedback" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Style guides -->
+        <section class="case-metrics solution-section">
+            <div class="container">
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">Style guides</h3>
+                    <p class="text-body-base">Our team created style guides for the merged app due to updated brand and component styles based on the accessibility audit. A few things that changed to meet AA standards:</p>
+                    <ul>
+                        <li class="text-body-base">Font size</li>
+                        <li class="text-body-base">Button styling and size</li>
+                        <li class="text-body-base">Selection control styling and sizes</li>
+                        <li class="text-body-base">Data visual colors and format</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="solution-images">
+            <div class="container">
+                <div class="solution-image">
+                    <div class="solution-placeholder">
+                        <img class="img-60-center" src="assets/transamerica_app_styleguides.png" alt="Style guides" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Designs -->
+        <section class="discovery-media" aria-label="Final designs">
+            <div class="container">
+                <h3 class="text-heading-3">Designs</h3>
+                <div class="carousel" id="final-designs-carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <div class="carousel-media">
+                                <img src="assets/transamerica_app_finaldesigns1.png" alt="Final designs set 1" />
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="carousel-media">
+                                <img src="assets/transamerica_app_finaldesigns2.png" alt="Final designs set 2" />
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="carousel-media">
+                                <img src="assets/transamerica_app_finaldesigns3.png" alt="Final designs set 3" />
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="carousel-media">
+                                <img src="assets/transamerica_app_finaldesigns4.png" alt="Final designs set 4" />
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="carousel-media">
+                                <img src="assets/transamerica_app_finaldesigns5.png" alt="Final designs set 5" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="carousel-btn" data-dir="prev" aria-label="Previous"><img src="assets/arrow-left.svg" alt="Previous" width="48" height="48" /></button>
+                        <button class="carousel-btn" data-dir="next" aria-label="Next"><img src="assets/arrow-right.svg" alt="Next" width="48" height="48" /></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact -->
         <section class="case-metrics">
             <div class="container">
                 <div class="metrics-left">
                     <h3 class="text-heading-3">What impact did we have?</h3>
-                    <p class="text-body-base">Mauris porta, urna sit amet pharetra dictum, odio arcu posuere ante, eu tempor nunc magna non mi.</p>
+                    <p class="text-body-base">We completed all feature designs in the provided timeline of six months. In order to make the design-developer handoff seamless, we created style guides to ensure our design vision could be easily understood and to set a foundation for the next releases. The Transamerica Retirement App was released in December, 2020.</p>
                 </div>
             </div>
         </section>
 
-        <section class="impact-stats">
-            <div class="container">
-                <div class="stats-row">
-                    <div class="stats-item">
-                        <h2 class="text-heading-2">+24%</h2>
-                        <p class="text-body-base">metric description</p>
-                    </div>
-                    <div class="stats-item">
-                        <h2 class="text-heading-2">59%</h2>
-                        <p class="text-body-base">metric description</p>
-                    </div>
-                    <div class="stats-item">
-                        <h2 class="text-heading-2">83%</h2>
-                        <p class="text-body-base">metric description</p>
-                    </div>
-                    <div class="stats-item">
-                        <h2 class="text-heading-2">73%</h2>
-                        <p class="text-body-base">metric description</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section class="case-metrics">
-            <div class="container">
-                <div class="metrics-left">
-                    <p class="text-body-base-bold">What was next?</p>
-                    <p class="text-body-base">Etiam at sapien a risus dictum sollicitudin. Sed sit amet bibendum nisi.</p>
-                </div>
-            </div>
-        </section>
-
+        <!-- Project navigation -->
         <nav class="project-nav" aria-label="Project navigation">
             <div class="container">
                 <div class="nav-left">
