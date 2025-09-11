@@ -134,6 +134,9 @@
         .design-cta .btn-secondary { background: var(--color-white); color: var(--text-accent); border: 2px solid var(--text-accent); padding: var(--space-12) var(--space-20); border-radius: var(--radius-sm); text-decoration: none; display: inline-block; box-shadow: var(--shadow-sm); }
         .design-cta .btn-secondary:hover { background: var(--color-fire-50); text-decoration: none; }
         .design-cta .btn-secondary:active { background: var(--color-fire-50); }
+        /* Buttons with leading lock icon */
+        .btn-with-icon { display: inline-flex; align-items: center; gap: var(--space-8); }
+        .btn-with-icon .btn-icon { width: 16px; height: 16px; display: inline-block; background-color: var(--color-fire-500); -webkit-mask: url('assets/icon_lock-solid-full.svg') no-repeat center / contain; mask: url('assets/icon_lock-solid-full.svg') no-repeat center / contain; }
         /* Stack on tablet/mobile */
         @media (max-width: 1024px) { .design-cta { flex-direction: column; align-items: center; } }
         @media (max-width: 640px) { .design-cta .cta-button, .design-cta .btn-secondary { display: block; width: 100%; text-align: center; } }
@@ -194,7 +197,7 @@
                     <li><a href="index.html#work" class="nav-link">Work</a></li>
                     <li><a href="ai-design.html" class="nav-link">AI + Design</a></li>
                     <li><a href="extra.html" class="nav-link">Extra</a></li>
-                    <li><a href="about.html" class="nav-link">About</a></li>
+                    
                 </ul>
             </div>
         </nav>
@@ -206,7 +209,7 @@
             <li role="none"><a role="menuitem" href="index.html#work" class="mobile-menu-link">Work</a></li>
             <li role="none"><a role="menuitem" href="ai-design.html" class="mobile-menu-link">AI + Design</a></li>
             <li role="none"><a role="menuitem" href="extra.html" class="mobile-menu-link">Extra</a></li>
-            <li role="none"><a role="menuitem" href="about.html" class="mobile-menu-link">About</a></li>
+            
         </ul>
     </div>
 
@@ -298,10 +301,6 @@
                             <h2 class="text-heading-2">48%</h2>
                             <p class="text-body-base">bookings requiring manual intervention</p>
                         </div>
-                        <!--<div class="metrics-item">
-                            <h2 class="text-heading-2">20k+</h2>
-                            <p class="text-body-base">emails exchanged across 23k+ bookings – a large amount of off-platform communication</p>
-                        </div>-->
                         <div class="metrics-item">
                             <h2 class="text-heading-2">30%</h2>
                             <p class="text-body-base">outbound messages for Airbnb bookings instructed the guest to reach out to the owner, forcing guests to do the resolution work</p>
@@ -481,8 +480,8 @@
                     </div>
                 </div>
                 <div class="design-cta">
-                    <a class="btn-secondary text-button" href="https://www.figma.com/design/1IAFFuWuWRupowgyrUU2Wq/Evolve--Inbox?node-id=1-4&p=f&t=QMRPdkKFBSMVQDnE-11" target="_blank" rel="noopener noreferrer">View mockups in Figma</a>
-                    <a class="btn-secondary text-button" href="https://www.figma.com/design/1IAFFuWuWRupowgyrUU2Wq/Evolve--Inbox?node-id=154-37698&t=QMRPdkKFBSMVQDnE-11" target="_blank" rel="noopener noreferrer">View journey map in Figma</a>
+                    <a class="btn-secondary text-button btn-with-icon" href="https://www.figma.com/design/1IAFFuWuWRupowgyrUU2Wq/Evolve--Inbox?node-id=1-4&p=f&t=QMRPdkKFBSMVQDnE-11" target="_blank" rel="noopener noreferrer"><span class="btn-icon" aria-hidden="true"></span><span>View mockups in Figma</span></a>
+                    <a class="btn-secondary text-button btn-with-icon" href="https://www.figma.com/design/1IAFFuWuWRupowgyrUU2Wq/Evolve--Inbox?node-id=154-37698&t=QMRPdkKFBSMVQDnE-11" target="_blank" rel="noopener noreferrer"><span class="btn-icon" aria-hidden="true"></span><span>View journey map in Figma</span></a>
                     
                 </div>
             </div>
@@ -619,6 +618,7 @@
                     <img src="assets/Email_circular.svg" alt="" aria-hidden="true" />
                 </a>
             </div>
+            <p class="text-body-sm">Made with love and lots of long days and learning ✌🏼<br></p>
             <p class="text-body-sm">&copy; 2025 TC Design. All rights reserved.</p>
         </div>
     </footer>

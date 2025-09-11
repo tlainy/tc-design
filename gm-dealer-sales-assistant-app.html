@@ -69,6 +69,22 @@
         /* Discovery media: collage + full-width images */
         .discovery-media { padding: var(--space-64) 0; background: var(--color-white); }
         .discovery-media .container { max-width: 1920px; margin: 0 80px; }
+        /* Carousel (match transamerica-app) */
+        .carousel { position: relative; overflow: hidden; }
+        .carousel-track { display: flex; gap: 0; scroll-snap-type: x mandatory; overflow-x: auto; padding-bottom: var(--space-12); scrollbar-width: none; -ms-overflow-style: none; overscroll-behavior-x: contain; }
+        .carousel-track::-webkit-scrollbar { display: none; }
+        .carousel-slide { min-width: 100%; scroll-snap-align: start; }
+        .carousel-caption { text-align: center; color: var(--color-grey); margin: 0 0 var(--space-12); }
+        .carousel-media { width: 100%; height: 680px; background: var(--color-white); border-radius: 16px; display: grid; place-items: center; overflow: hidden; position: relative; }
+        .carousel-media img { height: 680px; width: auto; max-width: 100%; display: block; border-radius: 16px; object-fit: contain; }
+        .carousel-nav { position: absolute; top: calc(50% + var(--space-12)); left: 0; right: 0; transform: translateY(-50%); display: flex; justify-content: space-between; align-items: center; pointer-events: none; padding: 0 var(--space-20); }
+        .carousel-btn { pointer-events: all; background: transparent; color: var(--color-fire-500); border: 0; width: 48px; height: 48px; display: grid; place-items: center; cursor: pointer; font-size: 48px; line-height: 1; }
+        @media (max-width: 640px) { .carousel-btn { font-size: 36px; width: 36px; height: 36px; } }
+        @media (max-width: 1024px) { .discovery-media .container { margin: 0 var(--space-40); } }
+        @media (max-width: 640px) { .discovery-media .container { margin: 0 var(--space-40); } }
+        /* Instance override: nav below with 40px gap, like transamerica-app */
+        #gm-final-designs-carousel .carousel-nav { position: static; transform: none; padding: 0; margin-top: var(--space-12); display: flex; justify-content: center; align-items: center; gap: var(--space-40); pointer-events: auto; }
+        #gm-final-designs-carousel .carousel-btn { position: static; }
         .collage-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-20); }
         .collage-item { height: 420px; background: var(--color-grey); border-radius: 16px; }
         @media (max-width: 1024px) { .collage-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -112,6 +128,9 @@
         @media (max-width: 640px) { .design-cta .cta-button { display: block; width: 100%; text-align: center; } }
         @media (max-width: 1024px) { .design-section .container { margin: 0 var(--space-40); } }
 
+        /* Local link size override for Impact paragraph only */
+        .content-section--impact a { font-size: var(--text-base); }
+
         /* Impact stats row */
         .impact-stats { padding: var(--space-0) 0; background: var(--color-white); }
         .impact-stats .container { max-width: 1920px; margin: 0 80px; }
@@ -129,6 +148,28 @@
         /* Impact spacing tweaks */
         .impact-intro { padding-bottom: var(--space-40); }
         .impact-next { padding-top: var(--space-40); }
+
+        /* Design workshops full-bleed background */
+        .design-workshops { position: relative; min-height: 100vh; display: grid; align-items: center; }
+        .design-workshops::before { content: ""; position: absolute; inset: 0; background: url('assets/gm_app_sketches.png') center/cover no-repeat; opacity: 0.5; pointer-events: none; z-index: 0; }
+        .design-workshops > .container { position: relative; z-index: 1; }
+
+         /* Process grid (Discovery → Test & learn) */
+         .process-section { padding: var(--space-64) 0; background: var(--color-fire-50); }
+        .process-section .container { max-width: 1920px; margin: 0 80px; }
+        .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-64); text-align: center; align-items: start; }
+        .process-item { display: grid; gap: var(--space-8); justify-items: center; }
+        .process-emoji { font-size: 24px; line-height: 1; margin-bottom: var(--space-8); }
+        .process-title { margin: 0 0 var(--space-8); }
+        .process-text { margin: 0; max-width: 42ch; color: var(--text-body); }
+        @media (max-width: 1024px) {
+            .process-section .container { margin: 0 var(--space-40); }
+            .process-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-40); }
+        }
+        @media (max-width: 640px) {
+            .process-section .container { margin: 0 var(--space-40); }
+            .process-grid { grid-template-columns: 1fr; gap: var(--space-24); }
+        }
 
         /* Project navigation (bottom of page) */
         .project-nav { padding: calc(var(--space-64) * 2) 0; background: var(--color-fire-50); }
@@ -163,7 +204,7 @@
                     <li><a href="index.html#work" class="nav-link">Work</a></li>
                     <li><a href="ai-design.html" class="nav-link">AI + Design</a></li>
                     <li><a href="extra.html" class="nav-link">Extra</a></li>
-                    <li><a href="about.html" class="nav-link">About</a></li>
+                    
                 </ul>
             </div>
         </nav>
@@ -175,7 +216,7 @@
             <li role="none"><a role="menuitem" href="index.html#work" class="mobile-menu-link">Work</a></li>
             <li role="none"><a role="menuitem" href="ai-design.html" class="mobile-menu-link">AI + Design</a></li>
             <li role="none"><a role="menuitem" href="extra.html" class="mobile-menu-link">Extra</a></li>
-            <li role="none"><a role="menuitem" href="about.html" class="mobile-menu-link">About</a></li>
+            
         </ul>
     </div>
 
@@ -184,10 +225,12 @@
             <div class="container">
                 <div class="hero-content">
                     <span class="launch-badge">Launched</span>
-                    <h2 class="text-heading-2">Designing a powerful native mobile & tablet sales tool application</h2>
+                    <h2 class="text-heading-2">Dealer Sales Assistant™:<br>Designing a powerful native mobile & tablet sales tool application</h2>
                 </div>
                 <div class="hero-media">
-                    <div class="hero-placeholder"></div>
+                    <div class="hero-placeholder">
+                        <img src="assets/gm_app_thumbnail.png" alt="Project thumbnail" />
+                    </div>
                 </div>
             </div>
         </section>
@@ -197,33 +240,40 @@
                 <div class="case-content">
                     <div class="content-section">
                         <h3 class="text-heading-3">Overview</h3>
-                        <p class="text-body-base">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere, purus et laoreet volutpat, ipsum nisi ultrices nibh, in iaculis ligula lorem at nunc.</p>
-                        <p class="text-body-base">Nullam id dapibus lectus. Curabitur luctus justo erat, in porttitor nunc posuere in. Integer in arcu a enim fermentum viverra.</p>
+                        <p class="text-body-base">Dealer SalesAssistant™ is the core sales assistant mobile application available for iOS and Android for all GM dealerships and brands. The app provides sales personnel with quick access to important vehicle information to support the sales process.</p>
                     </div>
                     <div class="content-section">
-                        <h3 class="text-heading-3">The design challenge</h3>
-                        <p class="text-body-base">Suspendisse potenti. Nunc feugiat, nibh nec iaculis tristique, massa lorem efficitur sem, a sodales tortor nisi in tortor.</p>
+                        <h3 class="text-heading-3">Problem</h3>
+                        <p class="text-body-base">The app was first designed for tablet only. There were portability issues and the users wanted it on mobile. We had to rethink the architecture, interaction flow, and visual design. Our design challenge was to bridge the disconnect in the user experience, design, and code base of the legacy product (mobile) with the new product (tablet).</p>
                     </div>
                     <div class="content-section">
-                        <h3 class="text-heading-3">The process</h3>
-                        <p class="text-body-base">Praesent nec lorem at mi interdum rhoncus. Etiam condimentum nisl at sapien tristique, id mollis lectus venenatis.</p>
+                        <h3 class="text-heading-3">Solution</h3>
+                        <p class="text-body-base">I designed a new, streamlined experience for tablet and mobile devices to simplify complex flows and information-dense screens. I focused on improving feature flows to decrease the steps in important daily tasks, using an image-forward UI to create a better real-time sales-customer experience.</p>
+                    </div>
+                    <div class="content-section content-section--impact">
+                        <h3 class="text-heading-3">Impact</h3>
+                        <p class="text-body-base">After almost two years of hard work, Dealer Sales Assistant™ was finally released. I continued to lead the design efforts for this product post release. We improved the app store ratings for both <a href="https://play.google.com/store/apps/details?hl=en_US&id=com.gm.ambassador" target="_blank" rel="noopener noreferrer">Android (3.5 stars)</a> and <a href="https://apps.apple.com/us/app/gm-dealer-salesassistant/id691196089" target="_blank" rel="noopener noreferrer">iOS (4.5 stars)</a> users.</p>
                     </div>
                 </div>
                 <div class="case-details">
                     <div class="detail-section">
                         <h4 class="text-body-large">Role</h4>
-                        <p class="text-body-base">UX designer, UI designer</p>
+                        <p class="text-body-base">UX/UI designer</p>
                     </div>
                     <div class="detail-section">
-                        <h4 class="text-body-large">Company</h4>
-                        <p class="text-body-base">Transamerica</p>
+                        <h4 class="text-body-large">Team</h4>
+                        <p class="text-body-base">1 PM, 1 Researcher, 6 Engineers</p>
                     </div>
                     <div class="detail-section">
-                        <h4 class="text-body-large">Category</h4>
-                        <p class="text-body-base">Responsive web</p>
+                        <h4 class="text-body-large">Timeline</h4>
+                        <p class="text-body-base">2 years</p>
                     </div>
                     <div class="detail-section">
-                        <h4 class="text-body-large">Focuses</h4>
+                        <h4 class="text-body-large">Platforms</h4>
+                        <p class="text-body-base">Native app, iOS and Android</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4 class="text-body-large">Process</h4>
                         <ul>
                             <li class="text-body-base">Redesign</li>
                             <li class="text-body-base">New design</li>
@@ -233,42 +283,19 @@
             </div>
         </section>
 
+        <!-- Problem, in detail -->
         <section class="case-metrics impact-intro">
             <div class="container">
                 <div class="metrics-left">
-                    <h3 class="text-heading-3">Test & learn</h3>
-                    <p class="text-body-base">Cras pulvinar, sem in sollicitudin euismod, justo nunc gravida dolor, vitae dignissim diam nisl ac nulla.</p>
-                    <p class="text-body-base">In hac habitasse platea dictumst. Integer tincidunt, mauris at efficitur pulvinar, mi nibh fringilla nisl, nec aliquet augue risus at nunc.</p>
+                    <h3 class="text-heading-3">The problem, in detail</h3>
+                    <p class="text-body-base">Dealer SalesAssistant™ is the core sales assistant mobile application available for iOS and Android for all GM dealerships and brands. The app provides sales personnel with quick access to important vehicle information to support the sales process.</p>
+                    <p class="text-body-base">The app was first designed for tablet only. There were portability issues and the users wanted it on mobile. We had to rethink the architecture, interaction flow, and visual design. </p>
+                    <p class="text-body-base">Our design challenge was to bridge the disconnect in the user experience, design, and code base of the legacy product (mobile) with the new product (tablet). Ultimately, our team’s and client’s goals for the application was to address all outstanding user experience issues and to create a more flexible, modern user experience.</p>
+                    <p class="text-body-base">We asked ourselves:</p>
                     <ul>
-                        <li class="text-body-base">Usability testing on Report Center</li>
-                        <li class="text-body-base">Clickable prototypes for virtual sessions</li>
-                        <li class="text-body-base">Iteration to improve IA and terminology</li>
+                        <li class="text-body-base">How can we effectively present large amounts of data on a phone that once existed on tablet?</li>
+                        <li class="text-body-base">How do we make this transition without disorienting our power users and overwhelming the new users?</li>
                     </ul>
-                </div>
-                <div class="metrics-right">
-                    <div class="metrics-list">
-                        <div class="metrics-item">
-                            <h2 class="text-heading-2">6</h2>
-                            <p class="text-body-base">participants in interviews</p>
-                        </div>
-                        <div class="metrics-item">
-                            <h2 class="text-heading-2">1k</h2>
-                            <p class="text-body-base">owners surveyed</p>
-                        </div>
-                        <div class="metrics-item">
-                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">research findings</span></p>
-                            <p class="text-body-base">“Lorem ipsum dolor sit amet, consectetur adipiscing elit.”</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="discovery-media">
-            <div class="container">
-                <div class="collage-grid">
-                    <div class="collage-item"></div>
-                    <div class="collage-item"></div>
                 </div>
             </div>
         </section>
@@ -276,134 +303,177 @@
         <section class="discovery-images">
             <div class="container">
                 <div class="discovery-image">
-                    <p class="text-body-base-bold discovery-caption">WX Dashboard • final</p>
-                    <div class="discovery-placeholder"></div>
-                </div>
-                <div class="discovery-image">
-                    <p class="text-body-base-bold discovery-caption">Report Center • final</p>
-                    <div class="discovery-placeholder"></div>
+                    <div class="discovery-placeholder">
+                        <img src="assets/gm_app_legacyreview.png" alt="Legacy design review" />
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="case-quote" aria-label="Key finding">
-            <div class="container">
-                <div class="quote-inner">
-                    <p class="text-body-base-bold quote-kicker">key outcome</p>
-                    <p class="text-heading-3 quote-text">A refreshed, responsive dashboard and reporting center that improves findability and brings more insights to users.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="case-metrics solution-section">
+        <!-- Discovery -->
+        <section class="case-metrics discovery">
             <div class="container">
                 <div class="metrics-left">
-                    <h3 class="text-heading-3">Solution</h3>
-                    <p class="text-body-base">Donec placerat, metus sed sollicitudin tempus, libero arcu posuere mi, vitae elementum nibh dui et lorem.</p>
-                    <p class="text-body-base">Curabitur sed enim ut magna placerat luctus sit amet vitae arcu.</p>
-                    <p class="text-body-base">Success metrics:</p>
+                    <h3 class="text-heading-3">Discovery</h3>
+                    <p class="text-body-base">To kick things off, I dug into all the existing research to build a solid foundation for the redesign. From there, I uncovered pain points and technical limitations by reviewing user feedback, which gave us the direction we needed. I documented existing patterns and sketched early concepts to spark discussions in design workshops.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process overview section -->
+        <section class="process-section" aria-label="Process overview">
+            <div class="container">
+                <div class="process-grid">
+                    <div class="process-item">
+                        <div class="process-emoji" aria-hidden="true">🧭</div>
+                        <h4 class="text-heading-4 process-title">Discovery & research</h4>
+                        <p class="text-body-base process-text">Uncover pain points and technical limitations, understand the user</p>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-emoji" aria-hidden="true">🔎</div>
+                        <h4 class="text-heading-4 process-title">Analysis & documentation</h4>
+                        <p class="text-body-base process-text">Discuss business goals, KPIs, wants & needs, & release timeline</p>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-emoji" aria-hidden="true">✏️</div>
+                        <h4 class="text-heading-4 process-title">Design & collaboration</h4>
+                        <p class="text-body-base process-text">Hands-on collaboration, educate on design principles, & build consensus</p>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-emoji" aria-hidden="true">🚀</div>
+                        <h4 class="text-heading-4 process-title">Test & learn</h4>
+                        <p class="text-body-base process-text">Create research goals, conduct in-person sessions, synthesize & refine</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Test & learn -->
+        <section class="case-metrics impact-intro">
+            <div class="container">
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">Understanding the user</h3>
+                    <p class="text-body-base">In order to understand how to design the best solution, we needed to understand our users, their needs, and all the user feedback provided to us. We worked with our clients to collect insights.</p>
+            </div>
+        </section>
+
+        <section class="discovery-media">
+            <div class="container">
+                <div class="discovery-image">
+                    <div class="discovery-placeholder">
+                        <img src="assets/gm_app_usergraph.png" alt="User research" style="width: 75%; height: auto; display: block; margin: 0 auto;" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Design workshops -->
+        <section class="case-metrics impact-intro design-workshops" style="position: relative;">
+            <div class="container" style="position: relative;">
+                <div style="content: ''; position: absolute; inset: 0; background: url('assets/gm_app_sketches.png') center/cover no-repeat; opacity: 0.5; pointer-events: none;"></div>
+                <div class="metrics-left" style="position: relative;">
+                    <div style="background: #FFFFFF; border: 2px solid #232323; border-radius: 8px; padding: var(--space-24);">
+                        <h3 class="text-heading-3">Design workshops</h3>
+                        <p class="text-body-base">I began working with the clients to prioritize the features and refine the application's information architecture. Close collaboration with the client in the beginning stages of this project was key as that would set the direction of the project.</p>
+                        <p class="text-body-base">I put together workshops for the clients to educate through hands-on design exercises with the actual product content. I used Figma (the old Figma!) to allow for real-time, asynchronous collaboration. This proved successful as the clients began to incorporate more UX design principles into their decision-making process instead of relying on personal preferences.</p>
+                        <p class="text-body-base">After a direction was set I was able to start concepting, sketching, and prototyping. I worked closely with the development team in strong feedback cycles, bouncing design feedback and concerns daily.</p>
+                        <p class="text-body-base">This was a critical step which would allow me to create requirement or specification/markup documentation that the developers were able to more easily consume. Alongside the close collaboration with the developers, the design team and I regularly held design sessions that frequently included whiteboarding, user scenario, and use case mapping.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Test & learn -->   
+        <section class="case-metrics impact-intro">
+            <div class="container">
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">Test & learn</h3>
+                    <p class="text-body-base">Strapped on time and resources, we strategically prepared the most important areas in the application for testing. A team member and I led the research effort. We scouted for participants and scheduled the sessions. We crafted the script and conducted synthesis.</p>
+                    <p class="text-body-base">We tested at three locations. We had a full session with 16 tasks. Our goal was to uncover the biggest UX issues and to validate the overall IA. Ultimately, the average success rate for the features tested was 60%.</p>
+                    <p class="text-body-base">Our synthesis of the results showed us that users were struggling in key areas and in areas we thought would be more intuitive. Our strategy was to address the most severe usability issues such as:</p>
                     <ul>
-                        <li class="text-body-base">Increase discoverability of key tools</li>
-                        <li class="text-body-base">Improve reporting transparency</li>
-                        <li class="text-body-base">Meet power-user parity</li>
-                    </ul>
+                        <li class="text-body-base">Findability</li>
+                        <li class="text-body-base">Recall</li>
+                        <li class="text-body-base">Feature flows</li>
                 </div>
                 <div class="metrics-right">
-                    <div class="metrics-list">
-                        <div class="metrics-item">
-                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">What we knew</span></p>
-                            <ul>
-                                <li class="text-body-base">Users need quick access to insights</li>
-                                <li class="text-body-base">Feature parity is critical</li>
-                            </ul>
-                        </div>
-                        <div class="metrics-item">
-                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Risks</span></p>
-                            <ul>
-                                <li class="text-body-base">Complex IA changes</li>
-                                <li class="text-body-base">Avoid removing legacy features</li>
-                            </ul>
-                        </div>
-                        <div class="metrics-item">
-                            <p class="text-body-base-bold"><span style="color: var(--color-grey);">Rollout plan</span></p>
-                            <ul>
-                                <li class="text-body-base">Define themes and outcomes</li>
-                                <li class="text-body-base">Validate with users</li>
-                                <li class="text-body-base">Iterate and launch</li>
-                            </ul>
-                        </div>
+                    <div class="discovery-placeholder">
+                        <img src="assets/gm_app_test.png" alt="User testing" style="width: 60%; height: auto; display: block; margin: 0 auto;"/>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="solution-images">
+        <section class="discovery-media">
             <div class="container">
-                <div class="solution-image">
-                    <p class="text-body-base-bold solution-caption">Draft dashboard layout</p>
-                    <div class="solution-placeholder"></div>
-                </div>
-                <div class="solution-image">
-                    <p class="text-body-base-bold solution-caption">Report Center IA</p>
-                    <div class="solution-placeholder"></div>
+                <div class="discovery-image">
+                    <div class="discovery-placeholder">
+                        <img src="assets/gm_app_findings.png" alt="Findings" style="width: 100%; height: auto; display: block; margin: 0 auto;" />
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="design-section">
-            <div class="container">
-                <h3 class="text-heading-3">Design</h3>
-                <div class="design-stack">
-                    <div class="design-placeholder"></div>
-                    <div class="design-placeholder"></div>
-                </div>
-                <div class="design-cta">
-                    <a class="cta-button text-button" href="#" target="_blank" rel="noopener noreferrer">View my designs in Figma</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="case-metrics">
+        <!-- Designs -->
+        <section class="case-metrics designs-section">
             <div class="container">
                 <div class="metrics-left">
-                    <h3 class="text-heading-3">What impact did we have?</h3>
-                    <p class="text-body-base">Mauris porta, urna sit amet pharetra dictum, odio arcu posuere ante, eu tempor nunc magna non mi.</p>
+                    <h3 class="text-heading-3">Designs</h3>
+                    <p class="text-body-base">After almost two years of hard work, Dealer Sales Assistant™ was finally released. I continued to lead the design efforts for this product post release. We improved the app store ratings for both Android (3.5 stars) and iOS (4.5 stars) users.</p>
                 </div>
             </div>
         </section>
 
-        <section class="impact-stats">
+        <section class="discovery-media" aria-label="Final designs">
             <div class="container">
-                <div class="stats-row">
-                    <div class="stats-item">
-                        <h2 class="text-heading-2">+24%</h2>
-                        <p class="text-body-base">metric description</p>
+                <div class="carousel" id="gm-final-designs-carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <div class="carousel-media">
+                                <img src="assets/gm_app_finaldesigns1.png" alt="Final designs 1" />
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="carousel-media">
+                                <img src="assets/gm_app_finaldesigns2.png" alt="Final designs 2" />
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="carousel-media">
+                                <img src="assets/gm_app_finaldesigns3.png" alt="Final designs 3" />
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="carousel-media">
+                                <img src="assets/gm_app_finaldesigns4.png" alt="Final designs 4" />
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="carousel-media">
+                                <img src="assets/gm_app_finaldesigns6.png" alt="Final designs 6" />
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="carousel-media">
+                                <img src="assets/gm_app_finaldesigns7.png" alt="Final designs 7" />
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="carousel-media">
+                                <img src="assets/gm_app_finaldesigns8.png" alt="Final designs 8" />
+                            </div>
+                        </div>
                     </div>
-                    <div class="stats-item">
-                        <h2 class="text-heading-2">59%</h2>
-                        <p class="text-body-base">metric description</p>
-                    </div>
-                    <div class="stats-item">
-                        <h2 class="text-heading-2">83%</h2>
-                        <p class="text-body-base">metric description</p>
-                    </div>
-                    <div class="stats-item">
-                        <h2 class="text-heading-2">73%</h2>
-                        <p class="text-body-base">metric description</p>
+                    <div class="carousel-nav">
+                        <button class="carousel-btn" data-dir="prev" aria-label="Previous"><img src="assets/arrow-left.svg" alt="Previous" width="48" height="48" /></button>
+                        <button class="carousel-btn" data-dir="next" aria-label="Next"><img src="assets/arrow-right.svg" alt="Next" width="48" height="48" /></button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="case-metrics">
-            <div class="container">
-                <div class="metrics-left">
-                    <p class="text-body-base-bold">What was next?</p>
-                    <p class="text-body-base">Etiam at sapien a risus dictum sollicitudin. Sed sit amet bibendum nisi.</p>
-                </div>
-            </div>
-        </section>
-
+       
+        <!-- Project navigation -->
         <nav class="project-nav" aria-label="Project navigation">
             <div class="container">
                 <div class="nav-left">
@@ -411,14 +481,6 @@
                         <span class="text-body-sm prev-project-label">← Previous</span>
                         <a class="prev-project-link" href="transamerica-workplace-experience.html" aria-label="Previous project: Re-imagining a new responsive web experience for financial professionals">
                             <span class="text-heading-5">Re-imagining a new responsive web experience for financial professionals</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="nav-right">
-                    <div class="nav-next">
-                        <span class="text-body-sm next-project-label">Next →</span>
-                        <a class="next-project-link" href="extra.html" aria-label="Next project: Side work, illustrations, extra curricular">
-                            <span class="text-heading-5">Side work, illustrations, extra curricular</span>
                         </a>
                     </div>
                 </div>
@@ -436,6 +498,7 @@
                     <img src="assets/Email_circular.svg" alt="" aria-hidden="true" />
                 </a>
             </div>
+            <p class="text-body-sm">Made with love and lots of long days and learning ✌🏼<br></p>
             <p class="text-body-sm">&copy; 2025 TC Design. All rights reserved.</p>
         </div>
     </footer>

@@ -17,6 +17,8 @@
         .case-hero .hero-content { grid-column: span 7; padding: 0; max-width: 870px; text-align: left; }
         .case-hero .hero-media { grid-column: span 5 / -1; display: flex; justify-content: center; align-items: center; }
         .hero-placeholder { width: 100%; height: 420px; background: var(--color-white); border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        /* Nudge hero image down slightly for better visual alignment with title */
+        .case-hero .hero-media .hero-placeholder { margin-top: 40px; }
         .hero-placeholder img { width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: contain; display: block; border-radius: inherit; }
         .launch-badge { display: inline-block; background: var(--color-off-black); color: var(--color-white); padding: 6px 10px; border-radius: 6px; font-size: 14px; font-weight: 700; letter-spacing: 0.02em; margin-bottom: var(--space-24); }
 
@@ -179,7 +181,7 @@
                     <li><a href="index.html#work" class="nav-link">Work</a></li>
                     <li><a href="ai-design.html" class="nav-link">AI + Design</a></li>
                     <li><a href="extra.html" class="nav-link">Extra</a></li>
-                    <li><a href="about.html" class="nav-link">About</a></li>
+                    
                 </ul>
             </div>
         </nav>
@@ -191,7 +193,7 @@
             <li role="none"><a role="menuitem" href="index.html#work" class="mobile-menu-link">Work</a></li>
             <li role="none"><a role="menuitem" href="ai-design.html" class="mobile-menu-link">AI + Design</a></li>
             <li role="none"><a role="menuitem" href="extra.html" class="mobile-menu-link">Extra</a></li>
-            <li role="none"><a role="menuitem" href="about.html" class="mobile-menu-link">About</a></li>
+            
         </ul>
     </div>
 
@@ -224,11 +226,11 @@
                     </div>
                     <div class="content-section">
                         <h3 class="text-heading-3">Solution</h3>
-                        <p class="text-body-base">Praesent nec lorem at mi interdum rhoncus. Etiam condimentum nisl at sapien tristique, id mollis lectus venenatis.</p>
+                        <p class="text-body-base">We launched a new, streamlined design for the dashboard and reporting tool. This update simplifies the user experience by prioritizing critical information with a cleaner, modern layout.</p>
                     </div>
                     <div class="content-section">
                         <h3 class="text-heading-3">Impact</h3>
-                        <p class="text-body-base">Praesent nec lorem at mi interdum rhoncus. Etiam condimentum nisl at sapien tristique, id mollis lectus venenatis.</p>
+                        <p class="text-body-base">The new design was released to all users, providing a more intuitive and efficient experience. This served as the foundation for new features and functionality, and a modernized experience for financial plan management.</p>
                     </div>
                 </div>
                 <div class="case-details">
@@ -263,6 +265,15 @@
                     <p class="text-body-base">Data and insights are very important to the WX user base. Managing plan health and potentially hundreds of thousands of participants requires a lot of time. My focus was to help bring more insights and data to the user and minimize the time and numbers of steps to do so. My task was to redesign the legacy dashboard and reporting tools.</p>
                     <p class="text-body-base">Dashboards are almost always the first thing the user sees once logged in. Dashboards, therefore, are huge opportunities to influence user behaviors (such as increase engagement) and to set their expectation for the session experience. It was evident from our outdated legacy dashboard that we needed to improve the functionality and provide a refreshed, modern look and feel.</p>
                     <p class="text-body-base">Reporting capabilities allow users to dig deeper into data and insights, which is a critical requirement for managing plans and participants. How could we create a reporting tool that was intuitive and made report creation easy? My focus was to design a new reporting tool, which we called the Report Center.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Discovery: The process-->
+        <section class="case-metrics impact-intro">
+            <div class="container">
+                <div class="metrics-left">
+                    <h3 class="text-heading-3">Discovery</h3>
                     <p class="text-body-base">Our initial discovery phase shed light on key requirements we needed to account for:</p>
                     <ul>
                         <li class="text-body-base">There were many user types that needed to use the platform. Dashboard and the Report Center needed to be flexible and address the needs of various user types. </li>
@@ -272,8 +283,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Discovery: The process-->
         <section class="discovery-images">
             <div class="container">
                 <div class="discovery-image">
@@ -519,6 +528,7 @@
                     <img src="assets/Email_circular.svg" alt="" aria-hidden="true" />
                 </a>
             </div>
+            <p class="text-body-sm">Made with love and lots of long days and learning ✌🏼<br></p>
             <p class="text-body-sm">&copy; 2025 TC Design. All rights reserved.</p>
         </div>
     </footer>

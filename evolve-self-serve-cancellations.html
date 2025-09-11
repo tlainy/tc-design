@@ -143,11 +143,15 @@
         .metrics-placeholder img, .discovery-placeholder img, .solution-placeholder img { width: 100%; height: auto; object-fit: contain; border-radius: 16px; display: block; }
 
         /* Video section */
-        .video-wrapper { position: relative; width: 100%; border-radius: 16px; overflow: hidden; background: var(--color-off-black); }
+        .video-wrapper { position: relative; width: 100%; border-radius: 16px; overflow: hidden; background: var(--color-off-black); border: 1px solid var(--color-grey); }
         .video-wrapper video { width: 100%; height: auto; display: block; border-radius: 16px; }
         .video-overlay { position: absolute; inset: 0; display: grid; place-items: center; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
         .video-overlay.is-visible { opacity: 1; pointer-events: all; }
         .video-play-btn { background: var(--color-fire-500); color: var(--color-white); border: none; padding: var(--space-12) var(--space-20); border-radius: var(--radius-sm); box-shadow: var(--shadow-sm); cursor: pointer; }
+
+        /* Centered video container */
+        .video-centered { width: 75%; margin: 0 auto; }
+        @media (max-width: 1024px) { .video-centered { width: 100%; } }
 
         /* Device frame wrapper to scale video to 50% on desktop */
         .device-frame { width: 50%; margin: 0 auto; background: #000; border-radius: 32px; padding: var(--space-12); border: 8px solid #111; box-shadow: var(--shadow-sm); }
@@ -239,7 +243,7 @@
                     <li><a href="index.html#work" class="nav-link">Work</a></li>
                     <li><a href="ai-design.html" class="nav-link">AI + Design</a></li>
                     <li><a href="extra.html" class="nav-link">Extra</a></li>
-                    <li><a href="about.html" class="nav-link">About</a></li>
+                    
                 </ul>
             </div>
         </nav>
@@ -251,7 +255,7 @@
             <li role="none"><a role="menuitem" href="index.html#work" class="mobile-menu-link">Work</a></li>
             <li role="none"><a role="menuitem" href="ai-design.html" class="mobile-menu-link">AI + Design</a></li>
             <li role="none"><a role="menuitem" href="extra.html" class="mobile-menu-link">Extra</a></li>
-            <li role="none"><a role="menuitem" href="about.html" class="mobile-menu-link">About</a></li>
+            
         </ul>
     </div>
 
@@ -403,7 +407,7 @@
                         <img src="assets/evolve_cancellation_wires v2.svg" alt="Wireframes V2" />
                         <img src="assets/evolve_cancellation_wires v3.svg" alt="Wireframes V3" />
                     </div>
-                </div>
+            </div>
                 <a class="design-cta cta-button" href="https://www.figma.com/design/zWbS3hKfzky8P9bfDodTab/Evolve--Self-serve-cancellations?node-id=40004013-120985&p=f&t=Wjck6HQkud16W6h7-11" target="_blank" rel="noopener noreferrer">View wires in Figma</a>
             </div>
         </section>
@@ -442,20 +446,18 @@
         <section id="designs" class="solution-images">
             <div class="container">
                 <div class="solution-image">
-                    <div class="device-mac">
-                        <img src="assets/Device - Macbook Air.svg" alt="MacBook Air frame" class="frame" />
-                        <div class="screen">
-                            <div class="video-wrapper" data-loop-count="3">
-                                <video id="cxl-video-1" preload="metadata" playsinline muted controlslist="nodownload noremoteplayback" disablepictureinpicture>
-                                    <source src="assets/Evolve_Cancellations.mp4" type="video/mp4">
-                                </video>
-                                <div class="video-overlay" aria-hidden="true">
-                                    <button class="video-play-btn" type="button" aria-label="Play video">Play</button>
-                                </div>
+                    <div class="video-centered">
+                        <div class="video-wrapper" data-loop-count="3">
+                            <video id="cxl-video-1" preload="metadata" playsinline muted controlslist="nodownload noremoteplayback" disablepictureinpicture>
+                                <source src="assets/Evolve_Cancellations.mp4" type="video/mp4">
+                            </video>
+                            <div class="video-overlay" aria-hidden="true">
+                                <button class="video-play-btn" type="button" aria-label="Play video">Play</button>
                             </div>
                         </div>
                     </div>
                 </div>
+                <a class="cta-button" href="https://www.figma.com/design/zWbS3hKfzky8P9bfDodTab/Evolve--Self-serve-cancellations?node-id=0-1&p=f&t=Wjck6HQkud16W6h7-11" target="_blank" rel="noopener noreferrer">View wires in Figma</a>
             </div>
         </section>
 
@@ -503,6 +505,7 @@
                     <img src="assets/Email_circular.svg" alt="" aria-hidden="true" />
                 </a>
             </div>
+            <p class="text-body-sm">Made with love and lots of long days and learning ✌🏼<br></p>
             <p class="text-body-sm">&copy; 2025 TC Design. All rights reserved.</p>
         </div>
     </footer>
