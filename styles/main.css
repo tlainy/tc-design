@@ -911,24 +911,25 @@ body {
     transform: translateY(0);
 }
 
-/* Project rows for grouped animations */
-.project-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-24);
-    margin-bottom: var(--space-32);
+/* Staggered animation delays for project cards */
+.project-card:nth-child(1) { transition-delay: 0.1s; }
+.project-card:nth-child(2) { transition-delay: 0.2s; }
+.project-card:nth-child(3) { transition-delay: 0.3s; }
+.project-card:nth-child(4) { transition-delay: 0.4s; }
+.project-card:nth-child(5) { transition-delay: 0.5s; }
+.project-card:nth-child(6) { transition-delay: 0.6s; }
+
+/* Project badges container */
+.project-badges {
+    display: flex;
+    gap: var(--space-16);
+    margin-bottom: var(--space-12);
 }
 
-/* Staggered animation delays for project rows */
-.project-row:nth-child(1) { transition-delay: 0.1s; }
-.project-row:nth-child(2) { transition-delay: 0.3s; }
-
-/* Responsive: stack cards on tablet/mobile */
-@media (max-width: 1024px) {
-    .project-row {
-        grid-template-columns: 1fr;
-        gap: var(--space-20);
-    }
+/* Secondary badge styling */
+.project-badge--secondary {
+    background: var(--color-grey);
+    color: var(--color-off-black);
 }
 @media (max-width: 640px) {
     main { margin-top: 88px; }
