@@ -180,8 +180,8 @@ p { font-size: 16px; color: var(--text-body); margin-top: 0; margin-bottom: var(
 }
 .media-placeholder {
     width: 100%;
-    height: 420px;
-    background: var(--color-grey);
+    height: 800px;
+    background: var(--color-white);
     border-radius: 16px;
     overflow: hidden;
     display: grid;
