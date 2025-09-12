@@ -588,7 +588,7 @@ body {
     text-decoration: none;
     color: var(--text-link);
     font-weight: var(--weight-medium);
-    font-size: var(--text-lg);
+    font-size: 18px;
     transition: color 0.3s ease;
     letter-spacing: var(--tracking-wide);
 }
