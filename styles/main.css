@@ -309,11 +309,27 @@ p { font-size: 16px; color: var(--text-body); margin-top: 0; margin-bottom: var(
         align-items: start;
     }
     .hero-content { grid-column: 1 / -1; max-width: 100%; }
-    .hero-media { grid-column: 1 / -1; }
+    .hero-media { 
+        grid-column: 1 / -1; 
+        display: flex;
+        justify-content: center;
+    }
+    .media-placeholder {
+        width: 60%;
+        height: 480px; /* 60% of 800px */
+    }
 }
 
 @media (max-width: 640px) {
     .container { margin-left: var(--space-40); margin-right: var(--space-40); }
+    .hero-media { 
+        display: flex;
+        justify-content: center;
+    }
+    .media-placeholder {
+        width: 60%;
+        height: 480px; /* 60% of 800px */
+    }
 }
 
 /* Mobile full-screen menu */
@@ -875,23 +891,23 @@ body {
     .case-metrics .metrics-right { grid-column: 1 / -1; }
 }
 
-/* Responsive section spacing: halve vertical padding on tablet/mobile */
+/* Responsive section spacing: reduce to 40% on tablet/mobile */
 @media (max-width: 1024px) {
-    /* Generic hero spacing */
-    .hero { padding: calc(var(--space-64) / 2) 0 calc(var(--space-48) / 2) !important; }
-    /* Site sections */
-    .projects, .work, .about { padding-top: calc(var(--space-48) / 2) !important; padding-bottom: calc(var(--space-48) / 2) !important; }
-    /* Case study sections (inline styles exist; force override) */
+    /* Generic hero spacing - 40% of original */
+    .hero { padding: calc(var(--space-64) * 0.4) 0 calc(var(--space-48) * 0.4) !important; }
+    /* Site sections - 40% of original */
+    .projects, .work, .about { padding-top: calc(var(--space-48) * 0.4) !important; padding-bottom: calc(var(--space-48) * 0.4) !important; }
+    /* Case study sections (inline styles exist; force override) - 40% of original */
     .case-overview, .case-metrics, .case-quote, .design-section, .impact-stats, .project-nav,
-    .discovery-media { padding-top: calc(var(--space-64) / 2) !important; padding-bottom: calc(var(--space-64) / 2) !important; }
-    .discovery-images, .solution-images { padding-top: calc(var(--space-48) / 2) !important; padding-bottom: calc(var(--space-64) / 2) !important; }
+    .discovery-media { padding-top: calc(var(--space-64) * 0.4) !important; padding-bottom: calc(var(--space-64) * 0.4) !important; }
+    .discovery-images, .solution-images { padding-top: calc(var(--space-48) * 0.4) !important; padding-bottom: calc(var(--space-64) * 0.4) !important; }
 }
 @media (max-width: 640px) {
-    .hero { padding: calc(var(--space-64) / 2) 0 calc(var(--space-48) / 2) !important; }
-    .projects, .work, .about { padding-top: calc(var(--space-48) / 2) !important; padding-bottom: calc(var(--space-48) / 2) !important; }
+    .hero { padding: calc(var(--space-64) * 0.4) 0 calc(var(--space-48) * 0.4) !important; }
+    .projects, .work, .about { padding-top: calc(var(--space-48) * 0.4) !important; padding-bottom: calc(var(--space-48) * 0.4) !important; }
     .case-overview, .case-metrics, .case-quote, .design-section, .impact-stats, .project-nav,
-    .discovery-media { padding-top: calc(var(--space-64) / 2) !important; padding-bottom: calc(var(--space-64) / 2) !important; }
-    .discovery-images, .solution-images { padding-top: calc(var(--space-48) / 2) !important; padding-bottom: calc(var(--space-64) / 2) !important; }
+    .discovery-media { padding-top: calc(var(--space-64) * 0.4) !important; padding-bottom: calc(var(--space-64) * 0.4) !important; }
+    .discovery-images, .solution-images { padding-top: calc(var(--space-48) * 0.4) !important; padding-bottom: calc(var(--space-64) * 0.4) !important; }
 }
 
 /* Offset content for fixed header on tablet/mobile to prevent hero cut-off */
