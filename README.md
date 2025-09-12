@@ -31,62 +31,6 @@ tc-design/
 └── README.md          # This file
 ```
 
-## 🚀 Getting Started
-
-### Prerequisites
-- A modern web browser
-- Python 3 (for local development server)
-
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/tlainy/tc-design.git
-   cd tc-design
-   ```
-
-2. Start the development server:
-   ```bash
-   npm start
-   # or
-   python3 -m http.server 8000
-   ```
-
-3. Open your browser and navigate to `http://localhost:8000`
-
-## 🎨 Customization
-
-### Colors
-The main color scheme is defined in `styles/main.css`. You can easily customize:
-- Primary colors
-- Accent colors
-- Background colors
-- Text colors
-
-### Content
-- Update the HTML content in `index.html`
-- Modify project information
-- Add your own images to the `assets/images/` directory
-
-### Styling
-- Customize the design in `styles/main.css`
-- Add new animations and effects
-- Modify the responsive breakpoints
-
-## 📱 Responsive Breakpoints
-
-- **Mobile**: < 768px
-- **Tablet**: 768px - 1024px
-- **Desktop**: > 1024px
-
-## 🚀 Deployment
-
-This project can be deployed to any static hosting service:
-
-- **GitHub Pages**: Push to main branch
-- **Netlify**: Drag and drop the folder
-- **Vercel**: Connect your GitHub repository
-- **AWS S3**: Upload the files to a bucket
-
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -101,9 +45,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-- **Email**: hello@tcdesign.com
-- **Phone**: (555) 123-4567
-- **Website**: [tcdesign.com](https://tcdesign.com)
+- **Email**: oh.hello.tc@gmail.com
 
 ---
 
