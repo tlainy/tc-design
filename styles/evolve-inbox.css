@@ -9,6 +9,13 @@
 .hero-placeholder img { width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: contain; display: block; border-radius: inherit; }
 .launch-badge { display: inline-block; background: var(--color-off-black); color: var(--color-white); padding: 6px 10px; border-radius: 6px; font-size: 14px; font-weight: 700; letter-spacing: 0.02em; margin-bottom: var(--space-24); }
 
+/* Project badges in case hero */
+.case-hero .project-badges {
+    display: flex;
+    gap: var(--space-16);
+    margin-bottom: var(--space-24);
+}
+
 /* Overview section: fire-50 background */
 .case-overview { background: var(--color-fire-50); padding: var(--space-64) 0; }
 .case-overview .container { max-width: 1920px; margin: 0 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-64); align-items: start; }
