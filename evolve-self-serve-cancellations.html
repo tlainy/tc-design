@@ -114,7 +114,12 @@
                     <h3 class="text-heading-3">The problem, in detail</h3>
                     <p class="text-body-base">Guest booking cancellations were inherently complex. Since Evolve owners’ properties were listed across multiple distribution partners like Airbnb and Vrbo, each with its own rules and penalties, owners faced varying requirements when canceling. Cancellation fees acted as a deterrent, discouraging owners from backing out of bookings since cancellations negatively impacted their performance, search ranking, and long-term guest satisfaction. At the same time, these penalties upheld trust and credibility on the platform by holding owners to consistent standards.</p>
                     <p class="text-body-base">Fees were calculated based on how close the cancellation was to the guest’s check-in date and the reason for canceling, often amounting to a percentage of the total booking. In certain cases, owners could request a waive fee, but this required timely submission of specific documentation—adding another layer of complexity to the process.</p>
-                    <p class="text-body-base"><span style="color: var(--color-fire-500);">How could I design a self-serve tool that made cancellations quick and intuitive, while also educating owners on the negative impacts—ultimately reducing cancellations altogether?</span></p>
+                    <p class="text-body-base">Speed to cancel a booking was a clear issue. Due to the complex process of varying distribution partners, users couldn't handle their own cancelation without additional education. Lastly, users didn't understand or believe there were short- and long-term impacts on their property performance caused by canceling. There were 3 main themes: speed, education, and persuasion.</p>
+                    <ul>
+                        <li class="text-body-base"><span style="color: var(--color-fire-500);">Speed: How could I design a new self-serve tool that simplifies a once complex process and makes canceling faster and easier than the original request or call methods?</span></li>
+                        <li class="text-body-base"><span style="color: var(--color-fire-500);">Education: How could I leverage the user's selected cancellation reason to counter with a highly personalized, alternative solution that makes them pause and reconsider their decision?</span></li>
+                        <li class="text-body-base"><span style="color: var(--color-fire-500);">Persuasion: How could I design the process so users are aware of and acknowledges the permanent loss of value so they're fully informed before finalizing the cancellation?</span></li>
+                    </ul>
                 </div>
                 <div class="metrics-right">
                     <div class="metrics-list">
@@ -144,13 +149,21 @@
             <div class="container">
                 <div class="metrics-left">
                     <h3 class="text-heading-3">Discovery</h3>
-                    <p class="text-body-base">I took a step back to understand the current state of the cancellation approval process from the user and internal team perspectives.</p>
+                    <p class="text-body-base">I took a step back to understand the current state of the cancellation process through the lens of speed, education, and persuasion. How might we be hitting or missing the mark from the user and internal team perspectives?</p>
+                    <p class="text-body-base">To better understand the current process and its impact on the speed:</p>
                     <ul>
-                        <li class="text-body-base"><span class="text-body-base-bold">Collaborated with frontline team to update fee process:</span> I reviewed all the cancellation reasons, grouped them into clearer categories, and updated outdated options so they better reflected whether a fee would actually apply.</li>
-                        <li class="text-body-base"><span class="text-body-base-bold">Audited partner cancellation rules:</span> I documented the different cancellation rules and requirements from partner platforms like Airbnb and Vrbo. This helped define my content strategy for the tool and how I could simplify the instructions to best fit a majority of the rules.</li>
-                        <li class="text-body-base"><span class="text-body-base-bold">Communication & resources audit:</span> I audited the communications and content owners received around cancellations (i.e. emails, help center articles), then simplified them with Marketing to make the process easier to follow.</li>
-                        <li class="text-body-base"><span class="text-body-base-bold">Wireframing & testing:</span> I went through several iterations of wires, discussing variations with my PM and engineer, and refining based on the usability tests that were conducted with users. I also passed screens for feedback to the wider product org and design team.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Collaborated with frontline team to update fee process.</span> I reviewed all the cancellation reasons, grouped them into clearer categories, and updated outdated options to improve user comprehension and decrease time to selection.</li>
                     </ul>
+                    <p class="text-body-base">To understand where we may have had gaps in education:</p>
+                    <ul>
+                        <li class="text-body-base"><span class="text-body-base-bold">Audited partner cancellation rules with a goal of simplifying the process:</span> I documented the different cancellation rules and requirements from partner platforms like Airbnb and Vrbo. This helped define my content strategy for the tool and how I could simplify the instructions to best fit a majority of the rules.</li>
+                        <li class="text-body-base"><span class="text-body-base-bold">Communication & resources audit:</span> I audited the communications and content owners received around cancellations (i.e. emails, help center articles), then simplified them with Marketing to make the process easier to follow.</li>
+                    </ul>
+                    <p class="text-body-base">To assess where we could have better informed or persuaded users to reconsider their decision:</p>
+                    <ul>
+                        <li class="text-body-base"><span class="text-body-base-bold">Robust flow analysis:</span> I analyzed the current manual flow of requesting to finalizing a cancelation. What information were we communicating to the users to help them reconsider their decision? What was missing?</li>
+                    </ul>
+                    <p class="text-body-base">Toward the end, I went through several iterations of wireframes, discussing variations with my PM and engineer, and refining based on the usability tests that were conducted with users. I tested each variation to see each impact on speed, education, and persuasion.</p>
                 </div>
                 <div class="metrics-right">
                     <div class="metrics-list">
@@ -160,7 +173,8 @@
                         </div>
                         <div class="metrics-item">
                             <p class="text-body-base-bold"><span style="color: var(--color-grey);">Participants</span></p>
-                            <p class="text-body-base">10 owners completed a usability test</p>
+                            <p class="text-body-base">10 owners completed a usability test,</p>
+                            <p class="text-body-base">as well as tested with wider product org and design team</p>
                         </div>
                         <div class="metrics-item">
                             <p class="text-body-base-bold"><span style="color: var(--color-grey);">Tools</span></p>
@@ -171,13 +185,44 @@
             </div>
         </section>
 
-        <section id="designs" class="solution-images">
+        <!-- Discovery collage media -->
+        <section class="discovery-media">
             <div class="container">
-                <div class="solution-image">
-                    <p class="text-body-base-bold solution-caption">Re-grouping cancellation reasons took several iteration and a close collab with frontline teams</p>
-                    <div class="solution-placeholder">
-                        <img src="assets/evolve_cancellation_reasongroups.png" alt="Reason grouping" style="width: 50%; height: auto; display: block; margin: 0 auto;"/>
+                <div class="carousel" id="cancellation-carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <p class="text-body-base-bold carousel-caption">Re-grouping cancellation reasons took several iterations and a close collab with frontline teams</p>
+                            <div class="carousel-media">
+                                <img src="assets/evolve_cancellation_reasongroups.png" alt="Reason grouping" />
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <p class="text-body-base-bold carousel-caption">Auditing current communications to understand where we missed the mark on educating and persuading the user</p>
+                            <div class="carousel-media">
+                                <img src="assets/evolve_cancellation_commsaudit.png" alt="Communications audit" />
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <p class="text-body-base-bold carousel-caption">Reviewing current flow and issues</p>
+                            <div class="carousel-media">
+                                <div class="carousel-media">
+                                    <img src="assets/evolve_cancellation_currentflow.png" alt="Current flow audit" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <div class="carousel-nav">
+                        <button class="carousel-btn" data-dir="prev" aria-label="Previous"><img src="assets/arrow-left.svg" alt="Previous" width="48" height="48" /></button>
+                        <button class="carousel-btn" data-dir="next" aria-label="Next"><img src="assets/arrow-right.svg" alt="Next" width="48" height="48" /></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="case-metrics">
+            <div class="container">
+                <div class="metrics-left">
+                    <p class="text-body-base">I created three variations of concepts, each with a different cancellation flow. For each variation, I focused on tweaking the solution with speed, education, and persuasion in mind. View the figma for more details in my decision making process during my wireframing phase.</p>
                 </div>
             </div>
         </section>
@@ -185,7 +230,6 @@
         <section id="designs" class="solution-images">
             <div class="container">
                 <div class="solution-image">
-                    <p class="text-body-base-bold solution-caption">I created three variations of concepts, each with a different cancellation flow</p>
                     <div class="solution-placeholder">
                         <img src="assets/evolve_cancellation_wires v1.svg" alt="Wireframes V1" />
                         <img src="assets/evolve_cancellation_wires v2.svg" alt="Wireframes V2" />
