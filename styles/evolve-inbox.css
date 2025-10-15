@@ -72,8 +72,8 @@
 .carousel-track::-webkit-scrollbar { display: none; }
 .carousel-slide { min-width: 100%; scroll-snap-align: start; }
 .carousel-caption { text-align: center; color: var(--color-grey); margin: 0 0 var(--space-12); }
-.carousel-media { width: 100%; height: 680px; background: var(--color-white); border-radius: 16px; display: grid; place-items: center; overflow: hidden; position: relative; }
-.carousel-media img { height: 680px; width: auto; max-width: 100%; display: block; border-radius: 16px; object-fit: contain; }
+.carousel-media { width: 100%; height: 800px; background: var(--color-white); border-radius: 16px; display: grid; place-items: center; overflow: hidden; position: relative; }
+.carousel-media img { height: 800px; width: auto; max-width: 100%; display: block; border-radius: 16px; object-fit: contain; }
 .carousel-nav { position: absolute; top: calc(50% + var(--space-12)); left: 0; right: 0; transform: translateY(-50%); display: flex; justify-content: space-between; align-items: center; pointer-events: none; padding: 0 var(--space-20); }
 .carousel-btn { pointer-events: all; background: transparent; color: var(--color-fire-500); border: 0; width: 48px; height: 48px; display: grid; place-items: center; cursor: pointer; font-size: 48px; line-height: 1; }
 @media (max-width: 640px) { .carousel-btn { font-size: 36px; width: 36px; height: 36px; } }
@@ -194,3 +194,14 @@ main > .design-cta { max-width: 1920px; margin: 0 80px; }
     background: var(--color-grey);
     color: var(--color-off-black);
 }
+
+/* Video section */
+.video-wrapper { position: relative; width: 100%; border-radius: 16px; overflow: hidden; background: var(--color-off-black); border: 1px solid var(--color-grey); }
+.video-wrapper video { width: 100%; height: auto; display: block; border-radius: 16px; }
+.video-overlay { position: absolute; inset: 0; display: grid; place-items: center; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
+.video-overlay.is-visible { opacity: 1; pointer-events: all; }
+.video-play-btn { background: var(--color-fire-500); color: var(--color-white); border: none; padding: var(--space-12) var(--space-20); border-radius: var(--radius-sm); box-shadow: var(--shadow-sm); cursor: pointer; }
+
+/* Centered video container */
+.video-centered { width: 75%; margin: 0 auto; }
+@media (max-width: 1024px) { .video-centered { width: 100%; } }

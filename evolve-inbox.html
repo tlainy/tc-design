@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/evolve-inbox.css">
     <script defer src="scripts/main.js"></script>
+    <script defer src="scripts/evolve-inbox.js"></script>
     </head>
 <body>
     <header class="header">
@@ -156,7 +157,7 @@
                 <div class="metrics-image">
                     <p class="text-body-base-bold metrics-caption">Current communication flow chart, demonstrating the broken communication system</p>
                     <div class="metrics-placeholder">
-                        <img src="assets/evolve_inbox_current_flow.svg" alt="Current communication flow chart" />
+                        <img src="assets/evolve_inbox_current_flow.png" alt="Current communication flow chart" />
                     </div>
                 </div>
             </div>
@@ -292,13 +293,27 @@
             </div>
         </section>
 
-        <!-- One full-width image with caption -->
-        <section id="mockups" class="solution-images">
+        <!-- Carousel with two images -->
+        <section id="mockups" class="discovery-media">
             <div class="container">
-                <div class="solution-image">
-                    <p class="text-body-base-bold solution-caption">I starting by mocking up the beta flow and screens</p>
-                    <div class="solution-placeholder">
-                        <img src="assets/evolve_inbox_mockups.svg" alt="Mockups" />
+                <div class="carousel" id="mockups-carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <p class="text-body-base-bold carousel-caption">I starting by mocking up the beta flow and screens</p>
+                            <div class="carousel-media">
+                                <img src="assets/evolve_inbox_concepts.svg" alt="Mockups" />
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <p class="text-body-base-bold carousel-caption">Beta exploration concepts</p>
+                            <div class="carousel-media">
+                                <img src="assets/evolve_inbox_beta_explorations.svg" alt="Beta explorations" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="carousel-btn" data-dir="prev" aria-label="Previous"><img src="assets/arrow-left.svg" alt="Previous" width="48" height="48" /></button>
+                        <button class="carousel-btn" data-dir="next" aria-label="Next"><img src="assets/arrow-right.svg" alt="Next" width="48" height="48" /></button>
                     </div>
                 </div>
             </div>
@@ -333,6 +348,25 @@
       </section>
 
          </section>
+        <!-- Video section -->
+        <section id="designs-video" class="solution-images">
+            <div class="container">
+                <div class="solution-image">
+                    <p class="text-body-base-bold solution-caption">Final designs for the beta release</p>
+                    <div class="video-centered">
+                        <div class="video-wrapper" data-loop-count="10">
+                            <video id="inbox-video-1" preload="metadata" playsinline muted controlslist="nodownload noremoteplayback" disablepictureinpicture>
+                                <source src="assets/evolve_inbox_beta_finaldesigns.mp4" type="video/mp4">
+                            </video>
+                            <div class="video-overlay" aria-hidden="true">
+                                <button class="video-play-btn" type="button" aria-label="Play video">Play</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Designs image section (matches other image sections) -->
         <section id="designs" class="solution-images">
             <div class="container">
@@ -361,7 +395,7 @@
                 <div class="solution-image">
                     <p class="text-body-base-bold solution-caption">Concepts for Inbox</p>
                     <div class="solution-placeholder">
-                        <img src="assets/evolve_inbox_concepts.svg" alt="Concepts for Inbox" />
+                        <img src="assets/evolve_inbox_future_concepts.svg" alt="Concepts for Inbox" />
                     </div>
                 </div>
                 <div class="design-cta">
