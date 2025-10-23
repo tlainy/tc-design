@@ -85,12 +85,15 @@
 .metrics-images .container, .discovery-images .container, .solution-images .container { max-width: 1920px; margin: 0 80px; }
 @media (max-width: 1024px) { .metrics-images .container, .discovery-images .container, .solution-images .container { margin: 0 var(--space-40); } }
 @media (max-width: 640px) { .metrics-images .container, .discovery-images .container, .solution-images .container { margin: 0 var(--space-40); } }
-/* Narrow layout for the specific empathy storming section */
-#empathy-storming .container { max-width: 1000px; margin: 0 auto; }
+/* Narrow layout for the specific empathy storming section - centered under carousel */
+#empathy-storming .container { max-width: 1920px; margin: 0 80px; display: flex; justify-content: center; }
+#empathy-storming .discovery-image { max-width: 1000px; width: 100%; }
 @media (max-width: 1024px) { #empathy-storming .container { margin: 0 var(--space-40); } }
 @media (max-width: 640px) { #empathy-storming .container { margin: 0 var(--space-40); } }
 .metrics-image, .discovery-image, .solution-image{ margin: 0 0 var(--space-48); }
 .metrics-caption, .discovery-caption, .solution-caption{ text-align: center; color: var(--color-grey); margin: 0 0 var(--space-12); }
+.metrics-image-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-24); }
+@media (max-width: 1024px) { .metrics-image-grid { grid-template-columns: 1fr; gap: var(--space-16); } }
 .metrics-placeholder, .discovery-placeholder, .solution-placeholder{ width: 100%; background: var(--color-grey); border-radius: 16px; }
 /* Let images define height based on width for all image sections */
 .metrics-placeholder, .discovery-placeholder, .solution-placeholder { height: auto; background: transparent; }
@@ -202,6 +205,12 @@ main > .design-cta { max-width: 1920px; margin: 0 80px; }
 .video-overlay.is-visible { opacity: 1; pointer-events: all; }
 .video-play-btn { background: var(--color-fire-500); color: var(--color-white); border: none; padding: var(--space-12) var(--space-20); border-radius: var(--radius-sm); box-shadow: var(--shadow-sm); cursor: pointer; }
 
+/* Video grid container */
+.video-grid { display: grid; grid-template-columns: 2fr 0.64fr; gap: var(--space-24); align-items: start; }
+@media (max-width: 1024px) { 
+    .video-grid { grid-template-columns: 1fr; gap: var(--space-16); }
+    .video-mobile { width: 51.2%; margin: 0 auto; }
+}
 /* Centered video container */
 .video-centered { width: 75%; margin: 0 auto; }
 @media (max-width: 1024px) { .video-centered { width: 100%; } }
