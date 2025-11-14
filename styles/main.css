@@ -279,13 +279,43 @@ p { font-size: 16px; color: var(--text-body); margin-top: 0; margin-bottom: var(
 .footer { background: var(--color-off-black); color: var(--color-white); padding: var(--space-20) 0; }
 .footer .text-body-sm { color: rgba(255, 255, 255, 0.85); margin: 0; }
 .social-links { display: flex; gap: var(--space-16); margin-bottom: var(--space-24); justify-content: center; }
-.social-btn { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 999px; background: var(--color-white); border: 2px solid rgba(255,255,255,0.4); }
+.social-btn { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 999px; background: var(--color-white); border: 2px solid rgba(255,255,255,0.4); position: relative; }
 .social-btn:hover { background: var(--color-white); }
 .social-btn svg { width: 32px; height: 32px; color: var(--color-white); }
 .social-btn img { width: 32px; height: 32px; display: block; }
 /* Variant for white backgrounds: add dark stroke */
 .social-btn--outlined { border-color: var(--color-accent-default); }
 .social-btn--outlined:hover { border-color: var(--text-accent-dark); }
+
+/* Tooltips for social buttons */
+.social-btn .tooltip {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-fire-500);
+    color: var(--color-white);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 10;
+}
+.social-btn .tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--color-fire-500);
+}
+.social-btn:hover .tooltip {
+    opacity: 1;
+}
 
 /* Left-align social buttons when used inside hero/content sections */
 .hero .social-links { justify-content: flex-start; }
